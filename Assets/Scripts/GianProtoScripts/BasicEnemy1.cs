@@ -9,6 +9,8 @@ public class BasicEnemy1 : MonoBehaviour
     public BasicEnemyClass basicEnemyClass;
     private Enemy_AI basicEnemyAI;
 
+    public SpriteRenderer spriteRenderer;
+
     public float startingDamage = 5f;
     public float startingResistance = 10f;
     public float startingHealth = 25f;
@@ -18,6 +20,10 @@ public class BasicEnemy1 : MonoBehaviour
     void Awake()
     {
         basicEnemyAI = this.gameObject.GetComponent<Enemy_AI>();
+        if(this.gameObject.transform.GetChild(1) != null)
+        {
+            spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        }
 
         if (gameObject.name == "BOSS")
         {
@@ -27,12 +33,22 @@ public class BasicEnemy1 : MonoBehaviour
         {
             InitialiseClassInstance();
         }
+
+        SetSortingLayers();
+
+        InvokeRepeating("SetSortingLayers", 0.5f, 0.5f);
     }
 
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
     private void InitialiseClassInstance()
     {
         basicEnemyClass = new BasicEnemyClass(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+    }
+
+    private void SetSortingLayers()
+    {
+        spriteRenderer.sortingLayerName = Mathf.RoundToInt(this.gameObject.transform.position.y).ToString();
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
     }
 
     private void InitaliseBossClassInstance()

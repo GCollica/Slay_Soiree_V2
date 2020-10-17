@@ -47,6 +47,69 @@ TagManager:
   - name: Background
     uniqueID: 1059917663
     locked: 0
+  - name: 5
+    uniqueID: 115720717
+    locked: 0
+  - name: 4.5
+    uniqueID: 830064789
+    locked: 0
+  - name: 4
+    uniqueID: 3373478175
+    locked: 0
+  - name: 3.5
+    uniqueID: 3698804379
+    locked: 0
+  - name: 3
+    uniqueID: 3089418153
+    locked: 0
+  - name: 2.5
+    uniqueID: 1040723501
+    locked: 0
+  - name: 2
+    uniqueID: 575010681
+    locked: 0
+  - name: 1.5
+    uniqueID: 224449273
+    locked: 0
+  - name: 1
+    uniqueID: 3250570813
+    locked: 0
+  - name: 0.5
+    uniqueID: 2170208745
+    locked: 0
+  - name: 0
+    uniqueID: 3809290129
+    locked: 0
+  - name: -0.5
+    uniqueID: 4003976817
+    locked: 0
+  - name: -1
+    uniqueID: 477424325
+    locked: 0
+  - name: -1.5
+    uniqueID: 4232339663
+    locked: 0
+  - name: -2
+    uniqueID: 909745303
+    locked: 0
+  - name: -2.5
+    uniqueID: 2638490063
+    locked: 0
+  - name: -3
+    uniqueID: 3309393535
+    locked: 0
+  - name: -3.5
+    uniqueID: 1808064537
+    locked: 0
+  - name: -4
+    uniqueID: 3403106247
+    locked: 0
+  - name: -4.5
+    uniqueID: 2430917575
+    locked: 0
+  - name: -5
+    uniqueID: 2732541625
+    locked: 0
   - name: Foreground
     uniqueID: 921083675
     locked: 0
