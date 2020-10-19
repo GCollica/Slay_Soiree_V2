@@ -8,11 +8,36 @@ public class QuirkManager : MonoBehaviour
     public Quirk CurrentQuirk;
     
     //public List<GameObject> Quirks;
-    //public GameObject totem;
+    public GameObject totem;
+    public bool spawnedTotem = false;
 
-    void Start()
+    private QuirkSpawner quirkSpawner;
+
+    void Awake()
     {
-        SetCurrentQuirk(0);
+        quirkSpawner = FindObjectOfType<QuirkSpawner>();
+        SetCurrentQuirk(1);
+    }
+
+    private void Update()
+    {
+        switch (CurrentQuirk.quirkID)
+        {
+            case 0:
+                break;
+
+            case 1:
+                if(spawnedTotem != false)
+                {
+                    break;
+                }
+                quirkSpawner.SpawnQuirkObject(totem);
+                spawnedTotem = true;
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void SetCurrentQuirk(int quirkIDInput)

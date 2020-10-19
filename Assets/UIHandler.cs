@@ -7,8 +7,9 @@ public class UIHandler : MonoBehaviour
 {
     //public PlayerCount playerCountComponent;
     public PlayerStats player1Stats;
-    public Image p1Image;
+    public Image P1Image;
     private float p1ImageValue;
+    public TMPro.TextMeshProUGUI P1GoldValueText;
     private PlayerStats player2Stats;
     private PlayerStats player3Stats;
     private PlayerStats player4Stats;
@@ -24,7 +25,9 @@ public class UIHandler : MonoBehaviour
         //InitialisePlayers();
 
         p1ImageValue = player1Stats.playerClass.currentHealth / 100f;
-        p1Image.fillAmount = p1ImageValue;
+        P1Image.fillAmount = p1ImageValue;
+
+        P1GoldValueText.text = "Gold: " + player1Stats.playerClass.currentGold.ToString();
     }
 
     /*public void InitialisePlayers()

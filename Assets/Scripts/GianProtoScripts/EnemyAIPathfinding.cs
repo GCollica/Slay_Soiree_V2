@@ -17,20 +17,23 @@ public class EnemyAIPathfinding : MonoBehaviour
     private int currentWaypoint = 0;
 
     //public float movementSpeed = 10f;
-    private float nextWaypointDistance = 3f;
+    private float nextWaypointDistance = 0.5f;
     private float updatePathTimer = 0f;
-    private float updatePathInterval = .25f;
+    private float updatePathInterval = .125f;
 
     private void Awake()
     {
         aiComponent = this.gameObject.GetComponent<Enemy_AI>();
         seeker = this.gameObject.GetComponent<Seeker>();
         rigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+        //graphUpdater = FindObjectOfType<GraphUpdateObject>();
     }
 
     //Generates path towards the target postition
     public void GeneratePath()
     {
+
+        //AstarPath.active.UpdateGraphs(GameObject.FindObjectOfType<GraphUpdateScene>().);
         creatingPath = true;
         seeker.StartPath(rigidBody.position, aiComponent.currentTargetTransform.position, OnPathComplete);
         updatePathTimer = 0f;

@@ -16,6 +16,8 @@ public class Enemy_AI : MonoBehaviour
     private float idleDelayTimer = 0f;
     private float idleDelayLength = 1f;
 
+    private float facingDirectionBuffer = 0.125f;
+
     private EnemyAIAttacking attackComponent;
     private EnemyAIPathfinding pathfindingComponent;
     public BasicEnemy1 basicEnemy1Script;
@@ -153,11 +155,11 @@ public class Enemy_AI : MonoBehaviour
     //Sets characters Facing Direction by flipping the sprite.
     private void SetFacingDirection()
     {
-        if (pathfindingComponent.rigidBody.velocity.x > 0)
+        if (pathfindingComponent.rigidBody.velocity.x > (0 + facingDirectionBuffer))
         {
             this.gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
-        else if (pathfindingComponent.rigidBody.velocity.x <= 0)
+        else if (pathfindingComponent.rigidBody.velocity.x <= (0 - facingDirectionBuffer))
         {
             this.gameObject.GetComponentInChildren<SpriteRenderer>().flipX = false;
         }

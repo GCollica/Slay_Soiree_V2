@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1c0a24f5d501445b411fce3b86a57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Quirks:
-  - {fileID: 7762768760313536251, guid: 40eacbeb216ce4f41b4bfca449558da0, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  AllQuirks:
+  - {fileID: 11400000, guid: 56c9552c10e94e94ca0184e9bc7b2609, type: 2}
+  CurrentQuirk: {fileID: 0}
+  totem: {fileID: 7762768760313536251, guid: 40eacbeb216ce4f41b4bfca449558da0, type: 3}
+  spawnedTotem: 0

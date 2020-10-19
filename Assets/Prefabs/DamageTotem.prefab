@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 2
+  m_SortingLayer: 23
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6a45a16f356bbb348b867f523d86441e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8989081677030198976}
   - component: {fileID: 5802914884596620872}
-  - component: {fileID: 3794227694839288329}
+  - component: {fileID: 1992730894297402859}
   m_Layer: 10
   m_Name: DamageTotem
   m_TagString: Untagged
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMultiplyer: 2
   health: 50
---- !u!61 &3794227694839288329
-BoxCollider2D:
+--- !u!58 &1992730894297402859
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -141,16 +141,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: 0.93977714}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.3148022, y: 2.8795543}
-  m_EdgeRadius: 0
+  m_Radius: 0.75

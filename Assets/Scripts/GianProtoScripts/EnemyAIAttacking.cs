@@ -39,7 +39,7 @@ public class EnemyAIAttacking : MonoBehaviour
     //Sets characters attack direction.
     public void SetAttackDirection()
     {
-        attackParent.transform.right = (aiComponent.currentTargetTransform.transform.position - attackParent.transform.position);
+        attackParent.transform.right = (aiComponent.currentTargetTransform.transform.position - attackParent.transform.position).normalized;
 
     }
 

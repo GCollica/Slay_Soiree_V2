@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - ItemPedistool
   - PlayerInputManager
+  - EnemySpawner
+  - EnemyParent
+  - QuirkParent
   layers:
   - Default
   - TransparentFX

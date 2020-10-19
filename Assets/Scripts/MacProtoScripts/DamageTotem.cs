@@ -17,6 +17,8 @@ public class DamageTotem : MonoBehaviour
 
         // Toggle damage increase true
         playerStats.damageTotem = true;
+
+        SetSortingLayers();
     }
 
     public void TotemTakeDamage(float damage)
@@ -31,5 +33,12 @@ public class DamageTotem : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private void SetSortingLayers()
+    {
+        SpriteRenderer spriteRenderer = this.gameObject.transform.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.sortingLayerName = Mathf.RoundToInt(this.gameObject.transform.position.y).ToString();
+        spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
     }
 }
