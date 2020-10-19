@@ -4,25 +4,40 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     private PlayerMovement playerMovement;
     private PlayerStats playerStats;
+
+    public GameObject arrowPrefab;
 
     [HideInInspector]
     public int playerIndex = 0;
 
-    [SerializeField]
-    private float interactRange;
-    public GameObject interactPoint;
+    private Vector2 lookDirection;
 
+    [SerializeField]
+    [Space]
+    [Header("Player interact range")]
+    private float interactRange;
+
+    public GameObject interactPoint;
     public Transform attackPoint;
+
+    [Space]
+    [Header("Layer that player can attack")]
     public LayerMask enemyLayers;
 
+    [Space]
+    [Header("Layer that player can interact with")]
     public LayerMask interactableLayers;
 
     private Animator animator;
 
+    [Space]
+    [Header("Ranged Combat")]
+    public float crosshairOffset;
     public GameObject crosshair;
+    public bool isAiming;
+    private float arrowSpeed;
 
     [SerializeField]
     private bool ranged;
@@ -43,11 +58,36 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         // Testing purposes only
+        aiming = true;
+    }
+
+    private void Update()
+    {
+        if (isAiming)
+        {
+            Aim();
+        }
     }
 
     void FixedUpdate()
     {
         //Vector2 looDir = playerMovement.m - gameObject.position;
+    }
+
+    public void SetInputAimVector(Vector2 direction)
+    {
+        lookDirection = direction;
+
+        Debug.Log("Vector Set!");
+    }
+
+    private void Aim()
+    {
+        // Crosshair placement
+        if (lookDirection != Vector2.zero)
+        {
+            crosshair.transform.localPosition = lookDirection;
+        }
     }
 
     public void LightAttack()
@@ -56,6 +96,7 @@ public class PlayerCombat : MonoBehaviour
         // Play attack animation
         animator.Play("Player_Sword_Attack");
 
+        #region Hit Check
         if (!ranged)
         {
             // Detect enemies in range of attack
@@ -82,36 +123,50 @@ public class PlayerCombat : MonoBehaviour
                     continue;
                 }
             }
-        }       
+        }
+        #endregion
     }
 
-    public void HeavyAttack()
+    public void Fire()
     {
-        //Debug.Log("Heavy Attack!");
+        Debug.Log("Loose!");
         // Play attack animation
 
+        Vector2 fireDirection = crosshair.transform.localPosition;
+        fireDirection.Normalize();
+
+        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        arrow.GetComponent<Rigidbody2D>().velocity = lookDirection * arrowSpeed;
+        arrow.transform.Rotate(0, 0, Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg);
+        Destroy(arrow, 2f);
+
+        isAiming = false;
+        #region Heavy Attack
         // Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
+        //if (!ranged)
+        //{
+        //    // Interactions for each enemy hit by the attack
+        //    foreach (Collider2D enemy in hitEnemies)
+        //    {
+        //        Debug.Log("We hit" + enemy.name + "with a heavy attack!");
 
-        // Interactions for each enemy hit by the attack
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("We hit" + enemy.name + "with a heavy attack!");
+        //        var impactEnemy = enemy.GetComponent<BasicEnemy1>();
+        //        var impactTotem = enemy.GetComponent<DamageTotem>();
 
-            var impactEnemy = enemy.GetComponent<BasicEnemy1>();
-            var impactTotem = enemy.GetComponent<DamageTotem>();
-
-            if (impactEnemy != null)
-            {
-                impactEnemy.TakeDamage(gameObject, "Heavy");
-                continue;
-            }
-            else if (impactTotem != null)
-            {
-                impactTotem.TotemTakeDamage(playerStats.playerClass.currentHeavyDamage);
-                continue;
-            }
-        }     
+        //        if (impactEnemy != null)
+        //        {
+        //            impactEnemy.TakeDamage(gameObject, "Heavy");
+        //            continue;
+        //        }
+        //        else if (impactTotem != null)
+        //        {
+        //            impactTotem.TotemTakeDamage(playerStats.playerClass.currentHeavyDamage);
+        //            continue;
+        //        }
+        //    } 
+        //}
+        #endregion
     }
 
     public void Interact()
@@ -147,12 +202,12 @@ public class PlayerCombat : MonoBehaviour
         return playerIndex;
     }
     
-    void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null || interactPoint == null)
-            return;
+    //void OnDrawGizmosSelected()
+    //{
+    //    if (attackPoint == null || interactPoint == null)
+    //        return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, playerStats.playerClass.currentAttackRange);
-        Gizmos.DrawWireSphere(interactPoint.transform.position, interactRange);
-    }
+    //    Gizmos.DrawWireSphere(attackPoint.position, playerStats.playerClass.currentAttackRange);
+    //    Gizmos.DrawWireSphere(interactPoint.transform.position, interactRange);
+    //}
 }

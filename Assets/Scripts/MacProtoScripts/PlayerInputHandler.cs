@@ -56,6 +56,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             // Takes the input from object this script is attached to (PlayerInputController)
             playerMovement.SetInputVector(movementContext.ReadValue<Vector2>());
+            playerCombat.SetInputAimVector(movementContext.ReadValue<Vector2>());
         }
     }
 
@@ -92,9 +93,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void HeavyAttack(CallbackContext context)
     {
-        if (context.performed && playerMovement != null)
+        if (context.started && playerMovement != null)
         {
-            playerCombat.HeavyAttack();
+            playerCombat.isAiming = true;
+        }
+
+        if (context.canceled && playerMovement != null)
+        {
+            playerCombat.Fire();
         }
     }
 

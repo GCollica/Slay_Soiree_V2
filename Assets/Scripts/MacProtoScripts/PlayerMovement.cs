@@ -11,12 +11,16 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     [SerializeField]
+    private GameObject playerSprite;
+
+    [SerializeField]
     private int playerIndex = 0;
 
+    [Space]
+    [Header("Player Speed Stats")]
     //Starting speed for player
     [SerializeField]
     private float baseSpeed = 3;
-
     //Speed stat that changes with items
     public float playerSpeed;
 
@@ -61,13 +65,13 @@ public class PlayerMovement : MonoBehaviour
         // Player moves left, flip character left
         if (move.x <= -0.1)
         {
-            gameObject.transform.localScale = left;
+            playerSprite.transform.localScale = left;
         }
 
         // Player moves right, flip character right
         if (move.x >= 0.1)
         {
-            gameObject.transform.localScale = right;
+            playerSprite.transform.localScale = right;
         }
     }
 
