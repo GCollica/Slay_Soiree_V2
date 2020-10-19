@@ -558,22 +558,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Aim",
-                    "type": "Button",
-                    "id": "2b9a27f4-f851-49b1-ac52-86d82b5a1bd8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold"
-                },
-                {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "37111cc7-5b7a-4db3-9382-241fadbcc309",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -581,7 +565,7 @@
                     "name": "",
                     "id": "3bed586c-4b5f-429a-9194-8cb1269ef43d",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Hold",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Heavy Attack",
@@ -772,28 +756,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Next Room",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0cac1d98-d531-45f3-9b37-a508b194f05e",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05645a01-eb14-4223-8c11-833a17e9f15c",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
