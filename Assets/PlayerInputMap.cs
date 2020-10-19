@@ -571,22 +571,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""Button"",
-                    ""id"": ""2b9a27f4-f851-49b1-ac52-86d82b5a1bd8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold""
-                },
-                {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""37111cc7-5b7a-4db3-9382-241fadbcc309"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -594,7 +578,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""3bed586c-4b5f-429a-9194-8cb1269ef43d"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Heavy Attack"",
@@ -787,28 +771,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": ""Next Room"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0cac1d98-d531-45f3-9b37-a508b194f05e"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05645a01-eb14-4223-8c11-833a17e9f15c"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -896,8 +858,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Player_Interact = m_Player.FindAction(" Interact", throwIfNotFound: true);
         m_Player_ActiveItem = m_Player.FindAction("Active Item", throwIfNotFound: true);
         m_Player_NextRoom = m_Player.FindAction("Next Room", throwIfNotFound: true);
-        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
-        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1058,8 +1018,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_ActiveItem;
     private readonly InputAction m_Player_NextRoom;
-    private readonly InputAction m_Player_Aim;
-    private readonly InputAction m_Player_Fire;
     public struct PlayerActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -1070,8 +1028,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @ActiveItem => m_Wrapper.m_Player_ActiveItem;
         public InputAction @NextRoom => m_Wrapper.m_Player_NextRoom;
-        public InputAction @Aim => m_Wrapper.m_Player_Aim;
-        public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1099,12 +1055,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @NextRoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRoom;
                 @NextRoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRoom;
                 @NextRoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRoom;
-                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1127,12 +1077,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @NextRoom.started += instance.OnNextRoom;
                 @NextRoom.performed += instance.OnNextRoom;
                 @NextRoom.canceled += instance.OnNextRoom;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -1203,7 +1147,5 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnActiveItem(InputAction.CallbackContext context);
         void OnNextRoom(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
     }
 }

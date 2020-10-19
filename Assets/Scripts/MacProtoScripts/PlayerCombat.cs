@@ -37,7 +37,7 @@ public class PlayerCombat : MonoBehaviour
     public float crosshairOffset;
     public GameObject crosshair;
     public bool isAiming;
-    private float arrowSpeed;
+    public float arrowSpeed;
 
     [SerializeField]
     private bool ranged;
@@ -52,19 +52,25 @@ public class PlayerCombat : MonoBehaviour
     private void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
+        playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
     }
 
     void Start()
     {
-        // Testing purposes only
-        aiming = true;
+        #region For Testing Purposes only
+        ranged = true;
+        #endregion
+
+        crosshair.SetActive(false);
+        
     }
 
     private void Update()
     {
         if (isAiming)
         {
+            playerMovement.isAiming = true;
             Aim();
         }
     }
@@ -86,6 +92,7 @@ public class PlayerCombat : MonoBehaviour
         // Crosshair placement
         if (lookDirection != Vector2.zero)
         {
+            crosshair.SetActive(true);
             crosshair.transform.localPosition = lookDirection;
         }
     }
@@ -129,18 +136,23 @@ public class PlayerCombat : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("Loose!");
-        // Play attack animation
+        if (lookDirection != Vector2.zero)
+        {
+            Debug.Log("Loose!");
+            // Play attack animation
 
-        Vector2 fireDirection = crosshair.transform.localPosition;
-        fireDirection.Normalize();
+            Vector2 fireDirection = crosshair.transform.localPosition;
+            fireDirection.Normalize();
 
-        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-        arrow.GetComponent<Rigidbody2D>().velocity = lookDirection * arrowSpeed;
-        arrow.transform.Rotate(0, 0, Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg);
-        Destroy(arrow, 2f);
+            GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+            arrow.GetComponent<Rigidbody2D>().velocity = lookDirection * arrowSpeed;
+            arrow.transform.Rotate(0, 0, Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg);
+            //Destroy(arrow, 2f);
 
-        isAiming = false;
+            crosshair.SetActive(false);
+            isAiming = false;
+            playerMovement.isAiming = false;
+        }       
         #region Heavy Attack
         // Detect enemies in range of attack
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);

@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    [HideInInspector]
+    public bool isAiming;
+
     [SerializeField]
     private GameObject playerSprite;
 
@@ -91,17 +94,11 @@ public class PlayerMovement : MonoBehaviour
         //Moves player forwards
         rb.AddForce(force);
 
-        //Move(m);
     }
 
     public int GetPlayerIndex()
     {
         //Returns the index of the player Index 0-3 (Player 1-4) 
         return playerIndex;
-    }
-
-    void Move(Vector2 direction)
-    {
-        Debug.Log("Moving!" + direction);
     }
 }
