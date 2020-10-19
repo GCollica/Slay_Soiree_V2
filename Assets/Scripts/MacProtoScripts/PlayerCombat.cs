@@ -93,12 +93,12 @@ public class PlayerCombat : MonoBehaviour
     public void LightAttack()
     {
         //Debug.Log("Light Attack!");
-        // Play attack animation
-        animator.Play("Player_Sword_Attack");
-
+        
         #region Hit Check
         if (!ranged)
         {
+            // Play attack animation
+            animator.Play("Player_Sword_Attack");
             // Detect enemies in range of attack
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
 

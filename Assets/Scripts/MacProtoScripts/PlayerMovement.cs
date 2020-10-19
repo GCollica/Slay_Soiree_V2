@@ -75,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // ToDo: Disable movement when aiming 
+
     void FixedUpdate()
     {
         //Assigns "m" to the Vector2 value of the left joystick axes
