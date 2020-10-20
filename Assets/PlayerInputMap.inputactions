@@ -520,7 +520,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Heavy Attack",
+                    "name": "Fire",
                     "type": "Button",
                     "id": "b851b2fd-15c9-4f97-a615-4c2c41af8099",
                     "expectedControlType": "Button",
@@ -565,10 +565,10 @@
                     "name": "",
                     "id": "3bed586c-4b5f-429a-9194-8cb1269ef43d",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(pressPoint=0.1,behavior=2)",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Heavy Attack",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -579,7 +579,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Heavy Attack",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

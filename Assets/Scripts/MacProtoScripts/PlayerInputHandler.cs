@@ -98,9 +98,10 @@ public class PlayerInputHandler : MonoBehaviour
             playerCombat.isAiming = true;
         }
 
-        if (context.canceled && playerMovement != null)
+        if (context.canceled && playerMovement != null && canAttack)
         {
             playerCombat.Fire();
+			canAttack = false;
         }
     }
 

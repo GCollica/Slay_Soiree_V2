@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool isAiming;
 
+	public bool isMoving;
+
     [SerializeField]
     private GameObject playerSprite;
 
@@ -66,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
     void TurnPlayer()
     {
         // Player moves left, flip character left
-        if (move.x <= -0.1)
+        if (move.x <= -0.1 && !isAiming)
         {
             playerSprite.transform.localScale = left;
         }
 
         // Player moves right, flip character right
-        if (move.x >= 0.1)
+        if (move.x >= 0.1 && !isAiming)
         {
             playerSprite.transform.localScale = right;
         }
@@ -82,18 +84,22 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Assigns "m" to the Vector2 value of the left joystick axes
-        m = new Vector2(move.x, move.y);
+		//Assigns "m" to the Vector2 value of the left joystick axes
+		m = new Vector2(move.x, move.y);
 
-        //Sets the velocity to accelerate to
-        targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
+		if (isAiming)
+		{
+			m = new Vector2(0, 0);
+		}
 
-        //Calculates the amount of force delivered each frame
-        Vector2 force = (targetVelocity - rb.velocity) * forceMult;
+		//Sets the velocity to accelerate to
+		targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
 
-        //Moves player forwards
-        rb.AddForce(force);
+		//Calculates the amount of force delivered each frame
+		Vector2 force = (targetVelocity - rb.velocity) * forceMult;
 
+		//Moves player forwards
+		rb.AddForce(force);
     }
 
     public int GetPlayerIndex()

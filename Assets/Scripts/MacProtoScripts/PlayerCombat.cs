@@ -66,18 +66,14 @@ public class PlayerCombat : MonoBehaviour
         
     }
 
-    private void Update()
+    void Update()
     {
-        if (isAiming)
-        {
+		if (isAiming)
+		{
+			Debug.Log("RefreshCheck");
             playerMovement.isAiming = true;
             Aim();
         }
-    }
-
-    void FixedUpdate()
-    {
-        //Vector2 looDir = playerMovement.m - gameObject.position;
     }
 
     public void SetInputAimVector(Vector2 direction)
@@ -90,11 +86,9 @@ public class PlayerCombat : MonoBehaviour
     private void Aim()
     {
         // Crosshair placement
-        if (lookDirection != Vector2.zero)
-        {
-            crosshair.SetActive(true);
-            crosshair.transform.localPosition = lookDirection;
-        }
+		Debug.Log("Aiming");
+        crosshair.SetActive(true);
+        crosshair.transform.localPosition = lookDirection;
     }
 
     public void LightAttack()
@@ -135,10 +129,11 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void Fire()
-    {
-        if (lookDirection != Vector2.zero)
-        {
-            Debug.Log("Loose!");
+	{
+
+		if (lookDirection != Vector2.zero && playerMovement.isMoving == false)
+        {			
+			Debug.Log("Loose!");
             // Play attack animation
 
             Vector2 fireDirection = crosshair.transform.localPosition;
@@ -146,40 +141,53 @@ public class PlayerCombat : MonoBehaviour
 
             GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
             arrow.GetComponent<Rigidbody2D>().velocity = lookDirection * arrowSpeed;
-            arrow.transform.Rotate(0, 0, Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg);
-            //Destroy(arrow, 2f);
+            arrow.transform.Rotate(0, 0, Mathf.Atan2(-lookDirection.y, -lookDirection.x) * Mathf.Rad2Deg);
+            Destroy(arrow, 2f);
+			Invoke("ResetMovement", .25f);
+			crosshair.SetActive(false);
+			isAiming = false;
+		}
+		else
+		{
+			playerMovement.isAiming = false;
+			ResetMovement();
+			crosshair.SetActive(false);
+			isAiming = false;
+			return;
+		}
 
-            crosshair.SetActive(false);
-            isAiming = false;
-            playerMovement.isAiming = false;
-        }       
-        #region Heavy Attack
-        // Detect enemies in range of attack
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
-        //if (!ranged)
-        //{
-        //    // Interactions for each enemy hit by the attack
-        //    foreach (Collider2D enemy in hitEnemies)
-        //    {
-        //        Debug.Log("We hit" + enemy.name + "with a heavy attack!");
+		#region Heavy Attack
+		// Detect enemies in range of attack
+		//Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
+		//if (!ranged)
+		//{
+		//    // Interactions for each enemy hit by the attack
+		//    foreach (Collider2D enemy in hitEnemies)
+		//    {
+		//        Debug.Log("We hit" + enemy.name + "with a heavy attack!");
 
-        //        var impactEnemy = enemy.GetComponent<BasicEnemy1>();
-        //        var impactTotem = enemy.GetComponent<DamageTotem>();
+		//        var impactEnemy = enemy.GetComponent<BasicEnemy1>();
+		//        var impactTotem = enemy.GetComponent<DamageTotem>();
 
-        //        if (impactEnemy != null)
-        //        {
-        //            impactEnemy.TakeDamage(gameObject, "Heavy");
-        //            continue;
-        //        }
-        //        else if (impactTotem != null)
-        //        {
-        //            impactTotem.TotemTakeDamage(playerStats.playerClass.currentHeavyDamage);
-        //            continue;
-        //        }
-        //    } 
-        //}
-        #endregion
-    }
+		//        if (impactEnemy != null)
+		//        {
+		//            impactEnemy.TakeDamage(gameObject, "Heavy");
+		//            continue;
+		//        }
+		//        else if (impactTotem != null)
+		//        {
+		//            impactTotem.TotemTakeDamage(playerStats.playerClass.currentHeavyDamage);
+		//            continue;
+		//        }
+		//    } 
+		//}
+		#endregion
+	}
+
+	public void ResetMovement()
+	{
+		playerMovement.isAiming = false;
+	}
 
     public void Interact()
     {
