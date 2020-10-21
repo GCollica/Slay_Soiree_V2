@@ -25,7 +25,7 @@ TagManager:
   - Player
   - Interactable
   - BoundaryCollider
-  - 
+  - Boundary
   - 
   - 
   - 

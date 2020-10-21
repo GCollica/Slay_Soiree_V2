@@ -7,7 +7,7 @@ public class QuirkManager : MonoBehaviour
     public List<Quirk> AllQuirks;
     public Quirk CurrentQuirk;
     
-    //public List<GameObject> Quirks;
+    //Totem Gameobject, assign prefab in inspector.
     public GameObject totem;
     public bool spawnedTotem = false;
 
@@ -25,7 +25,7 @@ public class QuirkManager : MonoBehaviour
         {
             case 0:
                 break;
-
+            //case 1 is Enemy 2x Damage Totem Quirk.
             case 1:
                 if(spawnedTotem != false)
                 {

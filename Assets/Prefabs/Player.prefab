@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAiming: 0
+  isMoving: 0
   playerSprite: {fileID: 2517518717425845453}
   playerIndex: 0
   baseSpeed: 3
@@ -193,6 +194,7 @@ GameObject:
   - component: {fileID: 5475218467321371138}
   - component: {fileID: 3041388042901177692}
   - component: {fileID: 1755755112643371646}
+  - component: {fileID: 7299389536013987857}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -283,6 +285,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7299389536013987857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517518717425845453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a09cdd3ea4fa804b9d9f03b77a18b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3804840506641614505
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4040148595952060494}
   m_Layer: 0
-  m_Name: Sprites
+  m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

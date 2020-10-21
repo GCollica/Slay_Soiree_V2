@@ -459,7 +459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875497685}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Boundaries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1185422827}
   - component: {fileID: 1185422828}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1347394637}
   - component: {fileID: 1347394638}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1405489509}
   - component: {fileID: 1405489510}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1185,7 +1185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1693489574}
   - component: {fileID: 1693489575}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1652,6 +1652,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5255848647107685202, guid: 7b8af88659ae3b345a12eae6ffa065e8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.0002441
+      objectReference: {fileID: 0}
     - target: {fileID: 5499981689015574782, guid: 7b8af88659ae3b345a12eae6ffa065e8,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1836,6 +1841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791234793352401081, guid: 7b8af88659ae3b345a12eae6ffa065e8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00024414062
       objectReference: {fileID: 0}
     - target: {fileID: 7324249340817581728, guid: 7b8af88659ae3b345a12eae6ffa065e8,
         type: 3}

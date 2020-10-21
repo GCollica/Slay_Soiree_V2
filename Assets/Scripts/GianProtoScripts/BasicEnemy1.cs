@@ -34,9 +34,9 @@ public class BasicEnemy1 : MonoBehaviour
             InitialiseClassInstance();
         }
 
-        SetSortingLayers();
+        //SetSortingLayers();
 
-        InvokeRepeating("SetSortingLayers", 0.5f, 0.5f);
+        //InvokeRepeating("SetSortingLayers", 0.5f, 0.5f);
     }
 
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
@@ -45,11 +45,11 @@ public class BasicEnemy1 : MonoBehaviour
         basicEnemyClass = new BasicEnemyClass(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
     }
 
-    private void SetSortingLayers()
+    /*private void SetSortingLayers()
     {
         spriteRenderer.sortingLayerName = Mathf.RoundToInt(this.gameObject.transform.position.y).ToString();
         spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
-    }
+    }*/
 
     private void InitaliseBossClassInstance()
     {
