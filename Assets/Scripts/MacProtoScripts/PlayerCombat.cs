@@ -106,7 +106,7 @@ public class PlayerCombat : MonoBehaviour
             // Damage them
             foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log("We hit " + enemy.name + " with a light attack!");
+                //Debug.Log("We hit " + enemy.name + " with a light attack!");
 
                 var impactEnemy = enemy.GetComponent<BasicEnemy1>();
                 var impactTotem = enemy.GetComponent<DamageTotem>();
