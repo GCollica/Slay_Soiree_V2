@@ -19,7 +19,7 @@ public class EnemyAIPathfinding : MonoBehaviour
     //public float movementSpeed = 10f;
     private float nextWaypointDistance = 0.5f;
     private float updatePathTimer = 0f;
-    private float updatePathInterval = .125f;
+    private float updatePathInterval = .1f;
 
     private void Awake()
     {

@@ -16,7 +16,7 @@ public class QuirkManager : MonoBehaviour
     void Awake()
     {
         quirkSpawner = FindObjectOfType<QuirkSpawner>();
-        SetCurrentQuirk(2);
+        SetCurrentQuirk(Random.Range(1, 3));
     }
 
     private void Update()
@@ -75,4 +75,5 @@ public class QuirkManager : MonoBehaviour
         return randomReturn;
     }
     #endregion
+
 }
