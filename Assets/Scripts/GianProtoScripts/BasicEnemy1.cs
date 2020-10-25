@@ -5,9 +5,9 @@ using UnityEngine;
 public class BasicEnemy1 : MonoBehaviour
 {
     /*Script that will be attached to each basic enemy 1 gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the BasicEnemyClass. */
-
     public BasicEnemyClass basicEnemyClass;
     private Enemy_AI basicEnemyAI;
+    private QuirkManager quirkManager;
 
     public SpriteRenderer spriteRenderer;
 
@@ -32,6 +32,21 @@ public class BasicEnemy1 : MonoBehaviour
         else
         {
             InitialiseClassInstance();
+        }
+
+        quirkManager = FindObjectOfType<QuirkManager>();
+        
+        if(quirkManager.CurrentQuirk.quirkID == 2)
+        {
+            int chosenModifier = quirkManager.RandomiseMSModifier();
+            if(chosenModifier == 0)
+            {
+                basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed / 2);
+            }
+            if(chosenModifier == 1)
+            {
+                basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed * 2);
+            }
         }
 
         //SetSortingLayers();

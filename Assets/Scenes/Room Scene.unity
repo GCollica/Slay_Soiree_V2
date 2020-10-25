@@ -576,6 +576,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3849595608236155334, guid: b249767077019904896afeb01d71bcf3,
+        type: 3}
+      propertyPath: AllQuirks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849595608236155334, guid: b249767077019904896afeb01d71bcf3,
+        type: 3}
+      propertyPath: AllQuirks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b1517520ed079b489b36a3b7109c7cc,
+        type: 2}
     - target: {fileID: 5615289588182272012, guid: b249767077019904896afeb01d71bcf3,
         type: 3}
       propertyPath: m_Name

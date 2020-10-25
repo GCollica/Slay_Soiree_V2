@@ -16,7 +16,7 @@ public class QuirkManager : MonoBehaviour
     void Awake()
     {
         quirkSpawner = FindObjectOfType<QuirkSpawner>();
-        SetCurrentQuirk(1);
+        SetCurrentQuirk(2);
     }
 
     private void Update()
@@ -34,6 +34,9 @@ public class QuirkManager : MonoBehaviour
                 quirkSpawner.SpawnQuirkObject(totem);
                 spawnedTotem = true;
                 break;
+            //Case 2 is MSRandomiser Quirk.
+            case 2:
+                break; 
 
             default:
                 break;
@@ -62,6 +65,14 @@ public class QuirkManager : MonoBehaviour
     void DamageTotem()
     {
         //Instantiate(Quirks.Find(obj => obj.name == "DamageTotem"), transform);
+    }
+    #endregion
+
+    #region MSRandomiser
+    public int RandomiseMSModifier()
+    {
+        int randomReturn = Random.Range(0, 2);
+        return randomReturn;
     }
     #endregion
 }

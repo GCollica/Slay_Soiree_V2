@@ -46,7 +46,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.15
 --- !u!1 &557599504957889671
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   startingDamage: 5
   startingResistance: 10
   startingHealth: 25
-  startingMovespeed: 150
+  startingMovespeed: 300
   goldDrop: 2
 --- !u!114 &2686370354828970359
 MonoBehaviour:
@@ -444,7 +444,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -462,7 +462,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.9}
