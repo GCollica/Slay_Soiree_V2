@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_AI : MonoBehaviour
 {
     //Data references for state machine components of the code.
-    public enum AIState {Idle, FindingTarget, PursuingTarget, AttackSequence, ExecutingAttacks};
+    public enum AIState {Idle, FindingTarget, PursuingTarget, AttackPrep, AttackSequence, ExecutingAttacks};
     public AIState currentAIState = AIState.Idle;
 
     //Data references for multi-use components of the code.
@@ -16,17 +16,22 @@ public class Enemy_AI : MonoBehaviour
     private float idleDelayTimer = 0f;
     private float idleDelayLength = 1f;
 
+    private float attackPrepTimer = 0f;
+    private float attackPrepLength = 1.5f;
+
     private float facingDirectionBuffer = 0.125f;
 
     private EnemyAIAttacking attackComponent;
     private EnemyAIPathfinding pathfindingComponent;
     public BasicEnemy1 basicEnemy1Script;
+    public QuirkManager quirkManager;
 
     void Awake()
     {
         attackComponent = this.gameObject.GetComponent<EnemyAIAttacking>();
         pathfindingComponent = this.gameObject.GetComponent<EnemyAIPathfinding>();
         basicEnemy1Script = this.gameObject.GetComponent<BasicEnemy1>();
+        quirkManager = FindObjectOfType<QuirkManager>();
     }
   
     void Update()
@@ -51,6 +56,7 @@ public class Enemy_AI : MonoBehaviour
             case AIState.FindingTarget:
 
                 idleDelayTimer = 0f;
+                attackPrepTimer = 0f;
                 InitialiseTargets();
                 FindNearestTarget();
                 attackComponent.RunAttackCooldownTimer();
@@ -64,9 +70,21 @@ public class Enemy_AI : MonoBehaviour
                 attackComponent.RunAttackCooldownTimer();
                 if(attackComponent.inAttackRange == true)
                 {
+                    currentAIState = AIState.AttackPrep;
+                }
+                break;
+
+            case AIState.AttackPrep:
+                if(attackPrepTimer < attackPrepLength)
+                {
+                    attackPrepTimer += Time.deltaTime;
+                }
+                else
+                {
                     currentAIState = AIState.AttackSequence;
                 }
                 break;
+                
 
             case AIState.AttackSequence:
 

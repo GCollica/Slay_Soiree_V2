@@ -579,7 +579,7 @@ PrefabInstance:
     - target: {fileID: 3849595608236155334, guid: b249767077019904896afeb01d71bcf3,
         type: 3}
       propertyPath: AllQuirks.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3849595608236155334, guid: b249767077019904896afeb01d71bcf3,
         type: 3}
@@ -587,6 +587,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7b1517520ed079b489b36a3b7109c7cc,
         type: 2}
+    - target: {fileID: 3849595608236155334, guid: b249767077019904896afeb01d71bcf3,
+        type: 3}
+      propertyPath: AllQuirks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1ae4c14efb2fb34689deb87aebfdcd5,
+        type: 2}
+    - target: {fileID: 3849595608236155334, guid: b249767077019904896afeb01d71bcf3,
+        type: 3}
+      propertyPath: goldPouch
+      value: 
+      objectReference: {fileID: 7912133387347657596, guid: 12f39fa43a7d77b44ada3a5a0a8dfaa1,
+        type: 3}
     - target: {fileID: 5615289588182272012, guid: b249767077019904896afeb01d71bcf3,
         type: 3}
       propertyPath: m_Name

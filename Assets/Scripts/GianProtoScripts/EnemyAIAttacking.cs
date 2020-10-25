@@ -57,6 +57,10 @@ public class EnemyAIAttacking : MonoBehaviour
             {
                 Debug.Log("Executed attack on " + target.name);
                 target.GetComponent<PlayerStats>().TakeDamage(aiComponent.basicEnemy1Script.basicEnemyClass.currentDamage);
+                if(aiComponent.quirkManager.CurrentQuirk.quirkID == 3)
+                {
+                    aiComponent.quirkManager.SpawnGoldPouch(target);
+                }
                 //Perform Attacks.
                 //attackTargets.Remove(target);
             }

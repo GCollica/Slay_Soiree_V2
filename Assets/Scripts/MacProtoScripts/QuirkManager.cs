@@ -11,12 +11,14 @@ public class QuirkManager : MonoBehaviour
     public GameObject totem;
     public bool spawnedTotem = false;
 
+    public GameObject goldPouch;
+
     private QuirkSpawner quirkSpawner;
 
     void Awake()
     {
         quirkSpawner = FindObjectOfType<QuirkSpawner>();
-        SetCurrentQuirk(Random.Range(1, 3));
+        SetCurrentQuirk(Random.Range(1, 4));
     }
 
     private void Update()
@@ -36,7 +38,10 @@ public class QuirkManager : MonoBehaviour
                 break;
             //Case 2 is MSRandomiser Quirk.
             case 2:
-                break; 
+                break;
+            //Case 3 is GoldGauntet Quirk.
+            case 3:
+                break;
 
             default:
                 break;
@@ -76,4 +81,10 @@ public class QuirkManager : MonoBehaviour
     }
     #endregion
 
+    #region GoldGauntlet
+    public void SpawnGoldPouch(GameObject sourcePlayer)
+    {
+        Instantiate(goldPouch, sourcePlayer.transform.position, Quaternion.identity);
+    }
+    #endregion
 }
