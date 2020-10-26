@@ -10,6 +10,7 @@ TagManager:
   - EnemySpawner
   - EnemyParent
   - QuirkParent
+  - Prop
   layers:
   - Default
   - TransparentFX
