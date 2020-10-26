@@ -9,7 +9,15 @@ public class SortingLayerAssigner : MonoBehaviour
     public void Awake()
     {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        InvokeRepeating("SetSortingLayers", 0.25f, 0.5f);
+        if (this.gameObject.CompareTag("Props"))
+        {
+            Invoke("SetSortingLayers", 0.25f);
+            return;
+        }
+        else
+        {
+            InvokeRepeating("SetSortingLayers", 0.25f, 0.5f);
+        }
     }
     public void SetSortingLayers()
     {
