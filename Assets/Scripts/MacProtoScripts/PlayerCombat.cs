@@ -67,7 +67,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         #region For Testing Purposes only
-        ranged = true;
+        ranged = false;
         #endregion
 
         crosshair.SetActive(false);
@@ -104,7 +104,7 @@ public class PlayerCombat : MonoBehaviour
         //Debug.Log("Light Attack!");
         
         #region Hit Check
-        if (!ranged && canRecieveInput)
+        if (!ranged)
         {
             // Play attack animation
             animator.Play("Player_Sword_Attack");
@@ -139,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
     public void Fire()
 	{
 
-		if (lookDirection != Vector2.zero && playerMovement.isMoving == false)
+		if (lookDirection != Vector2.zero && playerMovement.isMoving == false && ranged)
         {			
 			Debug.Log("Loose!");
             // Play attack animation
