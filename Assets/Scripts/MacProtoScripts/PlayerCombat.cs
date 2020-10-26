@@ -39,6 +39,12 @@ public class PlayerCombat : MonoBehaviour
     public bool isAiming;
     public float arrowSpeed;
 
+    [Space]
+    [Header("Combo System")]
+    public static PlayerCombat instance;
+    public bool canRecieveInput;
+    public bool inputRecieved; 
+
     [SerializeField]
     private bool ranged;
 
@@ -54,12 +60,14 @@ public class PlayerCombat : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
+
+        instance = this;
     }
 
     void Start()
     {
         #region For Testing Purposes only
-        ranged = true;
+        ranged = false;
         #endregion
 
         crosshair.SetActive(false);
@@ -68,7 +76,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-		if (isAiming)
+		if (isAiming && ranged)
 		{
 			Debug.Log("RefreshCheck");
             playerMovement.isAiming = true;
@@ -131,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
     public void Fire()
 	{
 
-		if (lookDirection != Vector2.zero && playerMovement.isMoving == false)
+		if (lookDirection != Vector2.zero && playerMovement.isMoving == false && ranged)
         {			
 			Debug.Log("Loose!");
             // Play attack animation
@@ -209,6 +217,31 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+    }
+
+    public void Attack()
+    {
+        if (canRecieveInput)
+        {
+            inputRecieved = true;
+            canRecieveInput = false;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void InputManager()
+    {
+        if (!canRecieveInput)
+        {
+            canRecieveInput = true;
+        }
+        else
+        {
+            canRecieveInput = false;
+        }
     }
 
     public void ActiveItem()
