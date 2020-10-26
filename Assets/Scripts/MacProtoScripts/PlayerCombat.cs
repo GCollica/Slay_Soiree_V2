@@ -39,6 +39,12 @@ public class PlayerCombat : MonoBehaviour
     public bool isAiming;
     public float arrowSpeed;
 
+    [Space]
+    [Header("Combo System")]
+    public static PlayerCombat instance;
+    public bool canRecieveInput;
+    public bool inputRecieved; 
+
     [SerializeField]
     private bool ranged;
 
@@ -54,6 +60,8 @@ public class PlayerCombat : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
+
+        instance = this;
     }
 
     void Start()
@@ -68,7 +76,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-		if (isAiming)
+		if (isAiming && ranged)
 		{
 			Debug.Log("RefreshCheck");
             playerMovement.isAiming = true;
@@ -96,7 +104,7 @@ public class PlayerCombat : MonoBehaviour
         //Debug.Log("Light Attack!");
         
         #region Hit Check
-        if (!ranged)
+        if (!ranged && canRecieveInput)
         {
             // Play attack animation
             animator.Play("Player_Sword_Attack");
@@ -209,6 +217,31 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+    }
+
+    public void Attack()
+    {
+        if (canRecieveInput)
+        {
+            inputRecieved = true;
+            canRecieveInput = false;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void InputManager()
+    {
+        if (!canRecieveInput)
+        {
+            canRecieveInput = true;
+        }
+        else
+        {
+            canRecieveInput = false;
+        }
     }
 
     public void ActiveItem()
