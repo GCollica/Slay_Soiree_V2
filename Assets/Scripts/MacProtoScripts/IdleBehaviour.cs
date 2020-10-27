@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleBehaviour : MonoBehaviour
+public class IdleBehaviour : StateMachineBehaviour
 {
-    void Start()
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (PlayerCombat.instance.inputRecieved)
+        {
+            animator.SetTrigger("AttackOne");
+            PlayerCombat.instance.InputManager();
+            PlayerCombat.instance.inputRecieved = false;
+        }
     }
 }

@@ -75,18 +75,18 @@ public class PlayerInputHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(Time.time > nextAttackTime)
-        {
-            nextAttackTime = Time.time + cooldownTime;
-            canAttack = true;
-        }
+        //if(Time.time > nextAttackTime)
+        //{
+        //    nextAttackTime = Time.time + cooldownTime;
+        //    canAttack = true;
+        //}
     }
 
     public void LightAttack(CallbackContext context)
     {
-        if (context.performed && playerMovement != null && canAttack)
+        if (context.performed)
         {
-            playerCombat.LightAttack();
+            playerCombat.MeleeAttack();
             canAttack = false;
         }
     }

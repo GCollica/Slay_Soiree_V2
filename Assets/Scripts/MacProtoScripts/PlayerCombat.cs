@@ -15,22 +15,13 @@ public class PlayerCombat : MonoBehaviour
     private Vector2 lookDirection;
 
     [SerializeField]
-    [Space]
-    [Header("Player interact range")]
     private float interactRange;
 
     public GameObject interactPoint;
     public Transform attackPoint;
 
-    [Space]
-    [Header("Layer that player can attack")]
     public LayerMask enemyLayers;
-
-    [Space]
-    [Header("Layer that player can interact with")]
     public LayerMask interactableLayers;
-
-    private Animator animator;
 
     [Space]
     [Header("Ranged Combat")]
@@ -43,7 +34,8 @@ public class PlayerCombat : MonoBehaviour
     [Header("Combo System")]
     public static PlayerCombat instance;
     public bool canRecieveInput;
-    public bool inputRecieved; 
+    public bool inputRecieved;
+    private Animator animator;
 
     [SerializeField]
     private bool ranged;
@@ -71,7 +63,8 @@ public class PlayerCombat : MonoBehaviour
         #endregion
 
         crosshair.SetActive(false);
-        
+
+        canRecieveInput = true;
     }
 
     void Update()
@@ -99,17 +92,20 @@ public class PlayerCombat : MonoBehaviour
         crosshair.transform.localPosition = lookDirection;
     }
 
-    public void LightAttack()
+    public void MeleeAttack()
     {
-        //Debug.Log("Light Attack!");
-        
+        Debug.Log("Attack!");
+
         #region Hit Check
-        if (!ranged)
+        if (!ranged && canRecieveInput)
         {
-            // Play attack animation
-            animator.Play("Player_Sword_Attack");
-            // Detect enemies in range of attack
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
+                inputRecieved = true;
+                canRecieveInput = false;
+
+                // Play attack animation
+                //animator.Play("Player_Sword_Attack");
+                // Detect enemies in range of attack
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, playerStats.playerClass.currentAttackRange, enemyLayers);
 
             // Damage them
             foreach (Collider2D enemy in hitEnemies)
@@ -132,6 +128,10 @@ public class PlayerCombat : MonoBehaviour
                     continue;
                 }
             }
+        }
+        else
+        {
+            return;
         }
         #endregion
     }
@@ -217,19 +217,6 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-    }
-
-    public void Attack()
-    {
-        if (canRecieveInput)
-        {
-            inputRecieved = true;
-            canRecieveInput = false;
-        }
-        else
-        {
-            return;
-        }
     }
 
     public void InputManager()
