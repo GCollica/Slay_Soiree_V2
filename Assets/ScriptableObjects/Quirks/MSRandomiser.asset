@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623b872e715acb740b16668e36fff0cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bca95e1a5142794cb1c221205beed75, type: 3}
   m_Name: MSRandomiser
   m_EditorClassIdentifier: 
-  quirkID: 2
+  quirkID: 3
   quirkName: Movement Speed Randomiser
-  quirkDescription: Randomly sets enemy movement speed to either doulbe or half of
-    their original.
+  quirkDescription: All enemies spawn with either 2x ms or half.
   quirkCardArt: {fileID: 0}
-  quirkRarity: 1
+  quirkRarity: 0

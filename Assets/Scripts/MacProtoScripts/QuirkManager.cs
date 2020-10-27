@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class QuirkManager : MonoBehaviour
 {
-    public List<Quirk> AllQuirks;
-    public Quirk CurrentQuirk;
+    public List<QuirkSO> AllQuirks;
+    public QuirkSO CurrentQuirk;
     
     //Totem Gameobject, assign prefab in inspector.
     public GameObject totem;
@@ -53,10 +53,11 @@ public class QuirkManager : MonoBehaviour
         if(quirkIDInput == 0)
         {
             CurrentQuirk = null;
+            return;
         }
         else
         {
-            foreach (Quirk quirk in AllQuirks)
+            foreach (QuirkSO quirk in AllQuirks)
             {
                 if (quirk.quirkID == quirkIDInput)
                 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Quirk", menuName = "Quirk")]
-public class Quirk : ScriptableObject
+public class QuirkSO : ScriptableObject
 {
     public int quirkID;
     public string quirkName;

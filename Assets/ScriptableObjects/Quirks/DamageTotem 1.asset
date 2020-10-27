@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623b872e715acb740b16668e36fff0cb, type: 3}
-  m_Name: DamageTotem
+  m_Script: {fileID: 11500000, guid: 2bca95e1a5142794cb1c221205beed75, type: 3}
+  m_Name: DamageTotem 1
   m_EditorClassIdentifier: 
   quirkID: 1
   quirkName: Damage Totem
-  quirkDescription: Spawns a totem which makes players take 2x damage until destroyed.
+  quirkDescription: Spawns a totem which causes all enemies to deal 2x damage while
+    alive.
   quirkCardArt: {fileID: 0}
-  quirkRarity: 1
+  quirkRarity: 0
