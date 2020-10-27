@@ -84,8 +84,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void LightAttack(CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && playerCombat.ranged == false)
         {
+            playerCombat.canRecieveInput = true;
             playerCombat.MeleeAttack();
             canAttack = false;
         }

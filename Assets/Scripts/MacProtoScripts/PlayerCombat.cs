@@ -37,8 +37,7 @@ public class PlayerCombat : MonoBehaviour
     public bool inputRecieved;
     private Animator animator;
 
-    [SerializeField]
-    private bool ranged;
+    public bool ranged;
 
     public bool aiming;
     private Vector2 crosshairPos;
