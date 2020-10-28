@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemPedistool : MonoBehaviour
 {
-    public enum ItemType {Empty, Weapon, Armour};
+    public enum ItemType {Empty, Weapon, Armour, Consumable};
     public ItemType currentItemType = ItemType.Empty;
 
     public WeaponsSO currentWeaponItem;
@@ -33,13 +33,17 @@ public class ItemPedistool : MonoBehaviour
 
     private void ChooseItemType()
     {
-        int chosenType = Random.Range(0, 2);
+        int chosenType = Random.Range(0, 3);
 
         if(chosenType == 0)
         {
             currentItemType = ItemType.Weapon;
         }
         else if(chosenType == 1)
+        {
+            currentItemType = ItemType.Armour;
+        }
+        else if(chosenType == 2)
         {
             currentItemType = ItemType.Armour;
         }
