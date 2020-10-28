@@ -11,12 +11,12 @@ public class SortingLayerAssigner : MonoBehaviour
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         if (this.gameObject.CompareTag("Props"))
         {
-            Invoke("SetSortingLayers", 0.25f);
+            Invoke("SetSortingLayers", 0f);
             return;
         }
         else
         {
-            InvokeRepeating("SetSortingLayers", 0.25f, 0.5f);
+            InvokeRepeating("SetSortingLayers", 0f, 0.5f);
         }
     }
     public void SetSortingLayers()

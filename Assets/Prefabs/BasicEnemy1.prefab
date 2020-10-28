@@ -371,7 +371,9 @@ MonoBehaviour:
   currentAIState: 0
   totalPlayers: []
   currentTargetTransform: {fileID: 0}
+  knockbackForce: 500
   basicEnemy1Script: {fileID: 0}
+  quirkManager: {fileID: 0}
 --- !u!114 &6472510909396399804
 MonoBehaviour:
   m_ObjectHideFlags: 0

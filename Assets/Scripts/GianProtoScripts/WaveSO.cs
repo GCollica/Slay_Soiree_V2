@@ -6,4 +6,5 @@ public class WaveSO : ScriptableObject
     public string waveName;
     public int waveCount;
     public GameObject[] enemies;
+    public float spawnInterval;
 }

@@ -21,6 +21,9 @@ public class Enemy_AI : MonoBehaviour
 
     private float facingDirectionBuffer = 0.125f;
 
+    //Make private later @gian.
+    public float knockbackForce = 5000;
+
     private EnemyAIAttacking attackComponent;
     private EnemyAIPathfinding pathfindingComponent;
     public BasicEnemy1 basicEnemy1Script;
@@ -188,7 +191,7 @@ public class Enemy_AI : MonoBehaviour
         Debug.Log("Knockback");
 
         Vector2 directionVector = (currentTargetTransform.position - this.gameObject.transform.position).normalized;
-        Vector2 force = -directionVector * 50000f * Time.deltaTime;
+        Vector2 force = -directionVector * knockbackForce;
         pathfindingComponent.rigidBody.AddForce(force);
     }
 }

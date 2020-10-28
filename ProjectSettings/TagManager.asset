@@ -11,6 +11,7 @@ TagManager:
   - EnemyParent
   - QuirkParent
   - Props
+  - WaveManager
   layers:
   - Default
   - TransparentFX

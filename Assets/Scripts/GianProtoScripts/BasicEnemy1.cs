@@ -8,6 +8,7 @@ public class BasicEnemy1 : MonoBehaviour
     public BasicEnemyClass basicEnemyClass;
     private Enemy_AI basicEnemyAI;
     private QuirkManager quirkManager;
+    private WaveManager waveManager;
 
     public SpriteRenderer spriteRenderer;
 
@@ -33,6 +34,9 @@ public class BasicEnemy1 : MonoBehaviour
         {
             InitialiseClassInstance();
         }
+
+        waveManager = FindObjectOfType<WaveManager>();
+        waveManager.AddActiveEnemy(this.gameObject);
 
         quirkManager = FindObjectOfType<QuirkManager>();
         
@@ -106,6 +110,7 @@ public class BasicEnemy1 : MonoBehaviour
     {
         rewardPlayer.GetComponent<PlayerStats>().playerClass.GainGold(basicEnemyClass.currentGoldDrop);
         // Destroy Gameobject
+        waveManager.RemoveActiveEnemy(this.gameObject);
         Destroy(gameObject);
     }
 }

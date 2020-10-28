@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8989081677030198976}
   - component: {fileID: 5802914884596620872}
-  - component: {fileID: 1992730894297402859}
+  - component: {fileID: 1110963379845147410}
   m_Layer: 10
   m_Name: DamageTotem
   m_TagString: Untagged
@@ -189,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMultiplyer: 2
   health: 50
---- !u!58 &1992730894297402859
-CircleCollider2D:
+--- !u!70 &1110963379845147410
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -199,9 +199,9 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.75
+  m_Offset: {x: 0.0037397742, y: 1.0110645}
+  m_Size: {x: 1.3002952, y: 2.8521976}
+  m_Direction: 0

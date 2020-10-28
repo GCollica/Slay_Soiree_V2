@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1adae8449af06ed48bc091d8f47d9660, type: 3}
-  m_Name: TestWave
+  m_Name: TestWave2
   m_EditorClassIdentifier: 
-  waveName: TestWave
-  waveCount: 4
+  waveName: TestWave2
+  waveCount: 3
   enemies:
+  - {fileID: 1723950248977201071, guid: fdc1536b00f999a4aadabf35a972922c, type: 3}
   - {fileID: 7334487099684849607, guid: 2ab3b9d11d7daee48b5e0c0b803a5557, type: 3}
   - {fileID: 7334487099684849607, guid: 2ab3b9d11d7daee48b5e0c0b803a5557, type: 3}
   - {fileID: 7334487099684849607, guid: 2ab3b9d11d7daee48b5e0c0b803a5557, type: 3}
-  - {fileID: 7334487099684849607, guid: 2ab3b9d11d7daee48b5e0c0b803a5557, type: 3}
-  spawnInterval: 0.25
+  spawnInterval: 5

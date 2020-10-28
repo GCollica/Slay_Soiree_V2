@@ -42,7 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
         // Takes the first controller to give input and assigns it to index 0, continues till 4 players have joined with the final index "3"
         playerMovement = playerControllers.FirstOrDefault(m => m.GetPlayerIndex() == index);
         playerCombat = playerCombats.FirstOrDefault(m => m.GetPlayerIndex() == index);
-        Debug.Log(index);
+        Debug.Log("Player " + (index +1) + " has joined.");
     }
 
     void AddToPlayerList()

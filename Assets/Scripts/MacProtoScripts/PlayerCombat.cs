@@ -80,7 +80,7 @@ public class PlayerCombat : MonoBehaviour
     {
         lookDirection = direction;
 
-        Debug.Log("Vector Set!");
+        //Debug.Log("Vector Set!");
     }
 
     private void Aim()
