@@ -7,6 +7,7 @@ public class ItemManager : MonoBehaviour
 {
     public WeaponsSO[] allWeaponsArray;
     public ArmourSO[] allArmourArray;
+    public ConsumablesSO[] allConsumablesArray;
 
     // Start is called before the first frame update
     void Start()

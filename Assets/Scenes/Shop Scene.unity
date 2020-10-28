@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -237,10 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc3df0b1719cbd41bfcd3b21f89bfad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAIState: 0
-  attackTargets: []
-  attackCoolDownTimer: 0
-  attackCoolDownDuration: 3
 --- !u!114 &68370927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +283,7 @@ MonoBehaviour:
     currentHealth: 0
     currentMovementSpeed: 0
     currentGoldDrop: 0
+  spriteRenderer: {fileID: 0}
   startingDamage: 5
   startingResistance: 10
   startingHealth: 25
@@ -1193,6 +1190,7 @@ MonoBehaviour:
   currentItemType: 0
   currentWeaponItem: {fileID: 0}
   currentArmourItem: {fileID: 0}
+  currentConsumableItem: {fileID: 0}
   currentitemSpriteGO: {fileID: 580137538}
   currentItemCostText: {fileID: 657806711}
 --- !u!61 &696651562
@@ -1424,6 +1422,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 64c26366184302f468dfa1816b63d390, type: 2}
   allArmourArray:
   - {fileID: 11400000, guid: 5e0c4e82da7cd9e428a6ffa4be23272a, type: 2}
+  allConsumablesArray:
+  - {fileID: 11400000, guid: efcc2cd1968a0484584360d8243c85be, type: 2}
+  - {fileID: 11400000, guid: 26ca871131e7d1c47b02ba90dff3ec03, type: 2}
 --- !u!1 &954428926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,7 +1766,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 2
+  m_SortingLayer: 23
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ffd69d91de1a5c04e92038ae5d635e41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2438,6 +2439,7 @@ MonoBehaviour:
   currentItemType: 0
   currentWeaponItem: {fileID: 0}
   currentArmourItem: {fileID: 0}
+  currentConsumableItem: {fileID: 0}
   currentitemSpriteGO: {fileID: 1465445547}
   currentItemCostText: {fileID: 1717169033}
 --- !u!61 &1575254421
@@ -2644,6 +2646,7 @@ MonoBehaviour:
   currentItemType: 0
   currentWeaponItem: {fileID: 0}
   currentArmourItem: {fileID: 0}
+  currentConsumableItem: {fileID: 0}
   currentitemSpriteGO: {fileID: 1825126783}
   currentItemCostText: {fileID: 1131873890}
 --- !u!61 &1742947344
@@ -3017,6 +3020,7 @@ MonoBehaviour:
   currentItemType: 0
   currentWeaponItem: {fileID: 0}
   currentArmourItem: {fileID: 0}
+  currentConsumableItem: {fileID: 0}
   currentitemSpriteGO: {fileID: 1540949681}
   currentItemCostText: {fileID: 1068534624}
 --- !u!61 &1954023291

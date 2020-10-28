@@ -10,6 +10,7 @@ public class ItemPedistool : MonoBehaviour
 
     public WeaponsSO currentWeaponItem;
     public ArmourSO currentArmourItem;
+    public ConsumablesSO currentConsumableItem;
 
     public GameObject currentitemSpriteGO;
     public Text currentItemCostText;
@@ -45,7 +46,7 @@ public class ItemPedistool : MonoBehaviour
         }
         else if(chosenType == 2)
         {
-            currentItemType = ItemType.Armour;
+            currentItemType = ItemType.Consumable;
         }
     }
 
@@ -62,7 +63,12 @@ public class ItemPedistool : MonoBehaviour
                 int chosenArmourIndex = Random.Range(0, itemManager.allArmourArray.Length);
                 currentArmourItem = itemManager.allArmourArray[chosenArmourIndex];
                 break;
-            
+
+            case ItemType.Consumable:
+                int chosenConsumableIndex = Random.Range(0, itemManager.allConsumablesArray.Length);
+                currentConsumableItem = itemManager.allConsumablesArray[chosenConsumableIndex];
+                break;
+
             default:
                 break;
         }
@@ -80,6 +86,11 @@ public class ItemPedistool : MonoBehaviour
             case ItemType.Armour:
                 currentitemSpriteGO.GetComponent<SpriteRenderer>().sprite = currentArmourItem.armourSprite;
                 currentItemCostText.text = "Buy " + currentArmourItem.armourName + " for " + currentArmourItem.cost.ToString() + " gold";
+                break;
+
+            case ItemType.Consumable:
+                currentitemSpriteGO.GetComponent<SpriteRenderer>().sprite = currentConsumableItem.consumableSprite;
+                currentItemCostText.text = "Buy " + currentConsumableItem.consumableName + " for " + currentConsumableItem.cost.ToString() + " gold";
                 break;
 
             case ItemType.Empty:
