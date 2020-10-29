@@ -141,7 +141,7 @@ public class ItemPedistool : MonoBehaviour
             StopCoroutine(nameof(FadeOutIEnumerator));
             isFadingOut = false;
         }
-        if(displayedText.canvasRenderer.GetAlpha() == 1)
+        if(displayedText.canvasRenderer.GetAlpha() >= 0.4f)
         {
             return;
         }
@@ -151,6 +151,11 @@ public class ItemPedistool : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         if(isFadingIn == true)
+        {
+            StopCoroutine(nameof(FadeOutIEnumerator));
+            isFadingOut = true;
+        }
+        if(displayedText.canvasRenderer.GetAlpha() <= 0.4f)
         {
             return;
         }
