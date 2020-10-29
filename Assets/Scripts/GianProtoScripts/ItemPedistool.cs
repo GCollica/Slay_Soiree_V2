@@ -5,36 +5,34 @@ using UnityEngine;
 
 public class ItemPedistool : MonoBehaviour
 {
+    [HideInInspector]
     public enum ItemType {Empty, Weapon, Armour, Consumable};
-    public ItemType currentItemType = ItemType.Empty;
-
+    [Header("For reference only, don't touch.")]
+    public ItemType currentItemType = ItemType.Empty;    
     public WeaponsSO currentWeaponItem;
     public ArmourSO currentArmourItem;
     public ConsumablesSO currentConsumableItem;
-
-    public GameObject currentitemSpriteGO;
-    public Text currentItemCostText;
-
+    [Space(5)]
+    [Header("U.I. references, edit in the prefab.")]
+    public SpriteRenderer itemSpriteRenderer;
+    public TMPro.TMP_Text displayedText;
     private ItemManager itemManager;
+    private bool isFadingIn = false;
+    private bool isFadingOut = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         itemManager = FindObjectOfType<ItemManager>();
         ChooseItemType();
         ChooseRandomItem();
         SetUIElements();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        displayedText.canvasRenderer.SetAlpha(0);
     }
 
     private void ChooseItemType()
     {
-        int chosenType = Random.Range(0, 3);
+        int chosenType = Random.Range(0, 4);
 
         if(chosenType == 0)
         {
@@ -44,7 +42,7 @@ public class ItemPedistool : MonoBehaviour
         {
             currentItemType = ItemType.Armour;
         }
-        else if(chosenType == 2)
+        else if(chosenType == 2 || chosenType == 3)
         {
             currentItemType = ItemType.Consumable;
         }
@@ -79,23 +77,23 @@ public class ItemPedistool : MonoBehaviour
         switch (currentItemType)
         {
             case ItemType.Weapon:
-                currentitemSpriteGO.GetComponent<SpriteRenderer>().sprite = currentWeaponItem.weaponSprite;
-                currentItemCostText.text = "Buy " + currentWeaponItem.weaponName + " for " + currentWeaponItem.cost.ToString() + " gold.";
+                itemSpriteRenderer.sprite = currentWeaponItem.weaponSprite;
+                displayedText.text = "Buy " + currentWeaponItem.weaponName + " for " + currentWeaponItem.cost.ToString() + " gold.";
                 break;
 
             case ItemType.Armour:
-                currentitemSpriteGO.GetComponent<SpriteRenderer>().sprite = currentArmourItem.armourSprite;
-                currentItemCostText.text = "Buy " + currentArmourItem.armourName + " for " + currentArmourItem.cost.ToString() + " gold";
+                itemSpriteRenderer.sprite = currentArmourItem.armourSprite;
+                displayedText.text = "Buy " + currentArmourItem.armourName + " for " + currentArmourItem.cost.ToString() + " gold";
                 break;
 
             case ItemType.Consumable:
-                currentitemSpriteGO.GetComponent<SpriteRenderer>().sprite = currentConsumableItem.consumableSprite;
-                currentItemCostText.text = "Buy " + currentConsumableItem.consumableName + " for " + currentConsumableItem.cost.ToString() + " gold";
+                itemSpriteRenderer.sprite = currentConsumableItem.consumableSprite;
+                displayedText.text = "Buy " + currentConsumableItem.consumableName + " for " + currentConsumableItem.cost.ToString() + " gold";
                 break;
 
             case ItemType.Empty:
-                currentitemSpriteGO.GetComponent<SpriteRenderer>().sprite = null;
-                currentItemCostText.text = null;
+                itemSpriteRenderer.sprite = null;
+                displayedText.text = null;
                 break;
         }
     }
@@ -105,6 +103,58 @@ public class ItemPedistool : MonoBehaviour
         currentItemType = ItemType.Empty;
         currentArmourItem = null;
         currentWeaponItem = null;
+        currentConsumableItem = null;
         SetUIElements();
+    }
+
+    IEnumerator FadeInIEnumerator()
+    {
+        isFadingIn = true;
+
+        for (float targetAlpha = displayedText.canvasRenderer.GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
+        {
+            displayedText.canvasRenderer.SetAlpha(targetAlpha);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        isFadingIn = false;
+        StopCoroutine(nameof(FadeInIEnumerator));
+    }
+
+    IEnumerator FadeOutIEnumerator()
+    {
+        isFadingOut = true;
+
+        for (float targetAlpha = displayedText.canvasRenderer.GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
+        {
+            displayedText.canvasRenderer.SetAlpha(targetAlpha);
+            yield return new WaitForSeconds(0.05f);
+        }
+        
+        isFadingOut = false;
+        StopCoroutine(nameof(FadeInIEnumerator));
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(isFadingOut == true)
+        {
+            StopCoroutine(nameof(FadeOutIEnumerator));
+            isFadingOut = false;
+        }
+        if(displayedText.canvasRenderer.GetAlpha() == 1)
+        {
+            return;
+        }
+        StartCoroutine(nameof(FadeInIEnumerator));
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if(isFadingIn == true)
+        {
+            return;
+        }
+        
+        StartCoroutine(nameof(FadeOutIEnumerator));
     }
 }

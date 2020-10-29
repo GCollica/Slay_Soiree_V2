@@ -12,6 +12,7 @@ TagManager:
   - QuirkParent
   - Props
   - WaveManager
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,18 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1059917663
+    locked: 0
+  - name: 7
+    uniqueID: 2013467249
+    locked: 0
+  - name: 6.5
+    uniqueID: 1702788201
+    locked: 0
+  - name: 6
+    uniqueID: 3670748795
+    locked: 0
+  - name: 5.5
+    uniqueID: 3698082139
     locked: 0
   - name: 5
     uniqueID: 115720717
