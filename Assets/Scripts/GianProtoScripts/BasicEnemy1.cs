@@ -9,6 +9,8 @@ public class BasicEnemy1 : MonoBehaviour
     private Enemy_AI basicEnemyAI;
     private QuirkManager quirkManager;
     private WaveManager waveManager;
+    private Enemy_Animation animationComponent;
+    private EnemyAIPathfinding pathfindingComponent;
 
     public SpriteRenderer spriteRenderer;
 
@@ -17,10 +19,14 @@ public class BasicEnemy1 : MonoBehaviour
     public float startingHealth = 25f;
     public float startingMovespeed = 10f;
     public int goldDrop = 2;
+
+    private GameObject rewardPlayer;
     
     void Awake()
     {
         basicEnemyAI = this.gameObject.GetComponent<Enemy_AI>();
+        animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
+        pathfindingComponent = this.gameObject.transform.GetComponentInChildren<EnemyAIPathfinding>();
         if(this.gameObject.transform.GetChild(1) != null)
         {
             spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
@@ -37,7 +43,6 @@ public class BasicEnemy1 : MonoBehaviour
 
         waveManager = FindObjectOfType<WaveManager>();
         waveManager.AddActiveEnemy(this.gameObject);
-
         quirkManager = FindObjectOfType<QuirkManager>();
         
         if(quirkManager.CurrentQuirk.quirkID == 2)
@@ -102,15 +107,22 @@ public class BasicEnemy1 : MonoBehaviour
             // Death animation here.
 
             // Invoke death for animation duration or call it when animation finishes
-            EnemyDead(player);
+            pathfindingComponent.rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            BeginEnemyDeath(player);
         }
     }
 
-    void EnemyDead(GameObject rewardPlayer)
+    public void EnemyDead()
     {
         rewardPlayer.GetComponent<PlayerStats>().playerClass.GainGold(basicEnemyClass.currentGoldDrop);
-        // Destroy Gameobject
         waveManager.RemoveActiveEnemy(this.gameObject);
         Destroy(gameObject);
+    }
+
+    public void BeginEnemyDeath(GameObject rewardPlayerInput)
+    {
+        rewardPlayer = rewardPlayerInput;
+        animationComponent.SetAnimBool("Walking", false);
+        animationComponent.SetAnimBool("Dying", true);
     }
 }

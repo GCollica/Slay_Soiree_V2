@@ -26,6 +26,7 @@ public class Enemy_AI : MonoBehaviour
 
     private EnemyAIAttacking attackComponent;
     private EnemyAIPathfinding pathfindingComponent;
+    private Enemy_Animation animationComponent;
     public BasicEnemy1 basicEnemy1Script;
     public QuirkManager quirkManager;
 
@@ -34,6 +35,7 @@ public class Enemy_AI : MonoBehaviour
         attackComponent = this.gameObject.GetComponent<EnemyAIAttacking>();
         pathfindingComponent = this.gameObject.GetComponent<EnemyAIPathfinding>();
         basicEnemy1Script = this.gameObject.GetComponent<BasicEnemy1>();
+        animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
         quirkManager = FindObjectOfType<QuirkManager>();
     }
   
@@ -45,6 +47,7 @@ public class Enemy_AI : MonoBehaviour
                 
                 pathfindingComponent.ClearPath();
                 attackComponent.RunAttackCooldownTimer();
+                animationComponent.SetAnimBool("Walking", false);
 
                 if(idleDelayTimer < idleDelayLength)
                 {
@@ -62,6 +65,7 @@ public class Enemy_AI : MonoBehaviour
                 attackPrepTimer = 0f;
                 InitialiseTargets();
                 FindNearestTarget();
+                animationComponent.SetAnimBool("Walking", false);
                 attackComponent.RunAttackCooldownTimer();
                 currentAIState = AIState.PursuingTarget;
                 break;
@@ -70,6 +74,7 @@ public class Enemy_AI : MonoBehaviour
 
                 SetFacingDirection();
                 pathfindingComponent.PursureTarget();
+                animationComponent.SetAnimBool("Walking", true);
                 attackComponent.RunAttackCooldownTimer();
                 if(attackComponent.inAttackRange == true)
                 {
@@ -78,7 +83,8 @@ public class Enemy_AI : MonoBehaviour
                 break;
 
             case AIState.AttackPrep:
-                if(attackPrepTimer < attackPrepLength)
+                animationComponent.SetAnimBool("Walking", false);
+                if (attackPrepTimer < attackPrepLength)
                 {
                     attackPrepTimer += Time.deltaTime;
                 }
