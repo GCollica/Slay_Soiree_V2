@@ -121,4 +121,13 @@ public class PlayerInputHandler : MonoBehaviour
             sceneHandler.ChangeScene();
         }
     }
+
+    public void Dodge(CallbackContext context)
+    {
+        if (context.performed && playerMovement != null)
+        {
+            Debug.Log("Dodge Started");
+            playerMovement.Dodge();
+        }
+    }
 }

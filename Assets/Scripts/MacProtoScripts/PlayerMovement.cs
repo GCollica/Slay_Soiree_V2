@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     [HideInInspector]
-    public bool isAiming;
+    public bool restrictMovement;
 
 	public bool isMoving;
 
@@ -42,8 +42,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public static PlayerMovement instance;
+
     void Awake()
     {
+        instance = this;
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         controls = new PlayerInputMap();
@@ -68,13 +71,13 @@ public class PlayerMovement : MonoBehaviour
     void TurnPlayer()
     {
         // Player moves left, flip character left
-        if (move.x <= -0.1 && !isAiming)
+        if (move.x <= -0.1 && !restrictMovement)
         {
             playerSprite.transform.localScale = left;
         }
 
         // Player moves right, flip character right
-        if (move.x >= 0.1 && !isAiming)
+        if (move.x >= 0.1 && !restrictMovement)
         {
             playerSprite.transform.localScale = right;
         }
@@ -84,27 +87,37 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-		//Assigns "m" to the Vector2 value of the left joystick axes
-		m = new Vector2(move.x, move.y);
-
-		if (isAiming)
+		if (!restrictMovement)
 		{
-			m = new Vector2(0, 0);
-		}
+            //Assigns "m" to the Vector2 value of the left joystick axes
+            m = new Vector2(move.x, move.y);
+        }
+        else
+        {
+            m = new Vector2(0, 0);
+        }
 
-		//Sets the velocity to accelerate to
-		targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
+        //Sets the velocity to accelerate to
+        targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
 
-		//Calculates the amount of force delivered each frame
-		Vector2 force = (targetVelocity - rb.velocity) * forceMult;
+        //Calculates the amount of force delivered each frame
+        Vector2 force = (targetVelocity - rb.velocity) * forceMult;
 
-		//Moves player forwards
-		rb.AddForce(force);
+        //Moves player forwards
+        rb.AddForce(force);
     }
 
     public int GetPlayerIndex()
     {
         //Returns the index of the player Index 0-3 (Player 1-4) 
         return playerIndex;
+    }
+
+    public void Dodge()
+    {
+        Debug.Log("Dodging");
+
+        float dodgeSpeed = 100f;
+        Vector2 dodgeVelocity = m * dodgeSpeed * Time.deltaTime; 
     }
 }

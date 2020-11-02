@@ -71,7 +71,7 @@ public class PlayerCombat : MonoBehaviour
 		if (isAiming && ranged)
 		{
 			Debug.Log("RefreshCheck");
-            playerMovement.isAiming = true;
+            playerMovement.restrictMovement = true;
             Aim();
         }
     }
@@ -94,6 +94,7 @@ public class PlayerCombat : MonoBehaviour
     public void MeleeAttack()
     {
         Debug.Log("Attack!");
+        playerMovement.restrictMovement = true;
 
         #region Hit Check
         if (!ranged && canRecieveInput)
@@ -126,13 +127,15 @@ public class PlayerCombat : MonoBehaviour
                     impactTotem.TotemTakeDamage(playerStats.playerClass.currentLightDamage);
                     continue;
                 }
-            }
+            }           
         }
         else
         {
             return;
         }
         #endregion
+
+        //playerMovement.restrictMovement = false;
     }
 
     public void Fire()
@@ -156,7 +159,7 @@ public class PlayerCombat : MonoBehaviour
 		}
 		else
 		{
-			playerMovement.isAiming = false;
+			playerMovement.restrictMovement = false;
 			ResetMovement();
 			crosshair.SetActive(false);
 			isAiming = false;
@@ -193,7 +196,7 @@ public class PlayerCombat : MonoBehaviour
 
 	public void ResetMovement()
 	{
-		playerMovement.isAiming = false;
+		playerMovement.restrictMovement = false;
 	}
 
     public void Interact()
@@ -216,6 +219,14 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+    }
+
+    public void Dodge()
+    {
+        Debug.Log("Dodging");
+
+        float dodgeSpeed = 100f;
+        //Vector2 dodgeVelocity = m * dodgeSpeed * Time.deltaTime;
     }
 
     public void InputManager()

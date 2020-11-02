@@ -571,6 +571,14 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""98eedb03-7aef-4738-9583-973808cfc5f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -782,6 +790,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": ""Next Room"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72f74d4d-7bcc-4bbd-b5da-ed30b78310f9"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -869,6 +888,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Player_Interact = m_Player.FindAction(" Interact", throwIfNotFound: true);
         m_Player_ActiveItem = m_Player.FindAction("Active Item", throwIfNotFound: true);
         m_Player_NextRoom = m_Player.FindAction("Next Room", throwIfNotFound: true);
+        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1029,6 +1049,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_ActiveItem;
     private readonly InputAction m_Player_NextRoom;
+    private readonly InputAction m_Player_Dodge;
     public struct PlayerActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -1039,6 +1060,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @ActiveItem => m_Wrapper.m_Player_ActiveItem;
         public InputAction @NextRoom => m_Wrapper.m_Player_NextRoom;
+        public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1066,6 +1088,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @NextRoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRoom;
                 @NextRoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRoom;
                 @NextRoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRoom;
+                @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1088,6 +1113,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @NextRoom.started += instance.OnNextRoom;
                 @NextRoom.performed += instance.OnNextRoom;
                 @NextRoom.canceled += instance.OnNextRoom;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
             }
         }
     }
@@ -1158,5 +1186,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnActiveItem(InputAction.CallbackContext context);
         void OnNextRoom(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
 }
