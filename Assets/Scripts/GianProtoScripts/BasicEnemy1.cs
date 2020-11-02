@@ -92,13 +92,13 @@ public class BasicEnemy1 : MonoBehaviour
         if (attackType == "Heavy")
         {
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
-            basicEnemyAI.Knockback();
+            //basicEnemyAI.Knockback();
             
         }
         else if (attackType == "Light")
         {
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
-            basicEnemyAI.Knockback();
+            //basicEnemyAI.Knockback();
         }
 
         // If enemy health drops below zero
