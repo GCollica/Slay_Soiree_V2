@@ -87,7 +87,7 @@ public class BasicEnemy1 : MonoBehaviour
 
     public void TakeDamage(GameObject player, string attackType)
     {
-        Debug.Log("Calculating damage");
+        //Debug.Log("Calculating damage");
 
         if (attackType == "Heavy")
         {

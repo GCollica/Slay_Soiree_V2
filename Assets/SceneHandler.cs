@@ -8,6 +8,13 @@ public class SceneHandler : MonoBehaviour
     private Scene currentScene;
     private string sceneName;
 
+    public Animator transition;
+
+    private void Awake()
+    {
+        transition = GetComponentInChildren<Animator>();
+    }
+
     void Start()
     {
         currentScene = SceneManager.GetActiveScene();
@@ -17,20 +24,16 @@ public class SceneHandler : MonoBehaviour
 
     public void ChangeScene()
     {
-        if (sceneName == "Room Scene")
-        {
-            SceneManager.LoadScene("Shop Scene");
-        }
-
-        if (sceneName == "Shop Scene")
-        {
-            SceneManager.LoadScene("Boss Scene");
-        }
-
-        if (sceneName == "Boss Scene")
-        {
-            SceneManager.LoadScene("Room Scene");
-        }
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        // Play animation
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(levelIndex);
+    }
 }

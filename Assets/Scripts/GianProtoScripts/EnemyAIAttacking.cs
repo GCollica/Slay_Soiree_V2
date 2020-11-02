@@ -55,7 +55,7 @@ public class EnemyAIAttacking : MonoBehaviour
         {
             foreach (GameObject target in attackTargets)
             {
-                Debug.Log("Executed attack on " + target.name);
+                //Debug.Log("Executed attack on " + target.name);
                 target.GetComponent<PlayerStats>().TakeDamage(aiComponent.basicEnemy1Script.basicEnemyClass.currentDamage);
                 if(aiComponent.quirkManager.CurrentQuirk.quirkID == 3)
                 {

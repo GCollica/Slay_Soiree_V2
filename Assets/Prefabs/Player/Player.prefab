@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a491041ca381c1740ab23e89d27cbe60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAiming: 0
+  restrictMovement: 0
   isMoving: 0
   playerSprite: {fileID: 2517518717425845453}
   playerIndex: 0
@@ -107,6 +107,8 @@ MonoBehaviour:
   crosshair: {fileID: 3804840506641614505}
   isAiming: 0
   arrowSpeed: 0
+  canRecieveInput: 0
+  inputRecieved: 0
   ranged: 0
   aiming: 0
 --- !u!58 &7904603550110655066
@@ -210,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2517518717425845453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.47, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1221503274140661998}
@@ -272,9 +274,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 23
+  m_SortingLayer: 27
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 821485e72e52cd747ad3d20a304e432d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f58c1b93563a4bf488adfebb8ac2f662, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -365,7 +367,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 23
+  m_SortingLayer: 27
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 64bf2e2f72e46cf4799058a1cb5ec76f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

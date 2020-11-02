@@ -28,6 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerCount = FindObjectOfType<PlayerCount>();
         playerInput = GetComponent<PlayerInput>();
         playerCombat = FindObjectOfType<PlayerCombat>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
         controls = new PlayerInputMap();
 
         playerCount.AddPlayer(gameObject);

@@ -573,9 +573,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Dodge"",
+                    ""name"": "" Dodge"",
                     ""type"": ""Button"",
-                    ""id"": ""98eedb03-7aef-4738-9583-973808cfc5f6"",
+                    ""id"": ""a4fe6141-bff5-4286-942d-654501962a3b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -793,12 +793,12 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""72f74d4d-7bcc-4bbd-b5da-ed30b78310f9"",
+                    ""id"": ""dbe6c592-e466-4cd1-9680-d5e86f1404a7"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dodge"",
+                    ""action"": "" Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -888,7 +888,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Player_Interact = m_Player.FindAction(" Interact", throwIfNotFound: true);
         m_Player_ActiveItem = m_Player.FindAction("Active Item", throwIfNotFound: true);
         m_Player_NextRoom = m_Player.FindAction("Next Room", throwIfNotFound: true);
-        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+        m_Player_Dodge = m_Player.FindAction(" Dodge", throwIfNotFound: true);
     }
 
     public void Dispose()

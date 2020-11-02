@@ -93,7 +93,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void MeleeAttack()
     {
-        Debug.Log("Attack!");
+        //Debug.Log("Attack!");
         playerMovement.restrictMovement = true;
 
         #region Hit Check
@@ -201,7 +201,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Interact()
     {
-        //Debug.Log("Interacted!");
+        Debug.Log("Interacted!");
 
         // Detect enemies in range of attack
         Collider2D[] hitInteractables = Physics2D.OverlapCircleAll(interactPoint.transform.position, interactRange, interactableLayers);
@@ -221,14 +221,6 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    public void Dodge()
-    {
-        Debug.Log("Dodging");
-
-        float dodgeSpeed = 100f;
-        //Vector2 dodgeVelocity = m * dodgeSpeed * Time.deltaTime;
-    }
-
     public void InputManager()
     {
         if (!canRecieveInput)
@@ -244,6 +236,8 @@ public class PlayerCombat : MonoBehaviour
     public void ActiveItem()
     {
         Debug.Log("Used active item!");
+
+        playerStats.AddHealth();
     }
 
     public int GetPlayerIndex()

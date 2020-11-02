@@ -18,6 +18,8 @@ public class PlayerStats : MonoBehaviour
     private PlayerCount playerCount;
     private PlayerCombat playerCombat;
 
+    public float potency = 25f;
+
     void Awake()
     {
         playerCount = FindObjectOfType<PlayerCount>();
@@ -63,6 +65,11 @@ public class PlayerStats : MonoBehaviour
             playerCombat.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
+    }
+
+    public void AddHealth()
+    {
+        playerClass.AddHealth(potency);
     }
 
     //Call this when interact is pressed to purchase weapon.

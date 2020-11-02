@@ -16,9 +16,12 @@ public class PlayerClass
     public WeaponsSO currentWeapon;
     public ArmourSO currentArmour;
 
+    public float maxHealth;
+
     public PlayerClass(float healthInput, float resistanceInput, float lightDamageInput, float heavyDamageInput, float attackRangeInput, float movementSpeedInput, int goldInput, WeaponsSO weaponInput, ArmourSO armourInput)
     {
         currentHealth = healthInput;
+        maxHealth = healthInput;
         currentLightDamage = lightDamageInput;
         currentHeavyDamage = heavyDamageInput;
         currentAttackRange = attackRangeInput;
@@ -31,8 +34,19 @@ public class PlayerClass
     public void TakeCalculatedDamage(float incomingDamage)
     {
         float resCalculated = incomingDamage * (1 - (currentResistance / 100f));
-        Debug.Log(resCalculated);
+        //Debug.Log(resCalculated);
         currentHealth -= resCalculated;
+    }
+
+    public void AddHealth(float health)
+    {
+        currentHealth = currentHealth + health;
+
+        if (currentHealth >= maxHealth)
+        {
+            Debug.Log("At max health!");
+            currentHealth = maxHealth;
+        }
     }
 
     public void GainGold(int goldInput)
