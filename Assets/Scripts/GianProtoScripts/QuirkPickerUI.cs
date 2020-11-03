@@ -13,16 +13,21 @@ public class QuirkPickerUI : MonoBehaviour
     public GameObject quirk1UI;
     public GameObject quirk2UI;
     public GameObject quirk3UI;
+
+    private float yPosTarget = 600f;
+    private float yPosOffScreen = 1500f;
+
+    private RoomProgress currentRoomProgress;
     private void Awake()
     {
         quirkManager = this.gameObject.GetComponent<QuirkManager>();
+        AssignCurrentRoomProgress();
 
         SetChildrenAlpha(0, quirk1UI);
         SetChildrenAlpha(0, quirk2UI);
         SetChildrenAlpha(0, quirk3UI);
-
-        StartCoroutine(nameof(FadeInIEnumerator));
-
+        
+        MoveUIOffScreen();
     }
 
     public void PickQuirk1Button()
@@ -45,6 +50,7 @@ public class QuirkPickerUI : MonoBehaviour
 
     public void BeginFadeInUI()
     {
+        MoveUIOnScreen();
         StartCoroutine(nameof(FadeInIEnumerator));
     }
 
@@ -84,6 +90,7 @@ public class QuirkPickerUI : MonoBehaviour
         }
 
         isFadingOut = false;
+        currentRoomProgress.ChangeRoomState(RoomProgress.RoomState.Active);
         Invoke(nameof(TurnOffUI), 0.25f);
         StopCoroutine(nameof(FadeInIEnumerator));
     }
@@ -96,8 +103,28 @@ public class QuirkPickerUI : MonoBehaviour
         }
     }
 
-    void TurnOffUI()
+    private void TurnOffUI()
     {
+        MoveUIOffScreen();
         quirkUIParent.SetActive(false);
+    }
+
+    void MoveUIOffScreen()
+    {
+        quirk1UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk1UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk1UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+        quirk2UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk2UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk2UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+        quirk3UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk3UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk3UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+    }
+
+    void MoveUIOnScreen()
+    {
+        quirk1UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk1UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk1UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+        quirk2UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk2UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk2UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+        quirk3UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk3UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk3UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+    }
+
+    public void AssignCurrentRoomProgress()
+    {
+        currentRoomProgress = FindObjectOfType<RoomProgress>();
     }
 }

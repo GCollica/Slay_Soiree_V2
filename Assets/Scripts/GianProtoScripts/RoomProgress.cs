@@ -9,7 +9,11 @@ public class RoomProgress : MonoBehaviour
     public RoomState currentState;
 
     UnityEvent stateChangedEvent;
-    public WaveManager waveManager;
+    
+    private WaveManager waveManager;
+    private QuirkManager quirkManager;
+    private QuirkPickerUI quirkPickerUI;
+    private ScreenFadeHandler screenFadeHandler;
 
     private void Awake()
     {
@@ -19,29 +23,37 @@ public class RoomProgress : MonoBehaviour
         }
 
         waveManager = this.gameObject.GetComponent<WaveManager>();
+        quirkManager = FindObjectOfType<QuirkManager>();
+        quirkPickerUI = FindObjectOfType<QuirkPickerUI>();
+        screenFadeHandler = FindObjectOfType<ScreenFadeHandler>();
+        
         currentState = RoomState.Idle;
         stateChangedEvent.AddListener(StateChanged);
 
         //Invoke(nameof(ChangeTest), 1f);
+        stateChangedEvent.Invoke();
         
     }
 
-    private void ChangeTest()
+    /*private void ChangeTest()
     {
-        currentState = RoomState.Active;
+        currentState = RoomState.QuirkChoice;
         stateChangedEvent.Invoke();
-    }
+    }*/
     private void StateChanged()
     {
         switch (currentState)
         {
             case RoomState.Idle:
-                //Chill.
+                screenFadeHandler.FadeOut();
                 //Re-assign room references.
                 break;
 
             case RoomState.QuirkChoice:
                 //Quirk picking sequence.
+                quirkManager.ChoseQuirkChoices();
+                quirkPickerUI.BeginFadeInUI();
+
                 break;
 
             case RoomState.Active:
@@ -50,6 +62,7 @@ public class RoomProgress : MonoBehaviour
                 break;
 
             case RoomState.Completed:
+                screenFadeHandler.FadeIn();
                 //Transition into new room
                 break;
 

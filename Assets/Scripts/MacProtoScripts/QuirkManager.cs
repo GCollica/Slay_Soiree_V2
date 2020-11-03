@@ -20,8 +20,6 @@ public class QuirkManager : MonoBehaviour
     void Awake()
     {
         quirkSpawner = FindObjectOfType<QuirkSpawner>();
-        //SetCurrentQuirk(Random.Range(1, 4));
-        ChoseQuirkChoices();
     }
 
     private void Update()
@@ -84,6 +82,8 @@ public class QuirkManager : MonoBehaviour
         {
             QuirkChoices.Add(quirk);
         }
+
+        Debug.Log("Chose Quirks");
     }
 
     #region DamageTotem

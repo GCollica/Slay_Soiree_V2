@@ -32,7 +32,7 @@ public class Enemy_AI : MonoBehaviour
 
     void Awake()
     {
-        attackComponent = this.gameObject.GetComponent<EnemyAIAttacking>();
+        attackComponent = this.gameObject.GetComponentInChildren<EnemyAIAttacking>();
         pathfindingComponent = this.gameObject.GetComponent<EnemyAIPathfinding>();
         basicEnemy1Script = this.gameObject.GetComponent<BasicEnemy1>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
@@ -48,6 +48,7 @@ public class Enemy_AI : MonoBehaviour
                 pathfindingComponent.ClearPath();
                 attackComponent.RunAttackCooldownTimer();
                 animationComponent.SetAnimBool("Walking", false);
+                attackComponent.ToggleAttackCollider(false);
 
                 if(idleDelayTimer < idleDelayLength)
                 {
@@ -65,6 +66,7 @@ public class Enemy_AI : MonoBehaviour
                 attackPrepTimer = 0f;
                 InitialiseTargets();
                 FindNearestTarget();
+                attackComponent.ToggleAttackCollider(true);
                 animationComponent.SetAnimBool("Walking", false);
                 attackComponent.RunAttackCooldownTimer();
                 currentAIState = AIState.PursuingTarget;

@@ -50,6 +50,10 @@ public class EnemyAIPathfinding : MonoBehaviour
 
             //Debug.Log("Created Path Successfully");
         }
+        else
+        {
+            seeker.StartPath(rigidBody.position, aiComponent.currentTargetTransform.position, OnPathComplete);
+        }
     }
 
     //Clears current path.

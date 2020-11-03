@@ -6,7 +6,7 @@ public class EnemyAIAttacking : MonoBehaviour
 {
     private Enemy_AI aiComponent;
 
-    private GameObject attackParent;
+    public GameObject attackParent;
     
     //private Transform attackPos1;
     private Transform attackPos2;
@@ -29,9 +29,7 @@ public class EnemyAIAttacking : MonoBehaviour
 
     private void Awake()
     {
-        aiComponent = this.gameObject.GetComponent<Enemy_AI>();
-        attackParent = FindChildGameObject(this.gameObject, "Attack_Direction");
-        //attackPos1 = FindChildGameObject(attackParent, "Attack_Pos1").transform;
+        aiComponent = this.gameObject.GetComponentInParent<Enemy_AI>();
         attackPos2 = FindChildGameObject(attackParent, "Attack_Pos2").transform;
         //attackPos3 = FindChildGameObject(attackParent, "Attack_Pos3").transform;
     }
@@ -39,7 +37,7 @@ public class EnemyAIAttacking : MonoBehaviour
     //Sets characters attack direction.
     public void SetAttackDirection()
     {
-        attackParent.transform.right = (aiComponent.currentTargetTransform.transform.position - attackParent.transform.position).normalized;
+        attackParent.transform.right = -(aiComponent.currentTargetTransform.transform.position - attackParent.transform.position).normalized;
 
     }
 
@@ -112,7 +110,7 @@ public class EnemyAIAttacking : MonoBehaviour
 
             case 2:
 
-                raycastHits = Physics2D.CircleCastAll(attackPos2.position, 1f, (this.transform.position - attackPos2.position));
+                raycastHits = Physics2D.CircleCastAll(attackPos2.position, 0.25f, (this.transform.position - attackPos2.position));
 
                 if (raycastHits.Length > 0)
                 {
@@ -194,6 +192,12 @@ public class EnemyAIAttacking : MonoBehaviour
         result = parent.transform.Find(childName).gameObject;
 
         return result;
+    }
+
+    public void ToggleAttackCollider(bool input)
+    {
+        Collider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+        collider.enabled = input;
     }
 
 }

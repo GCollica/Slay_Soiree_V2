@@ -13,7 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerCombat playerCombat;
     private PlayerCount playerCount;
     private PlayerStats playerStats;
-    private SceneHandler sceneHandler;
+    private ScreenFadeHandler sceneHandler;
 
     private float cooldownTime = 0.4f;
     private float nextAttackTime = 0f;
@@ -23,7 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     void Awake()
     {
-        sceneHandler = FindObjectOfType<SceneHandler>();
+        sceneHandler = FindObjectOfType<ScreenFadeHandler>();
         playerStats = FindObjectOfType<PlayerStats>();
         playerCount = FindObjectOfType<PlayerCount>();
         playerInput = GetComponent<PlayerInput>();
@@ -119,7 +119,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed && playerMovement != null)
         {
-            sceneHandler.ChangeScene();
+            //sceneHandler.ChangeScene();
         }
     }
 
