@@ -95,7 +95,12 @@ PrefabInstance:
     - target: {fileID: 7334487099684849607, guid: 2ab3b9d11d7daee48b5e0c0b803a5557,
         type: 3}
       propertyPath: m_Name
-      value: BOSS
+      value: BOSS Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334487099684849607, guid: 2ab3b9d11d7daee48b5e0c0b803a5557,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ab3b9d11d7daee48b5e0c0b803a5557, type: 3}

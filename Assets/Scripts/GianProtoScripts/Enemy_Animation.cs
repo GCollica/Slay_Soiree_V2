@@ -27,4 +27,9 @@ public class Enemy_Animation : MonoBehaviour
     {
         baseEnemyClass.EnemyDead();
     }
+
+    public void ExitFlinch()
+    {
+        animator.SetBool("Flinching", false);
+    }
 }

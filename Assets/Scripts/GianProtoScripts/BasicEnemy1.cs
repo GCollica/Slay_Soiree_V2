@@ -32,7 +32,7 @@ public class BasicEnemy1 : MonoBehaviour
             spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
 
-        if (gameObject.name == "BOSS")
+        if (gameObject.CompareTag("Boss"))
         {
             InitaliseBossClassInstance();
         }
@@ -91,12 +91,14 @@ public class BasicEnemy1 : MonoBehaviour
 
         if (attackType == "Heavy")
         {
+            PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
             //basicEnemyAI.Knockback();
             
         }
         else if (attackType == "Light")
         {
+            PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
             //basicEnemyAI.Knockback();
         }
@@ -124,5 +126,11 @@ public class BasicEnemy1 : MonoBehaviour
         rewardPlayer = rewardPlayerInput;
         animationComponent.SetAnimBool("Walking", false);
         animationComponent.SetAnimBool("Dying", true);
+    }
+
+    public void PlayFlinchAnim()
+    {
+        animationComponent.SetAnimBool("Walking", false);
+        animationComponent.SetAnimBool("Flinching", true);
     }
 }
