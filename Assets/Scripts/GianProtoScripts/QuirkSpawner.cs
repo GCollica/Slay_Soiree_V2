@@ -38,6 +38,12 @@ public class QuirkSpawner : MonoBehaviour
         spawnedQuirkObj.transform.SetParent(quirkParent.transform);
     }
 
+    public void SpawnQuirkObjectTargetPos(GameObject quirkObj, Transform targetPos)
+    {
+        GameObject spawnedQuirkObj = Instantiate(quirkObj, targetPos.position, Quaternion.identity);
+        spawnedQuirkObj.transform.SetParent(quirkParent.transform);
+    }
+
     public void ReassignRoomReferences()
     {
         InitialiseQuirkParent();

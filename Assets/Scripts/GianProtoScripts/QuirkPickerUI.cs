@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuirkPickerUI : MonoBehaviour
@@ -45,6 +46,12 @@ public class QuirkPickerUI : MonoBehaviour
         BeginFadeOutUI();
     }
 
+    public void SetUIText()
+    {
+        quirk1UI.GetComponentInChildren<TMP_Text>().SetText(quirkManager.QuirkChoices[0].quirkName);
+        quirk2UI.GetComponentInChildren<TMP_Text>().SetText(quirkManager.QuirkChoices[1].quirkName);
+        quirk3UI.GetComponentInChildren<TMP_Text>().SetText(quirkManager.QuirkChoices[2].quirkName);
+    }
     public void BeginFadeInUI()
     {
         TurnOnUI();

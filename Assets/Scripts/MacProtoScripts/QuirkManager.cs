@@ -16,10 +16,12 @@ public class QuirkManager : MonoBehaviour
     public GameObject goldPouch;
 
     private QuirkSpawner quirkSpawner;
+    private QuirkPickerUI quirkPickerUI;
 
     void Awake()
     {
         quirkSpawner = FindObjectOfType<QuirkSpawner>();
+        quirkPickerUI = FindObjectOfType<QuirkPickerUI>();
     }
 
     private void Update()
@@ -85,6 +87,7 @@ public class QuirkManager : MonoBehaviour
             QuirkChoices.Add(quirk);
         }
 
+        quirkPickerUI.SetUIText();
         Debug.Log("Chose Quirks");
     }
 
@@ -106,7 +109,7 @@ public class QuirkManager : MonoBehaviour
     #region GoldGauntlet
     public void SpawnGoldPouch(GameObject sourcePlayer)
     {
-        Instantiate(goldPouch, sourcePlayer.transform.position, Quaternion.identity);
+        quirkSpawner.SpawnQuirkObjectTargetPos(goldPouch, sourcePlayer.transform);
     }
     #endregion
 }
