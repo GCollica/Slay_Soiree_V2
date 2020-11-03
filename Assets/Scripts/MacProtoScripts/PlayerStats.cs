@@ -61,7 +61,7 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player " + playerCombat.playerIndex + " has died!");
 
             // Kill player
-            playerCount.RemovePlayer(playerCount.players[playerCombat.playerIndex]);
+            playerCount.RemovePlayerInputManager(playerCount.playerInputManagers[playerCombat.playerIndex]);
             playerCombat.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }

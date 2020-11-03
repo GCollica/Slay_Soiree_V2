@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject skeletonBasicEnemy;
 
+    public RoomSpawnPoints roomSpawnPoints;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,17 +31,24 @@ public class EnemySpawner : MonoBehaviour
     }
     public void InitialiseSpawnPoints()
     {
-        foreach (var spawnPoints in EnemyParent.transform.GetChild(0).transform.GetComponentsInChildren<Transform>())
+        roomSpawnPoints = FindObjectOfType<RoomSpawnPoints>();
+        SpawnPoints.Clear();
+
+        foreach (Transform spawnPoints in roomSpawnPoints.enemySpawnPoints)
         {
             SpawnPoints.Add(spawnPoints);
         }
-
-        SpawnPoints.RemoveAt(0);
     }
 
     public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
     {
         GameObject spawnedEnemy = Instantiate(enemy, spawnPoint.position, Quaternion.identity);
         spawnedEnemy.transform.SetParent(EnemyParent.transform);
+    }
+
+    public void ReassignRoomReferences()
+    {
+        InitialiseEnemyParent();
+        InitialiseSpawnPoints();
     }
 }

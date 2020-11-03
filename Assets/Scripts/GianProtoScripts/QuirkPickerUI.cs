@@ -18,7 +18,7 @@ public class QuirkPickerUI : MonoBehaviour
     private void Awake()
     {
         quirkManager = this.gameObject.GetComponent<QuirkManager>();
-        AssignCurrentRoomProgress();
+        AssignCurrentRoomReference();
 
         SetChildrenAlpha(0, quirk1UI);
         SetChildrenAlpha(0, quirk2UI);
@@ -47,7 +47,7 @@ public class QuirkPickerUI : MonoBehaviour
 
     public void BeginFadeInUI()
     {
-        MoveUIOnScreen();
+        TurnOnUI();
         StartCoroutine(nameof(FadeInIEnumerator));
     }
 
@@ -101,6 +101,13 @@ public class QuirkPickerUI : MonoBehaviour
         quirkUIParent.SetActive(false);
     }
 
+    private void TurnOnUI()
+    {
+        quirkUIParent.SetActive(true);
+        MoveUIOnScreen();
+        
+    }
+
     void MoveUIOffScreen()
     {
         quirk1UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk1UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk1UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
@@ -115,7 +122,7 @@ public class QuirkPickerUI : MonoBehaviour
         quirk3UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk3UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk3UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
     }
 
-    public void AssignCurrentRoomProgress()
+    public void AssignCurrentRoomReference()
     {
         currentRoomProgress = FindObjectOfType<RoomProgress>();
     }

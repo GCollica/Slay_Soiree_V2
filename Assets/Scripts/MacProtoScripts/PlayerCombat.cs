@@ -217,6 +217,10 @@ public class PlayerCombat : MonoBehaviour
                 Debug.Log("Item Changed");
                 continue;
             }
+            if (interactable.CompareTag("ExitDoor"))
+            {
+                interactable.GetComponent<ExitDoorFunc>().ExitRoom();
+            }
         }
 
     }

@@ -6,6 +6,7 @@ public class WaveManager : MonoBehaviour
 {
     public WaveSO[] roomWaves;
     public int totalWaveIndex =  0;
+    public int spawnPointIndex = 0;
 
     private EnemySpawner enemySpawner;
     private RoomProgress roomProgress;
@@ -19,7 +20,6 @@ public class WaveManager : MonoBehaviour
     {
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
         roomProgress = this.gameObject.GetComponent<RoomProgress>();
-        //StartCoroutine(nameof(SpawnWaveCoroutine));
     }
 
     /*public void SpawnWave()
@@ -57,7 +57,15 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < roomWaves[totalWaveIndex].enemies.Length; i++)
         {
-            enemySpawner.SpawnEnemy(roomWaves[totalWaveIndex].enemies[i], enemySpawner.SpawnPoints[i]);
+            enemySpawner.SpawnEnemy(roomWaves[totalWaveIndex].enemies[i], enemySpawner.SpawnPoints[spawnPointIndex]);
+            if(spawnPointIndex == enemySpawner.SpawnPoints.Count)
+            {
+                spawnPointIndex = 0;
+            }
+            else
+            {
+                spawnPointIndex++;
+            }
             yield return new WaitForSeconds(roomWaves[totalWaveIndex].spawnInterval);
         }
 

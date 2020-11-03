@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class RoomProgress : MonoBehaviour
 {
-    public enum RoomType {Standard, Boss, Shop};
+    public enum RoomType {Standard, Boss, Shop, Staging};
     public RoomType roomType;
-    public enum RoomState {Idle, QuirkChoice, Active, Completed, Failed};
+    public enum RoomState {Idle, QuirkChoice, Active, Completed, Failed, CompletedRun};
     public RoomState currentState;
 
     public GameObject exitDoor;
@@ -18,6 +18,7 @@ public class RoomProgress : MonoBehaviour
     private QuirkManager quirkManager;
     private QuirkPickerUI quirkPickerUI;
     private ScreenFadeHandler screenFadeHandler;
+    private RunHandler runHandler;
 
     private void Awake()
     {
@@ -26,24 +27,41 @@ public class RoomProgress : MonoBehaviour
             stateChangedEvent = new UnityEvent();
         }
 
-        waveManager = this.gameObject.GetComponent<WaveManager>();
-        quirkManager = FindObjectOfType<QuirkManager>();
-        quirkPickerUI = FindObjectOfType<QuirkPickerUI>();
-        screenFadeHandler = FindObjectOfType<ScreenFadeHandler>();
-        
-        currentState = RoomState.Idle;
         stateChangedEvent.AddListener(StateChanged);
 
-        //Invoke(nameof(ChangeTest), 1f);
+        if(roomType == RoomType.Staging)
+        {
+            AssignSystemsReferences();
+        }
+        else if (roomType == RoomType.Standard || roomType == RoomType.Boss || roomType == RoomType.Shop)
+        {
+            AssignSystemsReferences();
+            AssignRoomReferences();         
+        }
+
+        currentState = RoomState.Idle;
         stateChangedEvent.Invoke();
         
     }
 
-    /*private void ChangeTest()
+    public void AssignRoomReferences()
     {
-        currentState = RoomState.QuirkChoice;
+        waveManager = this.gameObject.GetComponent<WaveManager>();
+    } 
+
+    public void AssignSystemsReferences()
+    {
+        quirkManager = FindObjectOfType<QuirkManager>();
+        quirkPickerUI = FindObjectOfType<QuirkPickerUI>();
+        screenFadeHandler = FindObjectOfType<ScreenFadeHandler>();
+        runHandler = FindObjectOfType<RunHandler>();
+    }
+
+    public void BeginRoom()
+    {
         stateChangedEvent.Invoke();
-    }*/
+    }
+
     private void StateChanged()
     {
         switch (currentState)
@@ -57,7 +75,6 @@ public class RoomProgress : MonoBehaviour
                 //Quirk picking sequence.
                 quirkManager.ChoseQuirkChoices();
                 quirkPickerUI.BeginFadeInUI();
-
                 break;
 
             case RoomState.Active:
@@ -68,12 +85,16 @@ public class RoomProgress : MonoBehaviour
             case RoomState.Completed:
                 //screenFadeHandler.FadeIn();
                 exitDoor.SetActive(true);
+                //runHandler.BeginNewRoomCoroutine();
                 //Transition into new room
                 break;
 
             case RoomState.Failed:
                 //Show game over screen? Throw players back to main menu.
                 break;
+
+            case RoomState.CompletedRun:
+                //Show win screen. Maybe throw players into a win room? pummel party style.
 
             default:
                 break;

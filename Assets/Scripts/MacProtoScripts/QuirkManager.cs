@@ -56,6 +56,8 @@ public class QuirkManager : MonoBehaviour
 
     public void SetCurrentQuirk(int quirkIDInput)
     {
+        spawnedTotem = false;
+
         if(quirkIDInput == 0)
         {
             CurrentQuirk = null;

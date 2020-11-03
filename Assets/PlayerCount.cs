@@ -5,16 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCount : MonoBehaviour
 {
-    public List<GameObject> players;
+    public List<GameObject> playerInputManagers;
+    public List<GameObject> activePlayers;
     public List<GameObject> enemies;
 
-    public void AddPlayer(GameObject player)
+    public void UpdateActivePlayers()
     {
-        players.Add(player);
+        foreach (PlayerStats playerStats in FindObjectsOfType<PlayerStats>())
+        {
+            activePlayers.Add(playerStats.gameObject);
+        }
     }
 
-    public void RemovePlayer(GameObject player)
+    public void AddPlayerInputManager(GameObject player)
     {
-        players.Remove(player);
+        playerInputManagers.Add(player);
+    }
+
+    public void RemovePlayerInputManager(GameObject player)
+    {
+        playerInputManagers.Remove(player);
     }
 }

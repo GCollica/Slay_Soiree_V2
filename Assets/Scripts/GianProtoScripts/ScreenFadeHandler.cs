@@ -55,7 +55,7 @@ public class ScreenFadeHandler : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        if(roomProgress.roomType == RoomProgress.RoomType.Shop)
+        if(roomProgress.roomType == RoomProgress.RoomType.Shop || roomProgress.roomType == RoomProgress.RoomType.Staging)
         {
             roomProgress.ChangeRoomState(RoomProgress.RoomState.Completed);
         }
@@ -65,6 +65,11 @@ public class ScreenFadeHandler : MonoBehaviour
         }
 
         StopCoroutine(nameof(FadeInIEnumerator));
+    }
+
+    public void AssignRoomReference()
+    {
+        roomProgress = FindObjectOfType<RoomProgress>();
     }
 
     /*IEnumerator LoadLevel(int levelIndex)

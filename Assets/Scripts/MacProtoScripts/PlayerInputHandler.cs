@@ -31,7 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         controls = new PlayerInputMap();
 
-        playerCount.AddPlayer(gameObject);
+        playerCount.AddPlayerInputManager(gameObject);
 
         // Creates an array of PlayerMovement scripts for each player
         var playerControllers = FindObjectsOfType<PlayerMovement>();
@@ -48,7 +48,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     void AddToPlayerList()
     {
-        playerCount.AddPlayer(gameObject);
+        playerCount.AddPlayerInputManager(gameObject);
     }
 
     public void OnMove(CallbackContext movementContext)
