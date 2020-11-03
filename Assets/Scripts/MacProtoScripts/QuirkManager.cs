@@ -39,7 +39,7 @@ public class QuirkManager : MonoBehaviour
                 {
                     break;
                 }
-                quirkSpawner.SpawnQuirkObject(totem);
+                Invoke(nameof(SpawnTotem), 1.5f);
                 spawnedTotem = true;
                 break;
             //Case 2 is MSRandomiser Quirk.
@@ -87,9 +87,9 @@ public class QuirkManager : MonoBehaviour
     }
 
     #region DamageTotem
-    void DamageTotem()
+    void SpawnTotem()
     {
-        //Instantiate(Quirks.Find(obj => obj.name == "DamageTotem"), transform);
+        quirkSpawner.SpawnQuirkObject(totem);
     }
     #endregion
 

@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class RoomProgress : MonoBehaviour
 {
+    public enum RoomType {Standard, Boss, Shop};
+    public RoomType roomType;
     public enum RoomState {Idle, QuirkChoice, Active, Completed, Failed};
     public RoomState currentState;
+
+    public GameObject exitDoor;
 
     UnityEvent stateChangedEvent;
     
@@ -62,7 +66,8 @@ public class RoomProgress : MonoBehaviour
                 break;
 
             case RoomState.Completed:
-                screenFadeHandler.FadeIn();
+                //screenFadeHandler.FadeIn();
+                exitDoor.SetActive(true);
                 //Transition into new room
                 break;
 

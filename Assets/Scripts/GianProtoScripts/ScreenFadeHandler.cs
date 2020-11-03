@@ -8,9 +8,6 @@ public class ScreenFadeHandler : MonoBehaviour
 {
     public Image fadeImage;
 
-    private bool isFadingIn = false;
-    private bool isFadingOut = false;
-
     private RoomProgress roomProgress;
 
     private void Awake()
@@ -41,30 +38,32 @@ public class ScreenFadeHandler : MonoBehaviour
     }
     IEnumerator FadeInIEnumerator()
     {
-        isFadingIn = true;
 
         for (float targetAlpha = fadeImage.canvasRenderer.GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
         {
             fadeImage.canvasRenderer.SetAlpha(targetAlpha);
             yield return new WaitForSeconds(0.1f);
         }
-
-        isFadingIn = false;
         StopCoroutine(nameof(FadeInIEnumerator));
     }
 
     IEnumerator FadeOutIEnumerator()
     {
-        isFadingOut = true;
-
         for (float targetAlpha = fadeImage.canvasRenderer.GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
         {
             fadeImage.canvasRenderer.SetAlpha(targetAlpha);
             yield return new WaitForSeconds(0.1f);
         }
 
-        isFadingOut = false;
-        roomProgress.ChangeRoomState(RoomProgress.RoomState.QuirkChoice);
+        if(roomProgress.roomType == RoomProgress.RoomType.Shop)
+        {
+            roomProgress.ChangeRoomState(RoomProgress.RoomState.Completed);
+        }
+        else
+        {
+            roomProgress.ChangeRoomState(RoomProgress.RoomState.QuirkChoice);
+        }
+
         StopCoroutine(nameof(FadeInIEnumerator));
     }
 

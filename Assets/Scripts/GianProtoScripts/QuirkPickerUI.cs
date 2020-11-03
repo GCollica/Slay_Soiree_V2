@@ -6,9 +6,6 @@ public class QuirkPickerUI : MonoBehaviour
 {
     private QuirkManager quirkManager;
 
-    private bool isFadingIn = false;
-    private bool isFadingOut = false;
-
     public GameObject quirkUIParent;
     public GameObject quirk1UI;
     public GameObject quirk2UI;
@@ -62,8 +59,6 @@ public class QuirkPickerUI : MonoBehaviour
     IEnumerator FadeInIEnumerator()
     {
         yield return new WaitForSeconds(0.5f);
-        
-        isFadingIn = true;
 
         for (float targetAlpha = quirk1UI.GetComponent<CanvasRenderer>().GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
         {
@@ -73,13 +68,11 @@ public class QuirkPickerUI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        isFadingIn = false;
         StopCoroutine(nameof(FadeInIEnumerator));
     }
 
     IEnumerator FadeOutIEnumerator()
     {
-        isFadingOut = true;
 
         for (float targetAlpha = quirk1UI.GetComponent<CanvasRenderer>().GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
         {
@@ -89,7 +82,6 @@ public class QuirkPickerUI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        isFadingOut = false;
         currentRoomProgress.ChangeRoomState(RoomProgress.RoomState.Active);
         Invoke(nameof(TurnOffUI), 0.25f);
         StopCoroutine(nameof(FadeInIEnumerator));
