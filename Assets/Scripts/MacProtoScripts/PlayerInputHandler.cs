@@ -87,9 +87,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed && playerCombat.ranged == false)
         {
+            //Debug.Log("Attack pressed");
             playerCombat.canRecieveInput = true;
-            playerCombat.MeleeAttack();
-            canAttack = false;
+            playerCombat.inputRecieved = true;
+            //playerCombat.MeleeAttack();
+            //canAttack = false;
         }
     }
 

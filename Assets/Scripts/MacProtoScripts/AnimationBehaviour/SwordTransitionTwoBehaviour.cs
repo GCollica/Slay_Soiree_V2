@@ -14,6 +14,7 @@ public class SwordTransitionTwoBehaviour : StateMachineBehaviour
         if (PlayerCombat.instance.inputRecieved)
         {
             animator.SetTrigger("AttackThree");
+            PlayerCombat.instance.MeleeAttack();
             PlayerCombat.instance.InputManager();
             PlayerCombat.instance.inputRecieved = false;
         }

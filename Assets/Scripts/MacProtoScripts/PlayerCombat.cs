@@ -36,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
     public bool canRecieveInput;
     public bool inputRecieved;
     private Animator animator;
+    public bool canKnockback = false;
 
     public bool ranged;
 
@@ -62,6 +63,8 @@ public class PlayerCombat : MonoBehaviour
         #endregion
 
         crosshair.SetActive(false);
+
+        OnDrawGizmosSelected();
 
         canRecieveInput = true;
     }
@@ -93,14 +96,13 @@ public class PlayerCombat : MonoBehaviour
 
     public void MeleeAttack()
     {
-        //Debug.Log("Attack!");
         playerMovement.restrictMovement = true;
 
         #region Hit Check
         if (!ranged && canRecieveInput)
         {
-                inputRecieved = true;
-                canRecieveInput = false;
+            //Debug.Log("Attack!");
+            canRecieveInput = false;
 
                 // Play attack animation
                 //animator.Play("Player_Sword_Attack");
@@ -117,7 +119,14 @@ public class PlayerCombat : MonoBehaviour
 
                 if (impactEnemy != null)
                 {
+                    if (canKnockback)
+                    {
+                        enemy.GetComponent<Enemy_AI>().Knockback();
+                        canKnockback = false;
+                    }
+
                     impactEnemy.TakeDamage(gameObject, "Light");
+
                     continue;
                 }
 
@@ -249,13 +258,13 @@ public class PlayerCombat : MonoBehaviour
         // Returns the index of the player (Index 0-3/Player 1-4) 
         return playerIndex;
     }
-    
-    //void OnDrawGizmosSelected()
-    //{
-    //    if (attackPoint == null || interactPoint == null)
-    //        return;
 
-    //    Gizmos.DrawWireSphere(attackPoint.position, playerStats.playerClass.currentAttackRange);
-    //    Gizmos.DrawWireSphere(interactPoint.transform.position, interactRange);
-    //}
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null || interactPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, playerStats.playerClass.currentAttackRange);
+        Gizmos.DrawWireSphere(interactPoint.transform.position, interactRange);
+    }
 }
