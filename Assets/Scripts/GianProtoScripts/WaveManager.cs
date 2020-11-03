@@ -8,17 +8,21 @@ public class WaveManager : MonoBehaviour
     public int totalWaveIndex =  0;
 
     private EnemySpawner enemySpawner;
+    private RoomProgress roomProgress;
 
     public List<GameObject> activeEnemies;
+
+    private bool spawningWave = false;
+
 
     private void Awake()
     {
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
-        //Invoke("SpawnWave", 1.5f);
-        StartCoroutine(nameof(SpawnWaveCoroutine));
+        roomProgress = this.gameObject.GetComponent<RoomProgress>();
+        //StartCoroutine(nameof(SpawnWaveCoroutine));
     }
 
-    public void SpawnWave()
+    /*public void SpawnWave()
     {
         int spawnPointIndex = 0;
 
@@ -29,7 +33,7 @@ public class WaveManager : MonoBehaviour
         }
 
         totalWaveIndex++;
-    }
+    }*/
 
     public void AddActiveEnemy(GameObject enemyInput)
     {
@@ -44,6 +48,7 @@ public class WaveManager : MonoBehaviour
         }
 
         activeEnemies.Remove(enemyInput);
+        WaveCountCheck();
     }
 
     IEnumerator SpawnWaveCoroutine()
@@ -57,7 +62,31 @@ public class WaveManager : MonoBehaviour
         }
 
         totalWaveIndex++;
+        spawningWave = false;
         StopCoroutine(nameof(SpawnWaveCoroutine));
+    }
+
+    public void WaveCountCheck()
+    {
+        if(activeEnemies.Count > 0)
+        {
+            return;
+        }
+
+        if(totalWaveIndex < roomWaves.Length && spawningWave == false)
+        {
+            spawningWave = true;
+            StartCoroutine(nameof(SpawnWaveCoroutine));
+        }
+        else if(totalWaveIndex == roomWaves.Length && spawningWave == false)
+        {
+            roomProgress.ChangeRoomState(RoomProgress.RoomState.Completed);
+        }
+    }
+
+    public void BeginRoomWaves()
+    {
+        StartCoroutine(nameof(SpawnWaveCoroutine));
     }
 
 }

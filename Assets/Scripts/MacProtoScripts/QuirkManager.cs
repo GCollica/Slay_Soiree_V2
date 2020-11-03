@@ -6,6 +6,8 @@ public class QuirkManager : MonoBehaviour
 {
     public List<QuirkSO> AllQuirks;
     public QuirkSO CurrentQuirk;
+
+    public List<QuirkSO> QuirkChoices;
     
     //Totem Gameobject, assign prefab in inspector.
     public GameObject totem;
@@ -18,11 +20,17 @@ public class QuirkManager : MonoBehaviour
     void Awake()
     {
         quirkSpawner = FindObjectOfType<QuirkSpawner>();
-        SetCurrentQuirk(Random.Range(1, 4));
+        //SetCurrentQuirk(Random.Range(1, 4));
+        ChoseQuirkChoices();
     }
 
     private void Update()
     {
+        if(CurrentQuirk == null)
+        {
+            return;
+        }
+
         switch (CurrentQuirk.quirkID)
         {
             case 0:
@@ -65,6 +73,17 @@ public class QuirkManager : MonoBehaviour
                 }
             }
         }        
+    }
+
+    public void ChoseQuirkChoices()
+    {
+        int beginingIndex = Random.Range(0, AllQuirks.Count - 3);
+        List<QuirkSO> chosenQuirks = AllQuirks.GetRange(beginingIndex, 3);
+
+        foreach (QuirkSO quirk in chosenQuirks)
+        {
+            QuirkChoices.Add(quirk);
+        }
     }
 
     #region DamageTotem
