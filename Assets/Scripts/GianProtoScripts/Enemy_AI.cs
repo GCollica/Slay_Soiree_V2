@@ -196,7 +196,7 @@ public class Enemy_AI : MonoBehaviour
 
     public void Knockback()
     {
-        //Debug.Log("Knockback");
+        Debug.Log("Knockback");
 
         Vector2 directionVector = (currentTargetTransform.position - this.gameObject.transform.position).normalized;
         Vector2 force = -directionVector * knockbackForce;

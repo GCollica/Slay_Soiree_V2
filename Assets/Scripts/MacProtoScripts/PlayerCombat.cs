@@ -64,7 +64,7 @@ public class PlayerCombat : MonoBehaviour
 
         crosshair.SetActive(false);
 
-        OnDrawGizmosSelected();
+        //OnDrawGizmosSelected();
 
         canRecieveInput = true;
     }
@@ -259,12 +259,12 @@ public class PlayerCombat : MonoBehaviour
         return playerIndex;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null || interactPoint == null)
-            return;
+    //void OnDrawGizmosSelected()
+    //{
+    //    if (attackPoint == null || interactPoint == null)
+    //        return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, playerStats.playerClass.currentAttackRange);
-        Gizmos.DrawWireSphere(interactPoint.transform.position, interactRange);
-    }
+    //    Gizmos.DrawWireSphere(attackPoint.position, playerStats.playerClass.currentAttackRange);
+    //    Gizmos.DrawWireSphere(interactPoint.transform.position, interactRange);
+    //}
 }
