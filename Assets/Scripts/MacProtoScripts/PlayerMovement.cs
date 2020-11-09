@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool restrictMovement;
 
-	public bool isMoving;
+    public bool isMoving;
 
     [SerializeField]
     private GameObject playerSprite;
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     //For calculating movement for character
     Vector2 move;
     private Vector2 targetVelocity;
-    //Acceleration rat
+    //Acceleration rate
     public float forceMult;
 
     private Vector2 m;
@@ -43,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     public static PlayerMovement instance;
+
+    private enum State { Normal, Rolling}
+    private Vector2 rollDir;
+    private State state;
+    private float rollSpeed;
 
     void Awake()
     {
@@ -66,6 +71,18 @@ public class PlayerMovement : MonoBehaviour
         TurnPlayer();
 
         animator.SetFloat("Speed", m.sqrMagnitude);
+
+        if (state == State.Rolling)
+        {
+            float rollSpeedDecelerator = 5f;
+            rollSpeed -= rollSpeed * rollSpeedDecelerator * Time.deltaTime;
+
+            float rollSpeedMin = 10f;
+            if(rollSpeed < rollSpeedMin)
+            {
+                state = State.Normal;
+            }
+        }
     }
 
     void TurnPlayer()
@@ -87,24 +104,32 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-		if (!restrictMovement)
-		{
-            //Assigns "m" to the Vector2 value of the left joystick axes
-            m = new Vector2(move.x, move.y);
-        }
-        else
-        {
-            m = new Vector2(0, 0);
-        }
+        switch (state) {
+            case State.Normal:
+                if (!restrictMovement)
+                {
+                    //Assigns "m" to the Vector2 value of the left joystick axes
+                    m = new Vector2(move.x, move.y);
+                }
+                else
+                {
+                    m = new Vector2(0, 0);
+                }
 
-        //Sets the velocity to accelerate to
-        targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
+                //Sets the velocity to accelerate to
+                targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
 
-        //Calculates the amount of force delivered each frame
-        Vector2 force = (targetVelocity - rb.velocity) * forceMult;
+                //Calculates the amount of force delivered each frame
+                Vector2 force = (targetVelocity - rb.velocity) * forceMult;
 
-        //Moves player forwards
-        rb.AddForce(force);
+                //Moves player forwards
+                rb.AddForce(force);
+                break;
+            case State.Rolling:
+                rb.velocity = rollDir * rollSpeed;
+                m = new Vector2(move.x, move.y);
+                break;
+        }		
     }
 
     public int GetPlayerIndex()
@@ -117,7 +142,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Dodging");
 
-        float dodgeSpeed = 100f;
-        Vector2 dodgeVelocity = m * dodgeSpeed * Time.deltaTime; 
+        rollDir = m;
+        rollSpeed = 25f;
+        state = State.Rolling;
     }
 }

@@ -7,6 +7,7 @@ public class SwordTransitionTwoBehaviour : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerCombat.instance.canRecieveInput = true;
+        PlayerCombat.instance.canKnockback = true;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)

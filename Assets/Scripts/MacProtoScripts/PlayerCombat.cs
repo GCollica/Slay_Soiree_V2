@@ -36,7 +36,7 @@ public class PlayerCombat : MonoBehaviour
     public bool canRecieveInput;
     public bool inputRecieved;
     private Animator animator;
-    public bool canKnockback = false;
+    public bool canKnockback;
 
     public bool ranged;
 
@@ -66,6 +66,7 @@ public class PlayerCombat : MonoBehaviour
 
         //OnDrawGizmosSelected();
 
+        canKnockback = false;
         canRecieveInput = true;
     }
 
@@ -117,12 +118,12 @@ public class PlayerCombat : MonoBehaviour
                 var impactEnemy = enemy.GetComponent<BasicEnemy1>();
                 var impactTotem = enemy.GetComponent<DamageTotem>();
 
+                //Checks if player hit any enamies
                 if (impactEnemy != null)
                 {
                     if (canKnockback)
                     {
                         enemy.GetComponent<Enemy_AI>().Knockback();
-                        canKnockback = false;
                     }
 
                     impactEnemy.TakeDamage(gameObject, "Light");
@@ -130,6 +131,7 @@ public class PlayerCombat : MonoBehaviour
                     continue;
                 }
 
+                //Checks if player hit any totems
                 if (impactTotem != null)
                 {
                     Debug.Log("Damage totem!");
