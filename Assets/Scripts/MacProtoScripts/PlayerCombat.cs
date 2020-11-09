@@ -118,7 +118,7 @@ public class PlayerCombat : MonoBehaviour
                 var impactEnemy = enemy.GetComponent<BasicEnemy1>();
                 var impactTotem = enemy.GetComponent<DamageTotem>();
 
-                //Checks if player hit any enamies
+                //Checks if player hit any enemies
                 if (impactEnemy != null)
                 {
                     if (canKnockback)
