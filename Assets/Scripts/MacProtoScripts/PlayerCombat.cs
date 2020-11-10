@@ -102,7 +102,7 @@ public class PlayerCombat : MonoBehaviour
         #region Hit Check
         if (!ranged && canRecieveInput)
         {
-            Debug.Log("Attack!");
+            //Debug.Log("Attack!");
             canRecieveInput = false;
 
                 // Play attack animation
