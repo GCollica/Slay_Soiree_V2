@@ -15,14 +15,23 @@ public class ExitDoorFunc : MonoBehaviour
 
     public void EnableCollider()
     {
-        interactCollider = this.gameObject.GetComponent<BoxCollider2D>();
+        if(this.gameObject.GetComponent<BoxCollider2D>().enabled != true)
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
 
-        interactCollider.enabled = true;
-        Debug.Log("Enabled Collider");
+    public void ToggleExitDoorCollider(bool inputState)
+    {
+        if (this.gameObject.GetComponent<BoxCollider2D>().enabled != inputState)
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = inputState;
+        }
     }
 
     public void ExitRoom()
     {
+        ToggleExitDoorCollider(false);
         runHandler.BeginNewRoomCoroutine();
     }
 }
