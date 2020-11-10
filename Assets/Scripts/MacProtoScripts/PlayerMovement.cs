@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private float baseSpeed = 3;
     //Speed stat that changes with items
     public float playerSpeed;
+	public float startSpeed;
+	public float attackMoveSpeed;
 
     //Unity auto-generated input script
     private PlayerInputMap controls;
@@ -59,6 +61,11 @@ public class PlayerMovement : MonoBehaviour
         left = new Vector2(1f, 1f);
         right = new Vector2(-1f, 1f);
     }
+
+	void Start()
+	{
+		startSpeed = baseSpeed;
+	}
 
     public void SetInputVector(Vector2 direction)
     {
@@ -108,16 +115,19 @@ public class PlayerMovement : MonoBehaviour
             case State.Normal:
                 if (!restrictMovement)
                 {
-                    //Assigns "m" to the Vector2 value of the left joystick axes
-                    m = new Vector2(move.x, move.y);
+					//Assigns "m" to the Vector2 value of the left joystick axes
+					// m = new Vector2(move.x, move.y);
+					baseSpeed = startSpeed;	
                 }
                 else
                 {
-                    m = new Vector2(0, 0);
-                }
+					//m = new Vector2(0, 0);
+					baseSpeed = attackMoveSpeed;
+				}
 
-                //Sets the velocity to accelerate to
-                targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
+				m = new Vector2(move.x, move.y);
+				//Sets the velocity to accelerate to
+				targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
 
                 //Calculates the amount of force delivered each frame
                 Vector2 force = (targetVelocity - rb.velocity) * forceMult;

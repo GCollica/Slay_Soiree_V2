@@ -14,7 +14,7 @@ public class IdleBehaviour : StateMachineBehaviour
     {
         if (PlayerCombat.instance.inputRecieved)
         {
-            Debug.Log("Attack Animation");
+            //Debug.Log("Attack Animation");
             animator.SetTrigger("AttackOne");
             PlayerCombat.instance.MeleeAttack();
             PlayerCombat.instance.InputManager();
