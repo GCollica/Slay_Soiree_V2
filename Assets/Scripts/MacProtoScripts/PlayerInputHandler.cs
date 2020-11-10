@@ -26,9 +26,8 @@ public class PlayerInputHandler : MonoBehaviour
         sceneHandler = FindObjectOfType<ScreenFadeHandler>();
         playerStats = FindObjectOfType<PlayerStats>();
         playerCount = FindObjectOfType<PlayerCount>();
+        //playerCombat = FindObjectOfType<PlayerCombat>();
         playerInput = GetComponent<PlayerInput>();
-        playerCombat = FindObjectOfType<PlayerCombat>();
-        playerMovement = FindObjectOfType<PlayerMovement>();
         controls = new PlayerInputMap();
 
         playerCount.AddPlayerInputManager(gameObject);
@@ -72,15 +71,6 @@ public class PlayerInputHandler : MonoBehaviour
             // If true then call Interact function
             playerCombat.Interact();
         }
-    }
-
-    void FixedUpdate()
-    {
-        //if(Time.time > nextAttackTime)
-        //{
-        //    nextAttackTime = Time.time + cooldownTime;
-        //    canAttack = true;
-        //}
     }
 
     public void LightAttack(CallbackContext context)

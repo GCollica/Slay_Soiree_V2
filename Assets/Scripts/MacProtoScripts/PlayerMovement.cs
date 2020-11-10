@@ -95,13 +95,13 @@ public class PlayerMovement : MonoBehaviour
     void TurnPlayer()
     {
         // Player moves left, flip character left
-        if (move.x <= -0.1 && !restrictMovement)
+        if (move.x <= -0.1)
         {
             playerSprite.transform.localScale = left;
         }
 
         // Player moves right, flip character right
-        if (move.x >= 0.1 && !restrictMovement)
+        if (move.x >= 0.1)
         {
             playerSprite.transform.localScale = right;
         }
