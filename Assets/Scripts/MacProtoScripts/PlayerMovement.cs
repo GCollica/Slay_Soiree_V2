@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool restrictMovement;
 
     public bool isMoving;
+    public bool isAiming;
 
     [SerializeField]
     private GameObject playerSprite;
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
-    private enum State { Normal, Rolling}
+    private enum State { Normal, RangedNormal, Rolling}
     private Vector2 rollDir;
     private State state;
     private float rollSpeed;
@@ -57,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         controls = new PlayerInputMap();
+
+        playerCombat = GetComponent<PlayerCombat>();
 
         left = new Vector2(1f, 1f);
         right = new Vector2(-1f, 1f);
@@ -95,13 +98,13 @@ public class PlayerMovement : MonoBehaviour
     void TurnPlayer()
     {
         // Player moves left, flip character left
-        if (move.x <= -0.1 && !restrictMovement)
+        if (move.x <= -0.1 && !isAiming)
         {
             playerSprite.transform.localScale = left;
         }
 
         // Player moves right, flip character right
-        if (move.x >= 0.1 && !restrictMovement)
+        if (move.x >= 0.1 && !isAiming)
         {
             playerSprite.transform.localScale = right;
         }
@@ -113,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (state) {
             case State.Normal:
+                if (playerCombat.ranged)
+                {
+                    state = State.RangedNormal;
+                }
+
                 if (!restrictMovement)
                 {
 					//Assigns "m" to the Vector2 value of the left joystick axes
@@ -135,6 +143,36 @@ public class PlayerMovement : MonoBehaviour
                 //Moves player forwards
                 rb.AddForce(force);
                 break;
+
+            case State.RangedNormal:
+                if (playerCombat.ranged)
+                {
+                    state = State.Normal;
+                }
+
+                if (!restrictMovement)
+                {
+                    //Assigns "m" to the Vector2 value of the left joystick axes
+                    m = new Vector2(move.x, move.y);
+                    //baseSpeed = startSpeed;
+                }
+                else
+                {
+                    m = new Vector2(0, 0);
+                    //baseSpeed = attackMoveSpeed;
+                }
+
+                m = new Vector2(move.x, move.y);
+                //Sets the velocity to accelerate to
+                targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
+
+                //Calculates the amount of force delivered each frame
+                Vector2 forceRanged = (targetVelocity - rb.velocity) * forceMult;
+
+                //Moves player forwards
+                rb.AddForce(forceRanged);
+                break;
+
             case State.Rolling:
                 rb.velocity = rollDir * rollSpeed;
                 m = new Vector2(move.x, move.y);

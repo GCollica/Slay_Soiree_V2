@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-	//private PlayerCombat playerCombat;
+    private PlayerCombat playerCombat;
+    public GameObject bulletMaster;
 
- //   void Update()
- //   {
-        
- //   }
+    void Update()
+    {
 
-	//private void OnTriggerEnter2D(Collider2D collision)
-	//{
-	//	if (collision.tag == "Enemy")
-	//	{
+    }
 
-	//	}
-	//}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.GetComponent<BasicEnemy1>().TakeDamage(bulletMaster, "Light");
+        }
+    }
 }
