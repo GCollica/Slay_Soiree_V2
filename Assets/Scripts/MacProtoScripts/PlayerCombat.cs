@@ -76,6 +76,7 @@ public class PlayerCombat : MonoBehaviour
 		{
 			Debug.Log("RefreshCheck");
             playerMovement.restrictMovement = true;
+            playerMovement.isAiming = true;
             Aim();
         }
     }
@@ -151,7 +152,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void Fire()
 	{
-
 		if (lookDirection != Vector2.zero && playerMovement.isMoving == false && ranged)
         {			
 			Debug.Log("Loose!");
@@ -161,18 +161,21 @@ public class PlayerCombat : MonoBehaviour
             fireDirection.Normalize();
 
             GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+            arrow.GetComponent<Projectile>().bulletMaster = gameObject;
             arrow.GetComponent<Rigidbody2D>().velocity = lookDirection * arrowSpeed;
             arrow.transform.Rotate(0, 0, Mathf.Atan2(-lookDirection.y, -lookDirection.x) * Mathf.Rad2Deg);
             Destroy(arrow, 2f);
 			Invoke("ResetMovement", .25f);
 			crosshair.SetActive(false);
 			isAiming = false;
-		}
+            playerMovement.isAiming = false;
+        }
 		else
 		{
 			playerMovement.restrictMovement = false;
 			ResetMovement();
-			crosshair.SetActive(false);
+            playerMovement.isAiming = false;
+            crosshair.SetActive(false);
 			isAiming = false;
 			return;
 		}
