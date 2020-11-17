@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private PlayerStats playerStats;
+    private PlayerInput playerInput;
 
     public GameObject arrowPrefab;
 
@@ -52,6 +54,8 @@ public class PlayerCombat : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
+
+        playerInput = GetComponentInChildren<PlayerInput>();
 
         instance = this;
     }
@@ -103,6 +107,8 @@ public class PlayerCombat : MonoBehaviour
         #region Hit Check
         if (!ranged && canRecieveInput)
         {
+            Debug.Log("Player " + playerInput.playerIndex + " attacking");
+
             //Debug.Log("Attack!");
             canRecieveInput = false;
 

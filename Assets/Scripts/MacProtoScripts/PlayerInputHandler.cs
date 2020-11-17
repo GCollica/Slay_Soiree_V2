@@ -7,9 +7,12 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField]
     private PlayerInput playerInput;
     private PlayerInputMap controls;
+    [SerializeField]
     private PlayerMovement playerMovement;
+    [SerializeField]
     private PlayerCombat playerCombat;
     private PlayerCount playerCount;
     private PlayerStats playerStats;
@@ -32,6 +35,14 @@ public class PlayerInputHandler : MonoBehaviour
 
         playerCount.AddPlayerInputManager(gameObject);
 
+
+
+
+
+    }
+
+    void Start()
+    {
         // Creates an array of PlayerMovement scripts for each player
         var playerControllers = FindObjectsOfType<PlayerMovement>();
         var playerCombats = FindObjectsOfType<PlayerCombat>();
@@ -40,9 +51,13 @@ public class PlayerInputHandler : MonoBehaviour
         var index = playerInput.playerIndex;
 
         // Takes the first controller to give input and assigns it to index 0, continues till 4 players have joined with the final index "3"
-        playerMovement = playerControllers.FirstOrDefault(m => m.GetPlayerIndex() == index);
-        playerCombat = playerCombats.FirstOrDefault(m => m.GetPlayerIndex() == index);
-        Debug.Log("Player " + (index +1) + " has joined.");
+        playerMovement = GetComponentInParent<PlayerMovement>();
+        playerCombat = GetComponentInParent<PlayerCombat>();
+        //playerMovement = playerControllers[i].FirstOrDefault(m => m.GetPlayerIndex() == index);
+        //playerCombat = playerCombats.FirstOrDefault(m => m.GetPlayerIndex() == index);
+
+
+        Debug.Log("Player " + (index + 1) + " has joined.");
     }
 
     void AddToPlayerList()
@@ -75,14 +90,22 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void LightAttack(CallbackContext context)
     {
-        if (context.performed && playerCombat.ranged == false)
+
+
+        //print("context" + context.performed);
+        try
         {
-            //Debug.Log("Attack pressed");
-            playerCombat.canRecieveInput = true;
-            playerCombat.inputRecieved = true;
-            //playerCombat.MeleeAttack();
-            //canAttack = false;
+            if (context.performed && playerCombat.ranged == false)
+            {
+                //Debug.Log("Attack pressed");
+                playerCombat.canRecieveInput = true;
+                playerCombat.inputRecieved = true;
+                //playerCombat.MeleeAttack();
+                //canAttack = false;
+            }
         }
+
+        catch { Debug.LogError("Missing Context"); }
     }
 
     public void HeavyAttack(CallbackContext context)

@@ -24,10 +24,10 @@ public class UIHandler : MonoBehaviour
     {
         //InitialisePlayers();
 
-        p1ImageValue = player1Stats.playerClass.currentHealth / 100f;
-        P1Image.fillAmount = p1ImageValue;
+        //p1ImageValue = player1Stats.playerClass.currentHealth / 100f;
+        //P1Image.fillAmount = p1ImageValue;
 
-        P1GoldValueText.text = "Gold: " + player1Stats.playerClass.currentGold.ToString();
+        //P1GoldValueText.text = "Gold: " + player1Stats.playerClass.currentGold.ToString();
     }
 
     /*public void InitialisePlayers()
