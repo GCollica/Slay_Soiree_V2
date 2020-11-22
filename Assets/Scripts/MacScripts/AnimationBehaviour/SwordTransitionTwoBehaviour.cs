@@ -6,18 +6,20 @@ public class SwordTransitionTwoBehaviour : StateMachineBehaviour
 {
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerCombat.instance.canRecieveInput = true;
-        PlayerCombat.instance.canKnockback = true;
+        PlayerCombat playerCombat = animator.GetComponentInParent<PlayerCombat>();
+        playerCombat.canRecieveInput = true;
+        playerCombat.canKnockback = true;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        if (PlayerCombat.instance.inputRecieved)
-        {
+        PlayerCombat playerCombat = animator.GetComponentInParent<PlayerCombat>();
+        if (playerCombat.inputRecieved)
+        {            
             animator.SetTrigger("AttackThree");
-            PlayerCombat.instance.MeleeAttack();
-            PlayerCombat.instance.InputManager();
-            PlayerCombat.instance.inputRecieved = false;
+            playerCombat.MeleeAttack();
+            playerCombat.InputManager();
+            playerCombat.inputRecieved = false;
         }
     }
 }
