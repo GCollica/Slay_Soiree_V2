@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 rollDir;
     private State state;
     private float rollSpeed;
+    private float dodgeCooldown;
+    public float dodgeTime;
 
     void Awake()
     {
@@ -189,9 +191,16 @@ public class PlayerMovement : MonoBehaviour
     public void Dodge()
     {
         Debug.Log("Dodging");
-
         rollDir = m;
         rollSpeed = 25f;
         state = State.Rolling;
+
+        //dodgeCooldown = Time.time + dodgeTime;
+        //Debug.Log("Time: " + Time.time);
+        //Debug.Log("Dodge cooldown: " + dodgeCooldown);
+        //if (dodgeCooldown <= Time.time)
+        //{
+
+        //}
     }
 }

@@ -24,6 +24,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool attacking;
 
+    public Animator animator;
+
     void Awake()
     {
         sceneHandler = FindObjectOfType<ScreenFadeHandler>();
@@ -34,11 +36,6 @@ public class PlayerInputHandler : MonoBehaviour
         controls = new PlayerInputMap();
 
         playerCount.AddPlayerInputManager(gameObject);
-
-
-
-
-
     }
 
     void Start()
@@ -143,6 +140,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.performed && playerMovement != null)
         {
             Debug.Log("Dodge Started");
+            animator.SetTrigger("Dodge");
             playerMovement.Dodge();
         }
     }

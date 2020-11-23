@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour
 {
-    public enum State {Idle, Moving, Attack, Attack1_Transition, Attack2_Transition};
+    public enum State {Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition};
     public State state;
 
     private PlayerCombat playerCombat;
@@ -36,6 +36,7 @@ public class ComboSystem : MonoBehaviour
                     state = State.Attack;
                 }
                 break;
+
             case State.Moving:
                 if (playerCombat.inputRecieved)
                 {
@@ -46,9 +47,14 @@ public class ComboSystem : MonoBehaviour
                     playerCombat.inputRecieved = false;
                 }
                 break;
+
+            case State.Dodging:               
+                break;
+
             case State.Attack:
                 PlayerMovement.instance.restrictMovement = true;
                 break;
+
             case State.Attack1_Transition:
                 playerCombat.canRecieveInput = true;
 
@@ -60,13 +66,13 @@ public class ComboSystem : MonoBehaviour
                     playerCombat.inputRecieved = false;
                 }
                 break;
+
             case State.Attack2_Transition:
                 playerCombat.canRecieveInput = true;
                 playerCombat.canKnockback = true;
 
                 if (playerCombat.inputRecieved)
                 {
-
                     animator.SetTrigger("AttackThree");
                     playerCombat.MeleeAttack();
                     playerCombat.InputManager();
@@ -84,6 +90,12 @@ public class ComboSystem : MonoBehaviour
     public void SetMoving()
     {
         state = State.Moving;
+    }
+
+    public void SetDodging()
+    {
+        state = State.Dodging;
+        playerMovement.Dodge();
     }
 
     public void SetAttack()

@@ -84,6 +84,7 @@ MonoBehaviour:
   startSpeed: 0
   attackMoveSpeed: 0.5
   forceMult: 10
+  dodgeTime: 2
 --- !u!114 &8493846973349387341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54124033316001b4988c7d5fa655bf9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!1 &3804840506641614505
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +764,7 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   playerCombat: {fileID: 0}
   attacking: 1
+  animator: {fileID: 3041388042901177692}
 --- !u!1 &8471794425154288588
 GameObject:
   m_ObjectHideFlags: 0
