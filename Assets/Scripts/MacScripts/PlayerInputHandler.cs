@@ -87,8 +87,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void LightAttack(CallbackContext context)
     {
-
-
         //print("context" + context.performed);
         try
         {

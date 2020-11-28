@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     private PlayerCombat playerCombat;
     public GameObject bulletMaster;
 
-    void Update()
+    void Start()
     {
 
     }

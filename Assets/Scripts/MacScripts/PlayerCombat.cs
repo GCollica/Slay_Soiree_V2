@@ -8,11 +8,13 @@ public class PlayerCombat : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerStats playerStats;
     private PlayerInput playerInput;
+    private PlayerSpawner playerSpawner;
 
     public GameObject arrowPrefab;
 
     [HideInInspector]
     public int playerIndex = 0;
+    private int spawnIndex = 0;
 
     private Vector2 lookDirection;
 
@@ -54,10 +56,14 @@ public class PlayerCombat : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
+        playerSpawner = FindObjectOfType<PlayerSpawner>();
 
         playerInput = GetComponentInChildren<PlayerInput>();
 
         instance = this;
+
+        gameObject.transform.position = playerSpawner.spawnPoints[playerSpawner.spawnIndex].transform.position;
+        playerSpawner.SetIndex();
     }
 
     void Start()
@@ -72,6 +78,8 @@ public class PlayerCombat : MonoBehaviour
 
         canKnockback = false;
         canRecieveInput = true;
+
+        Debug.Log(playerInput.playerIndex);
     }
 
     void Update()

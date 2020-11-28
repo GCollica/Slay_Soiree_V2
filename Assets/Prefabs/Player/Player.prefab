@@ -79,7 +79,7 @@ MonoBehaviour:
   isAiming: 0
   playerSprite: {fileID: 1221503274140661996}
   playerIndex: 0
-  baseSpeed: 3
+  baseSpeed: 4
   playerSpeed: 0
   startSpeed: 0
   attackMoveSpeed: 0.5

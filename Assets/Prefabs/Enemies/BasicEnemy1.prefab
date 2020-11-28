@@ -454,7 +454,7 @@ MonoBehaviour:
   startingDamage: 5
   startingResistance: 10
   startingHealth: 25
-  startingMovespeed: 300
+  startingMovespeed: 400
   goldDrop: 2
 --- !u!114 &2686370354828970359
 MonoBehaviour:
