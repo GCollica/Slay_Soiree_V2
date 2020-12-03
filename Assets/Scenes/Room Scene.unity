@@ -1953,10 +1953,7 @@ MonoBehaviour:
   - {fileID: 1438117199}
   - {fileID: 538603980}
   - {fileID: 1650074878}
-  index: 0
-  playerSelected: 0
-  playerPrefab: {fileID: 1221503274140661996, guid: d3a82eefc9dce5e4f885717d5154b259,
-    type: 3}
+  spawnIndex: 0
 --- !u!1 &1062459852
 GameObject:
   m_ObjectHideFlags: 0

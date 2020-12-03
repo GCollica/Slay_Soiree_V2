@@ -39,7 +39,10 @@ public class PlayerCombat : MonoBehaviour
     public static PlayerCombat instance;
     public bool canRecieveInput;
     public bool inputRecieved;
-    private Animator animator;
+
+    public Animator meleeAnimator;
+    public Animator rangedAnimator;
+
     public bool canKnockback;
 
     public bool ranged;
@@ -55,7 +58,6 @@ public class PlayerCombat : MonoBehaviour
     {
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
-        animator = GetComponentInChildren<Animator>();
         playerSpawner = FindObjectOfType<PlayerSpawner>();
 
         playerInput = GetComponentInChildren<PlayerInput>();
@@ -69,7 +71,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         #region For Testing Purposes only
-        ranged = false;
+        ranged = true;
         #endregion
 
         crosshair.SetActive(false);
@@ -87,8 +89,9 @@ public class PlayerCombat : MonoBehaviour
 		if (isAiming && ranged)
 		{
 			Debug.Log("RefreshCheck");
-            playerMovement.restrictMovement = true;
+            //playerMovement.restrictMovement = true;
             playerMovement.isAiming = true;
+            crosshair.SetActive(true);
             Aim();
         }
     }
@@ -96,21 +99,21 @@ public class PlayerCombat : MonoBehaviour
     public void SetInputAimVector(Vector2 direction)
     {
         lookDirection = direction;
-
+        lookDirection *= crosshairOffset;
         //Debug.Log("Vector Set!");
     }
 
     private void Aim()
     {
         // Crosshair placement
-		Debug.Log("Aiming");
-        crosshair.SetActive(true);
+		Debug.Log("Aiming");       
         crosshair.transform.localPosition = lookDirection;
+        rangedAnimator.SetTrigger("Nock");
     }
 
     public void MeleeAttack()
     {
-        playerMovement.restrictMovement = true;
+        //playerMovement.restrictMovement = true;
 
         #region Hit Check
         if (!ranged && canRecieveInput)
@@ -174,6 +177,8 @@ public class PlayerCombat : MonoBehaviour
             Vector2 fireDirection = crosshair.transform.localPosition;
             fireDirection.Normalize();
 
+            rangedAnimator.SetTrigger("Loose");
+
             GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
             arrow.GetComponent<Projectile>().bulletMaster = gameObject;
             arrow.GetComponent<Rigidbody2D>().velocity = lookDirection * arrowSpeed;
@@ -183,11 +188,14 @@ public class PlayerCombat : MonoBehaviour
 			crosshair.SetActive(false);
 			isAiming = false;
             playerMovement.isAiming = false;
+            rangedAnimator.ResetTrigger("Nock");
         }
 		else
 		{
-			playerMovement.restrictMovement = false;
-			ResetMovement();
+            rangedAnimator.SetTrigger("NoFire");
+            rangedAnimator.ResetTrigger("Nock");
+            //playerMovement.restrictMovement = false;
+			//ResetMovement();
             playerMovement.isAiming = false;
             crosshair.SetActive(false);
 			isAiming = false;

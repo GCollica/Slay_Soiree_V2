@@ -113,7 +113,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled && playerMovement != null && canAttack)
         {
             playerCombat.Fire();
-			canAttack = false;
+			canAttack = true;
         }
     }
 

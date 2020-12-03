@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 left, right;
 
-    private Animator animator;
+    public Animator meleeAnimator;
+    public Animator rangedAnimator;
 
     [HideInInspector]
     public bool restrictMovement;
@@ -30,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     //Speed stat that changes with items
     public float playerSpeed;
 	public float startSpeed;
-	public float attackMoveSpeed;
+	public float swordAttackMoveSpeed;
+    public float bowAttackMoveSpeed;
 
     //Unity auto-generated input script
     private PlayerInputMap controls;
@@ -47,7 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
-    private enum State { Normal, RangedNormal, Rolling}
+    private enum WeaponState { Melee, Ranged }
+    private WeaponState weaponState;
+
+
+    private enum State { Melee, RangedNormal, Rolling}
     private Vector2 rollDir;
     private State state;
     private float rollSpeed;
@@ -57,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         instance = this;
-        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         controls = new PlayerInputMap();
 
@@ -82,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
     {
         TurnPlayer();
 
-        animator.SetFloat("Speed", m.sqrMagnitude);
+        meleeAnimator.SetFloat("Speed", m.sqrMagnitude);
+        rangedAnimator.SetFloat("Speed", m.sqrMagnitude);
 
         if (state == State.Rolling)
         {
@@ -92,32 +98,25 @@ public class PlayerMovement : MonoBehaviour
             float rollSpeedMin = 10f;
             if(rollSpeed < rollSpeedMin)
             {
-                state = State.Normal;
+                state = State.Melee;
             }
         }
     }
 
-    void TurnPlayer()
-    {
-        // Player moves left, flip character left
-        if (move.x <= -0.1 && !isAiming)
-        {
-            playerSprite.transform.localScale = left;
-        }
-
-        // Player moves right, flip character right
-        if (move.x >= 0.1 && !isAiming)
-        {
-            playerSprite.transform.localScale = right;
-        }
-    }
-
-    // ToDo: Disable movement when aiming 
-
     void FixedUpdate()
     {
+        switch (weaponState) {
+            case WeaponState.Melee:
+
+                break;
+            case WeaponState.Ranged:
+                break;
+        }
+
+
         switch (state) {
-            case State.Normal:
+            case State.Melee:
+                Debug.Log("Normal");
                 if (playerCombat.ranged)
                 {
                     state = State.RangedNormal;
@@ -125,19 +124,20 @@ public class PlayerMovement : MonoBehaviour
 
                 if (!restrictMovement)
                 {
-					//Assigns "m" to the Vector2 value of the left joystick axes
-					// m = new Vector2(move.x, move.y);
-					baseSpeed = startSpeed;	
+                    //Assigns "m" to the Vector2 value of the left joystick axes
+                    // m = new Vector2(move.x, move.y);
+                    baseSpeed = startSpeed;
                 }
                 else
                 {
-					//m = new Vector2(0, 0);
-					baseSpeed = attackMoveSpeed;
-				}
+                    Debug.Log("Melee movement restricted");
+                    //m = new Vector2(0, 0);
+                    baseSpeed = swordAttackMoveSpeed;
+                }
 
-				m = new Vector2(move.x, move.y);
-				//Sets the velocity to accelerate to
-				targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
+                m = new Vector2(move.x, move.y);
+                //Sets the velocity to accelerate to
+                targetVelocity = m * ((baseSpeed + playerSpeed) * 100) * Time.fixedDeltaTime;
 
                 //Calculates the amount of force delivered each frame
                 Vector2 force = (targetVelocity - rb.velocity) * forceMult;
@@ -147,20 +147,22 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case State.RangedNormal:
-                if (playerCombat.ranged)
+                Debug.Log("RangedNormal");
+                if (!playerCombat.ranged)
                 {
-                    state = State.Normal;
+                    state = State.Melee;
                 }
 
                 if (!restrictMovement)
                 {
                     //Assigns "m" to the Vector2 value of the left joystick axes
-                    m = new Vector2(move.x, move.y);
+                    baseSpeed = startSpeed;
                     //baseSpeed = startSpeed;
                 }
                 else
                 {
-                    m = new Vector2(0, 0);
+                    Debug.Log("Ranged movement restricted");
+                    baseSpeed = bowAttackMoveSpeed;
                     //baseSpeed = attackMoveSpeed;
                 }
 
@@ -180,6 +182,21 @@ public class PlayerMovement : MonoBehaviour
                 m = new Vector2(move.x, move.y);
                 break;
         }		
+    }
+
+    void TurnPlayer()
+    {
+        // Player moves left, flip character left
+        if (move.x <= -0.1)
+        {
+            playerSprite.transform.localScale = left;
+        }
+
+        // Player moves right, flip character right
+        if (move.x >= 0.1)
+        {
+            playerSprite.transform.localScale = right;
+        }
     }
 
     public int GetPlayerIndex()

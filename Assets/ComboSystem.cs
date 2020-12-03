@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour
 {
-    public enum State {Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition};
-    public State state;
+    public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition };
+    public MeleeState stateMelee;
+
+    public enum RangedState { RestrictMovement, NormalMovement };
+    public RangedState stateRanged;
 
     private PlayerCombat playerCombat;
     private PlayerMovement playerMovement;
@@ -20,9 +23,10 @@ public class ComboSystem : MonoBehaviour
 
     void Update()
     {
-        switch (state)
+        #region Melee States
+        switch (stateMelee)
         {
-            case State.Idle:
+            case MeleeState.Idle:
                 playerMovement.restrictMovement = false;
                 playerCombat.canKnockback = false;
 
@@ -33,11 +37,11 @@ public class ComboSystem : MonoBehaviour
                     playerCombat.MeleeAttack();
                     playerCombat.InputManager();
                     playerCombat.inputRecieved = false;
-                    state = State.Attack;
+                    stateMelee = MeleeState.Attack;
                 }
                 break;
 
-            case State.Moving:
+            case MeleeState.Moving:
                 if (playerCombat.inputRecieved)
                 {
                     Debug.Log("Attack Animation");
@@ -48,14 +52,14 @@ public class ComboSystem : MonoBehaviour
                 }
                 break;
 
-            case State.Dodging:               
+            case MeleeState.Dodging:               
                 break;
 
-            case State.Attack:
+            case MeleeState.Attack:
                 PlayerMovement.instance.restrictMovement = true;
                 break;
 
-            case State.Attack1_Transition:
+            case MeleeState.Attack1_Transition:
                 playerCombat.canRecieveInput = true;
 
                 if (playerCombat.inputRecieved)
@@ -67,7 +71,7 @@ public class ComboSystem : MonoBehaviour
                 }
                 break;
 
-            case State.Attack2_Transition:
+            case MeleeState.Attack2_Transition:
                 playerCombat.canRecieveInput = true;
                 playerCombat.canKnockback = true;
 
@@ -80,37 +84,63 @@ public class ComboSystem : MonoBehaviour
                 }
                 break;
         }
+        #endregion
+
+        #region
+        switch (stateRanged)
+        {
+            case RangedState.NormalMovement:
+                playerMovement.restrictMovement = false;
+                break;
+            case RangedState.RestrictMovement:
+                playerMovement.restrictMovement = true;
+                break;
+        }
+        #endregion
     }
 
+    #region Melee Events
     public void SetIdle()
     {
-        state = State.Idle;
+        stateMelee = MeleeState.Idle;
     }
 
     public void SetMoving()
     {
-        state = State.Moving;
+        stateMelee = MeleeState.Moving;
     }
 
     public void SetDodging()
     {
-        state = State.Dodging;
+        stateMelee = MeleeState.Dodging;
         playerMovement.Dodge();
     }
 
     public void SetAttack()
     {
-        state = State.Attack;
+        stateMelee = MeleeState.Attack;
     }
 
     public void SetAttack1_Transition()
     {
-        state = State.Attack1_Transition;
+        stateMelee = MeleeState.Attack1_Transition;
     }
 
     public void SetAttack2_Transition()
     {
-        state = State.Attack2_Transition;
+        stateMelee = MeleeState.Attack2_Transition;
+    }
+    #endregion
+
+    #region Ranged Events
+    public void SetNormal()
+    {
+        stateRanged = RangedState.NormalMovement;
     }
 
+    public void SetRestrict()
+    {
+        stateRanged = RangedState.RestrictMovement;
+    }
+    #endregion
 }
