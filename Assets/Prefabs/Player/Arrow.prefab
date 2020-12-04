@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7609544997838448021}
   - component: {fileID: 7708204239516209869}
   - component: {fileID: -2441719222046359332}
+  - component: {fileID: 6566828080372085391}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -117,3 +118,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletMaster: {fileID: 0}
+--- !u!58 &6566828080372085391
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4659579024776540990}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.58, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.23

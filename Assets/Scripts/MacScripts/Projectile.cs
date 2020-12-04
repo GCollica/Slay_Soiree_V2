@@ -16,7 +16,9 @@ public class Projectile : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            Debug.Log("Arrow Hit");
             collision.GetComponent<BasicEnemy1>().TakeDamage(bulletMaster, "Light");
+            Destroy(gameObject);
         }
     }
 }

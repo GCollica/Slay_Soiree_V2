@@ -930,6 +930,7 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   playerMovement: {fileID: 0}
   playerCombat: {fileID: 0}
+  cooldownSeconds: 2
   attacking: 1
   animator: {fileID: 3041388042901177692}
 --- !u!1 &8471794425154288588

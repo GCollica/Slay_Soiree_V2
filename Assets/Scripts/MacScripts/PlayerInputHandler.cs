@@ -22,6 +22,9 @@ public class PlayerInputHandler : MonoBehaviour
     private float nextAttackTime = 0f;
     private bool canAttack = true;
 
+    private float timeStamp;
+    public float cooldownSeconds;
+
     public bool attacking;
 
     public Animator animator;
@@ -104,16 +107,21 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     public void HeavyAttack(CallbackContext context)
-    {
-        if (context.started && playerMovement != null)
+    {       
+        if (timeStamp <= Time.time)
         {
-            playerCombat.isAiming = true;
-        }
+            if (context.started && playerMovement != null)
+            {
+                playerCombat.isAiming = true;
+            }
 
-        if (context.canceled && playerMovement != null && canAttack)
-        {
-            playerCombat.Fire();
-			canAttack = true;
+            Debug.Log(playerCombat.isAiming);
+
+            if (context.canceled && playerMovement != null)
+            {
+                playerCombat.Fire();
+                timeStamp = Time.time + cooldownSeconds;
+            }
         }
     }
 
