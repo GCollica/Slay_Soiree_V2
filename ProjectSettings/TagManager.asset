@@ -15,6 +15,7 @@ TagManager:
   - UI
   - ExitDoor
   - Boss
+  - QuirkCard
   layers:
   - Default
   - TransparentFX

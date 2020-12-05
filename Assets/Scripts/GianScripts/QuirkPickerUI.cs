@@ -12,6 +12,8 @@ public class QuirkPickerUI : MonoBehaviour
     public GameObject quirk2UI;
     public GameObject quirk3UI;
 
+    public GameObject cardSelectColliders;
+
     private float yPosTarget = 600f;
     private float yPosOffScreen = 1500f;
 
@@ -24,7 +26,9 @@ public class QuirkPickerUI : MonoBehaviour
         SetChildrenAlpha(0, quirk1UI);
         SetChildrenAlpha(0, quirk2UI);
         SetChildrenAlpha(0, quirk3UI);
-        
+
+        cardSelectColliders.SetActive(false);
+
         MoveUIOffScreen();
     }
 
@@ -52,6 +56,7 @@ public class QuirkPickerUI : MonoBehaviour
         quirk2UI.GetComponentInChildren<TMP_Text>().SetText(quirkManager.QuirkChoices[1].quirkName);
         quirk3UI.GetComponentInChildren<TMP_Text>().SetText(quirkManager.QuirkChoices[2].quirkName);
     }
+
     public void BeginFadeInUI()
     {
         TurnOnUI();
@@ -69,6 +74,8 @@ public class QuirkPickerUI : MonoBehaviour
 
         for (float targetAlpha = quirk1UI.GetComponent<CanvasRenderer>().GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
         {
+            cardSelectColliders.SetActive(true);
+
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
             SetChildrenAlpha(targetAlpha, quirk3UI);
@@ -83,6 +90,8 @@ public class QuirkPickerUI : MonoBehaviour
 
         for (float targetAlpha = quirk1UI.GetComponent<CanvasRenderer>().GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
         {
+            cardSelectColliders.SetActive(false);
+
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
             SetChildrenAlpha(targetAlpha, quirk3UI);

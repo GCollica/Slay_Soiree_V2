@@ -97,8 +97,7 @@ public class RoomProgress : MonoBehaviour
                 //Show win screen. Maybe throw players into a win room? pummel party style.
 
             default:
-                break;
-            
+                break;           
         }
     }
 

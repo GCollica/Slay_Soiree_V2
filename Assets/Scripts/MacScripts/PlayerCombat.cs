@@ -257,6 +257,10 @@ public class PlayerCombat : MonoBehaviour
             {
                 interactable.GetComponent<ExitDoorFunc>().ExitRoom();
             }
+            if (interactable.CompareTag("QuirkCard"))
+            {
+                interactable.GetComponent<QuirkSelection>().ActivateQuirk();
+            }
         }
 
     }
