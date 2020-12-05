@@ -9,8 +9,11 @@ public class CrowEnemy_AI : MonoBehaviour
     public AIState currentAIState = AIState.Idle;
 
     //Data references for multi-use components of the code.
-    public GameObject[] totalEnemies;
+    public List<GameObject> totalNonCrowEnemies;
+    public GameObject currentTarget;
     public Transform currentTargetTransform;
+    public Transform flypointLeft;
+    public Transform flypointRight;
 
     //Date references for idle state of the code.
     private float idleDelayTimer = 0f;
@@ -20,14 +23,14 @@ public class CrowEnemy_AI : MonoBehaviour
 
     private float attachDistance = 0.5f;
 
-    private EnemyAIPathfinding pathfindingComponent;
+    private CrowEnemyAIPathfinding pathfindingComponent;
     private Enemy_Animation animationComponent;
     public CrowEnemy crowEnemyScript;
     public QuirkManager quirkManager;
 
     void Awake()
     {
-        pathfindingComponent = this.gameObject.GetComponent<EnemyAIPathfinding>();
+        pathfindingComponent = this.gameObject.GetComponent<CrowEnemyAIPathfinding>();
         crowEnemyScript = this.gameObject.GetComponent<CrowEnemy>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
         quirkManager = FindObjectOfType<QuirkManager>();
@@ -40,7 +43,6 @@ public class CrowEnemy_AI : MonoBehaviour
             case AIState.Idle:
 
                 pathfindingComponent.ClearPath();
-                animationComponent.SetAnimBool("Walking", false);
 
                 if (idleDelayTimer < idleDelayLength)
                 {
@@ -57,7 +59,6 @@ public class CrowEnemy_AI : MonoBehaviour
                 idleDelayTimer = 0f;
                 InitialiseTargets();
                 FindNearestTarget();
-                animationComponent.SetAnimBool("Walking", false);
                 currentAIState = AIState.PursuingTarget;
                 break;
 
@@ -65,7 +66,6 @@ public class CrowEnemy_AI : MonoBehaviour
 
                 SetFacingDirection();
                 pathfindingComponent.PursureTarget();
-                animationComponent.SetAnimBool("Walking", true);
                 if (Vector2.Distance(this.transform.position, currentTargetTransform.position) <= attachDistance)
                 {
                     currentAIState = AIState.AttachedToTarget;
@@ -73,7 +73,10 @@ public class CrowEnemy_AI : MonoBehaviour
                 break;
 
             case AIState.AttachedToTarget:
-
+                flypointLeft.position = new Vector3(currentTargetTransform.position.x - 0.5f, currentTargetTransform.position.y, currentTargetTransform.position.z);
+                flypointRight.position = new Vector3(currentTargetTransform.position.x + 0.5f, currentTargetTransform.position.y, currentTargetTransform.position.z);
+                SetFacingDirection();
+                pathfindingComponent.PursueFlyPoint();
                 break;
 
             default:
@@ -85,29 +88,38 @@ public class CrowEnemy_AI : MonoBehaviour
     //Initialises totalPlayers array.
     private void InitialiseTargets()
     {
-        totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in totalEnemies)
+        {
+            if(enemy.GetComponent<CrowEnemy>() == null)
+            {
+                totalNonCrowEnemies.Add(enemy);
+            }
+        }
     }
 
     //Finds current closest target to this enemy.
     private void FindNearestTarget()
     {
-        if (totalEnemies.Length == 0)
+        if (totalNonCrowEnemies.Count == 0)
         {
             return;
         }
 
-        float closestDistance = (totalEnemies[0].transform.position - this.gameObject.transform.position).magnitude;
-        GameObject closestPlayer = totalEnemies[0];
+        float closestDistance = (totalNonCrowEnemies[0].transform.position - this.gameObject.transform.position).magnitude;
+        GameObject closestEnemy = totalNonCrowEnemies[0];
 
-        foreach (GameObject player in totalEnemies)
+        foreach (GameObject enemy in totalNonCrowEnemies)
         {
-            if ((player.transform.position - this.gameObject.transform.position).magnitude < closestDistance)
+            if ((enemy.transform.position - this.gameObject.transform.position).magnitude < closestDistance)
             {
-                closestPlayer = player;
+                closestDistance = (enemy.transform.position - this.gameObject.transform.position).magnitude;
+                closestEnemy = enemy;
             }
         }
 
-        currentTargetTransform = closestPlayer.transform;
+        currentTarget = closestEnemy;
+        currentTargetTransform = closestEnemy.transform;
     }
 
     //Sets characters Facing Direction by flipping the sprite.

@@ -2,13 +2,13 @@
 
 public class CrowEnemy : MonoBehaviour
 {
-    /*Script that will be attached to each basic enemy 1 gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the BasicEnemyClass. */
+    /*Script that will be attached to each crow enemy gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the CrowEnemyClass. */
     public BasicEnemyClass basicEnemyClass;
     private CrowEnemy_AI crowEnemyAI;
     private QuirkManager quirkManager;
     private WaveManager waveManager;
     private Enemy_Animation animationComponent;
-    private EnemyAIPathfinding pathfindingComponent;
+    private CrowEnemyAIPathfinding pathfindingComponent;
 
     public SpriteRenderer spriteRenderer;
 
@@ -24,11 +24,11 @@ public class CrowEnemy : MonoBehaviour
     {
         crowEnemyAI = this.gameObject.GetComponent<CrowEnemy_AI>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
-        pathfindingComponent = this.gameObject.transform.GetComponentInChildren<EnemyAIPathfinding>();
+        pathfindingComponent = this.gameObject.transform.GetComponentInChildren<CrowEnemyAIPathfinding>();
         
-        if (this.gameObject.transform.GetChild(1) != null)
+        if (this.gameObject.transform.GetChild(0) != null)
         {
-            spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+            spriteRenderer = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
 
         InitialiseClassInstance();
@@ -49,10 +49,6 @@ public class CrowEnemy : MonoBehaviour
                 basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed * 2);
             }
         }
-
-        //SetSortingLayers();
-
-        //InvokeRepeating("SetSortingLayers", 0.5f, 0.5f);
     }
 
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
@@ -72,14 +68,12 @@ public class CrowEnemy : MonoBehaviour
 
         if (attackType == "Heavy")
         {
-            PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
             //basicEnemyAI.Knockback();
 
         }
         else if (attackType == "Light")
         {
-            PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
             //basicEnemyAI.Knockback();
         }
@@ -105,13 +99,7 @@ public class CrowEnemy : MonoBehaviour
     public void BeginEnemyDeath(GameObject rewardPlayerInput)
     {
         rewardPlayer = rewardPlayerInput;
-        animationComponent.SetAnimBool("Walking", false);
-        animationComponent.SetAnimBool("Dying", true);
+        EnemyDead();
     }
 
-    public void PlayFlinchAnim()
-    {
-        animationComponent.SetAnimBool("Walking", false);
-        animationComponent.SetAnimBool("Flinching", true);
-    }
 }

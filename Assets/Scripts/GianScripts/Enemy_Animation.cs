@@ -6,15 +6,29 @@ public class Enemy_Animation : MonoBehaviour
 {
     private Animator animator;
     private BasicEnemy1 baseEnemyClass;
+    private CrowEnemy baseCrowEnemyClass;
 
     private void Awake()
     {
         animator = this.GetComponent<Animator>();
-        baseEnemyClass = this.gameObject.transform.GetComponentInParent<BasicEnemy1>();
+
+        if (this.gameObject.transform.GetComponentInParent<BasicEnemy1>() != null)
+        {
+            baseEnemyClass = this.gameObject.transform.GetComponentInParent<BasicEnemy1>();
+        }
+        if (this.gameObject.transform.GetComponentInParent<CrowEnemy>() != null)
+        {
+            baseCrowEnemyClass = this.gameObject.transform.GetComponentInParent<CrowEnemy>();
+        }
+        
     }
 
     public void SetAnimBool(string boolNameInput, bool targetValue)
     {
+        if (!animator.GetBool(boolNameInput))
+        {
+            return;
+        }
         if(animator.GetBool(boolNameInput) == targetValue)
         {
             return;
@@ -25,7 +39,15 @@ public class Enemy_Animation : MonoBehaviour
 
     public void KillEnemy()
     {
-        baseEnemyClass.EnemyDead();
+        if(baseEnemyClass != null)
+        {
+            baseEnemyClass.EnemyDead();
+        }
+        if(baseCrowEnemyClass != null)
+        {
+            baseCrowEnemyClass.EnemyDead();
+        }
+
     }
 
     public void ExitFlinch()
