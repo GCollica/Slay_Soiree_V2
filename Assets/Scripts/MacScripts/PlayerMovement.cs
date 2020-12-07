@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
         switch (state) {
             case State.Melee:
-                Debug.Log("Normal");
+                //Debug.Log("Normal");
                 if (playerCombat.ranged)
                 {
                     state = State.RangedNormal;
