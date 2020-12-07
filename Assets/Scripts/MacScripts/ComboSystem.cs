@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour
 {
-    public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition };
+    public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition, Ranged };
     public MeleeState stateMelee;
 
     public enum RangedState { RestrictMovement, NormalMovement, Melee };
@@ -27,6 +27,11 @@ public class ComboSystem : MonoBehaviour
         switch (stateMelee)
         {
             case MeleeState.Idle:
+                if (playerCombat.ranged)
+                {
+                    stateMelee = MeleeState.Ranged;
+                }
+            
                 playerMovement.restrictMovement = false;
                 playerCombat.canKnockback = false;
                 stateRanged = RangedState.Melee;
@@ -89,6 +94,8 @@ public class ComboSystem : MonoBehaviour
                     playerCombat.inputRecieved = false;
                 }
                 break;
+            case MeleeState.Ranged:
+                break;
         }
         #endregion
 
@@ -96,9 +103,16 @@ public class ComboSystem : MonoBehaviour
         switch (stateRanged)
         {
             case RangedState.NormalMovement:
+                if (!playerCombat.ranged)
+                {
+                    stateRanged = RangedState.Melee;
+                }
+
+                stateMelee = MeleeState.Ranged;
                 playerMovement.restrictMovement = false;
                 break;
             case RangedState.RestrictMovement:
+                stateMelee = MeleeState.Ranged;
                 playerMovement.restrictMovement = true;
                 break;
             case RangedState.Melee:

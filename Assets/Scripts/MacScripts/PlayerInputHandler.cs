@@ -115,7 +115,7 @@ public class PlayerInputHandler : MonoBehaviour
                 playerCombat.isAiming = true;
             }
 
-            Debug.Log(playerCombat.isAiming);
+            //Debug.Log(playerCombat.isAiming);
 
             if (context.canceled && playerMovement != null)
             {

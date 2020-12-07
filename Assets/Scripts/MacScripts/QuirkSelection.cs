@@ -23,7 +23,7 @@ public class QuirkSelection : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Card Highlighted");
+            //Debug.Log("Card Highlighted");
             highlight.enabled = true;
         }
     }
@@ -32,14 +32,14 @@ public class QuirkSelection : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Card Highlighted");
+            //Debug.Log("Card Highlighted");
             highlight.enabled = false;
         }
     }
 
     public void ActivateQuirk()
     {
-        Debug.Log("Quirk Activated");
+        //Debug.Log("Quirk Activated");
 
         switch (index)
         {

@@ -81,7 +81,7 @@ public class PlayerCombat : MonoBehaviour
         canKnockback = false;
         canRecieveInput = true;
 
-        Debug.Log(playerInput.playerIndex);
+        //Debug.Log(playerInput.playerIndex);
     }
 
     void Update()
@@ -118,7 +118,7 @@ public class PlayerCombat : MonoBehaviour
         #region Hit Check
         if (!ranged && canRecieveInput)
         {
-            Debug.Log("Player " + playerInput.playerIndex + " attacking");
+            //Debug.Log("Player " + playerInput.playerIndex + " attacking");
 
             //Debug.Log("Attack!");
             canRecieveInput = false;
@@ -237,14 +237,14 @@ public class PlayerCombat : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("Interacted!");
+        //Debug.Log("Interacted!");
 
         // Detect enemies in range of attack
         Collider2D[] hitInteractables = Physics2D.OverlapCircleAll(interactPoint.transform.position, interactRange, interactableLayers);
 
         foreach (Collider2D interactable in hitInteractables)
         {
-            Debug.Log("Interacted with " + interactable.name);
+            //Debug.Log("Interacted with " + interactable.name);
 
             if (interactable.CompareTag("ItemPedistool"))
             {
