@@ -111,9 +111,7 @@ public class Enemy_AI : MonoBehaviour
                 //This would be the case that the target player is within attack range & this objects attack isn't on cooldown.
                 if(attackComponent.inAttackRange == true && attackComponent.attackCoolingDown == false)
                 {
-                    attackComponent.SetAttackDirection();
-                    attackComponent.AttackRaycast(2);
-                    currentAIState = AIState.ExecutingAttacks;
+                    animationComponent.SetAnimBool("Attacking", true);
                 }
                 break;
 
