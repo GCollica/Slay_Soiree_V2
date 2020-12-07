@@ -63,7 +63,10 @@ public class CrowEnemy_AI : MonoBehaviour
                 break;
 
             case AIState.PursuingTarget:
-
+                if (currentTarget == null)
+                {
+                    currentAIState = AIState.FindingTarget;
+                }
                 SetFacingDirection();
                 pathfindingComponent.PursureTarget();
                 if (Vector2.Distance(this.transform.position, currentTargetTransform.position) <= attachDistance)
@@ -73,6 +76,10 @@ public class CrowEnemy_AI : MonoBehaviour
                 break;
 
             case AIState.AttachedToTarget:
+                if (currentTarget == null)
+                {
+                    currentAIState = AIState.FindingTarget;
+                }
                 flypointLeft.position = new Vector3(currentTargetTransform.position.x - 0.5f, currentTargetTransform.position.y, currentTargetTransform.position.z);
                 flypointRight.position = new Vector3(currentTargetTransform.position.x + 0.5f, currentTargetTransform.position.y, currentTargetTransform.position.z);
                 SetFacingDirection();
