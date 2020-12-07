@@ -27,16 +27,24 @@ public class Enemy_Animation : MonoBehaviour
 
     public void SetAnimBool(string boolNameInput, bool targetValue)
     {
-        if (!animator.GetBool(boolNameInput))
+        if(animator == null)
         {
-            return;
+            Debug.Log("No animator set");
         }
+
+        /*if (!animator.GetBool(boolNameInput))
+        {
+            Debug.Log("Couldn't find animation bool");
+            return;
+        }*/
         if(animator.GetBool(boolNameInput) == targetValue)
         {
+            Debug.Log("Animation bool already set to target value");
             return;
         }
         
         animator.SetBool(boolNameInput, targetValue);
+        Debug.Log("Changed animation bool");
     }
 
     public void KillEnemy()
