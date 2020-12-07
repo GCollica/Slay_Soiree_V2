@@ -114,14 +114,6 @@ public class Enemy_AI : MonoBehaviour
                     attackComponent.SetAttackDirection();
                     attackComponent.AttackRaycast(2);
                     currentAIState = AIState.ExecutingAttacks;
-
-                    /*attackSequenceTimer += Time.deltaTime;
-
-                    if (attackSequenceTimer < attackSequenceDuration)
-                    {
-                        
-                        
-                    }*/
                 }
                 break;
 

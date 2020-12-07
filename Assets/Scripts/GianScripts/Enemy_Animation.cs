@@ -7,6 +7,7 @@ public class Enemy_Animation : MonoBehaviour
     private Animator animator;
     private BasicEnemy1 baseEnemyClass;
     private CrowEnemy baseCrowEnemyClass;
+    private EnemyAIAttacking skeletonAttackComponent;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class Enemy_Animation : MonoBehaviour
         if (this.gameObject.transform.GetComponentInParent<BasicEnemy1>() != null)
         {
             baseEnemyClass = this.gameObject.transform.GetComponentInParent<BasicEnemy1>();
+            skeletonAttackComponent = this.gameObject.transform.parent.GetComponentInChildren<EnemyAIAttacking>();
         }
         if (this.gameObject.transform.GetComponentInParent<CrowEnemy>() != null)
         {
@@ -53,5 +55,15 @@ public class Enemy_Animation : MonoBehaviour
     public void ExitFlinch()
     {
         animator.SetBool("Flinching", false);
+    }
+
+    public void ExitSkeleAttack()
+    {
+        animator.SetBool("Attacking", false);
+    }
+
+    public void ExecuteSkeleAttack()
+    {
+        skeletonAttackComponent.CombinedAttackFunction();
     }
 }

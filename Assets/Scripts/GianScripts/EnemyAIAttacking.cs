@@ -200,4 +200,11 @@ public class EnemyAIAttacking : MonoBehaviour
         collider.enabled = input;
     }
 
+    public void CombinedAttackFunction()
+    {
+        SetAttackDirection();
+        AttackRaycast(2);
+        aiComponent.currentAIState = Enemy_AI.AIState.ExecutingAttacks;
+    }
+
 }
