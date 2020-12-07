@@ -16,7 +16,7 @@ public class CrowEnemy_AI : MonoBehaviour
     public Transform flypointRight;
 
     //Date references for idle state of the code.
-    private float idleDelayTimer = 0f;
+    public float idleDelayTimer = 0f;
     private float idleDelayLength = 1f;
 
     private float facingDirectionBuffer = 0.125f;
@@ -63,7 +63,7 @@ public class CrowEnemy_AI : MonoBehaviour
                 break;
 
             case AIState.PursuingTarget:
-                if (currentTarget == null)
+                if (currentTarget == null || currentTargetTransform == null)
                 {
                     currentAIState = AIState.FindingTarget;
                 }
@@ -76,7 +76,7 @@ public class CrowEnemy_AI : MonoBehaviour
                 break;
 
             case AIState.AttachedToTarget:
-                if (currentTarget == null)
+                if (currentTarget == null || currentTargetTransform == null)
                 {
                     currentAIState = AIState.FindingTarget;
                 }
@@ -95,7 +95,9 @@ public class CrowEnemy_AI : MonoBehaviour
     //Initialises totalPlayers array.
     private void InitialiseTargets()
     {
+
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        totalNonCrowEnemies.Clear();
         foreach (var enemy in totalEnemies)
         {
             if(enemy.GetComponent<CrowEnemy>() == null)
@@ -108,7 +110,7 @@ public class CrowEnemy_AI : MonoBehaviour
     //Finds current closest target to this enemy.
     private void FindNearestTarget()
     {
-        if (totalNonCrowEnemies.Count == 0)
+        if (totalNonCrowEnemies.Count <= 0)
         {
             return;
         }
