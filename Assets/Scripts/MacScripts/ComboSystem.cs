@@ -7,7 +7,7 @@ public class ComboSystem : MonoBehaviour
     public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition };
     public MeleeState stateMelee;
 
-    public enum RangedState { RestrictMovement, NormalMovement };
+    public enum RangedState { RestrictMovement, NormalMovement, Melee };
     public RangedState stateRanged;
 
     private PlayerCombat playerCombat;
@@ -29,6 +29,7 @@ public class ComboSystem : MonoBehaviour
             case MeleeState.Idle:
                 playerMovement.restrictMovement = false;
                 playerCombat.canKnockback = false;
+                stateRanged = RangedState.Melee;
 
                 if (playerCombat.inputRecieved)
                 {
@@ -42,6 +43,7 @@ public class ComboSystem : MonoBehaviour
                 break;
 
             case MeleeState.Moving:
+                stateRanged = RangedState.Melee;
                 if (playerCombat.inputRecieved)
                 {
                     Debug.Log("Attack Animation");
@@ -52,14 +54,17 @@ public class ComboSystem : MonoBehaviour
                 }
                 break;
 
-            case MeleeState.Dodging:               
+            case MeleeState.Dodging:
+                stateRanged = RangedState.Melee;
                 break;
 
             case MeleeState.Attack:
-                PlayerMovement.instance.restrictMovement = true;
+                stateRanged = RangedState.Melee;
+                playerMovement.restrictMovement = true;
                 break;
 
             case MeleeState.Attack1_Transition:
+                stateRanged = RangedState.Melee;
                 playerCombat.canRecieveInput = true;
 
                 if (playerCombat.inputRecieved)
@@ -72,6 +77,7 @@ public class ComboSystem : MonoBehaviour
                 break;
 
             case MeleeState.Attack2_Transition:
+                stateRanged = RangedState.Melee;
                 playerCombat.canRecieveInput = true;
                 playerCombat.canKnockback = true;
 
@@ -86,7 +92,7 @@ public class ComboSystem : MonoBehaviour
         }
         #endregion
 
-        #region
+        #region Ranged States
         switch (stateRanged)
         {
             case RangedState.NormalMovement:
@@ -94,6 +100,8 @@ public class ComboSystem : MonoBehaviour
                 break;
             case RangedState.RestrictMovement:
                 playerMovement.restrictMovement = true;
+                break;
+            case RangedState.Melee:
                 break;
         }
         #endregion

@@ -71,7 +71,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         #region For Testing Purposes only
-        ranged = true;
+        ranged = false;
         #endregion
 
         crosshair.SetActive(false);

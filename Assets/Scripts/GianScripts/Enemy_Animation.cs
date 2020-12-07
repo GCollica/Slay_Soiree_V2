@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Enemy_Animation : MonoBehaviour
 {
-    private Animator animator;
-    private BasicEnemy1 baseEnemyClass;
-    private CrowEnemy baseCrowEnemyClass;
+    private Animator animator;   
+    public BasicEnemy1 baseEnemyClass;
+    public CrowEnemy baseCrowEnemyClass;
     private EnemyAIAttacking skeletonAttackComponent;
 
     private void Awake()

@@ -16,6 +16,7 @@ public class QuirkSelection : MonoBehaviour
     private void Awake()
     {
         highlight = quirkCard.GetComponent<Image>();
+        highlight.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

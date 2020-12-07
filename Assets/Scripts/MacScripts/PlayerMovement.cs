@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator meleeAnimator;
     public Animator rangedAnimator;
 
-    [HideInInspector]
     public bool restrictMovement;
 
     public bool isMoving;
