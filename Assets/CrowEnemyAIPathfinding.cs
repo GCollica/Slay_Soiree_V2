@@ -74,6 +74,11 @@ public class CrowEnemyAIPathfinding : MonoBehaviour
         }
         else
         {
+            if(aiComponent.currentTargetTransform.position == null)
+            {
+                aiComponent.idleDelayTimer = 0f;
+                aiComponent.currentAIState = CrowEnemy_AI.AIState.Idle;
+            }
             seeker.StartPath(rigidBody.position, aiComponent.currentTargetTransform.position, OnPathComplete);
         }
     }
