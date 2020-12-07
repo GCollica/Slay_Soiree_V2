@@ -39,12 +39,12 @@ public class Enemy_Animation : MonoBehaviour
         }*/
         if(animator.GetBool(boolNameInput) == targetValue)
         {
-            Debug.Log("Animation bool already set to target value");
+            //Debug.Log("Animation bool already set to target value");
             return;
         }
         
         animator.SetBool(boolNameInput, targetValue);
-        Debug.Log("Changed animation bool");
+        //Debug.Log("Changed animation bool");
     }
 
     public void KillEnemy()

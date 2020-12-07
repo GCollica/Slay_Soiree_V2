@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1383456050715027490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603794092745650283}
+  m_Layer: 10
+  m_Name: FlyPointRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1603794092745650283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383456050715027490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8207437842710329247}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4630695007567791492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778981166415409521}
+  m_Layer: 10
+  m_Name: FlyPointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778981166415409521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630695007567791492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8207437842710329247}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8207437842346220136
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +153,8 @@ Transform:
   m_Children:
   - {fileID: 8207437843667300316}
   - {fileID: 8207437842346220137}
+  - {fileID: 778981166415409521}
+  - {fileID: 1603794092745650283}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,7 +196,7 @@ MonoBehaviour:
   startingDamage: 0
   startingResistance: 5
   startingHealth: 15
-  startingMovespeed: 15
+  startingMovespeed: 600
   goldDrop: 1
 --- !u!114 &8207437842710329244
 MonoBehaviour:
@@ -152,8 +214,8 @@ MonoBehaviour:
   totalNonCrowEnemies: []
   currentTarget: {fileID: 0}
   currentTargetTransform: {fileID: 0}
-  flypointLeft: {fileID: 0}
-  flypointRight: {fileID: 0}
+  flypointLeft: {fileID: 778981166415409521}
+  flypointRight: {fileID: 1603794092745650283}
   crowEnemyScript: {fileID: 0}
   quirkManager: {fileID: 0}
 --- !u!114 &8207437842710329219
@@ -359,3 +421,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09017490cf1c4b249b55578c7f9029b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseEnemyClass: {fileID: 0}
+  baseCrowEnemyClass: {fileID: 0}
