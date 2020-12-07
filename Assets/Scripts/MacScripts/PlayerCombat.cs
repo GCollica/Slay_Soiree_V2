@@ -134,6 +134,7 @@ public class PlayerCombat : MonoBehaviour
                 //Debug.Log("We hit " + enemy.name + " with a light attack!");
 
                 var impactEnemy = enemy.GetComponent<BasicEnemy1>();
+                var impactBird = enemy.GetComponent<CrowEnemy>();
                 var impactTotem = enemy.GetComponent<DamageTotem>();
 
                 //Checks if player hit any enemies
@@ -154,6 +155,13 @@ public class PlayerCombat : MonoBehaviour
                 {
                     Debug.Log("Damage totem!");
                     impactTotem.TotemTakeDamage(playerStats.playerClass.currentLightDamage);
+                    continue;
+                }
+
+                if (impactBird!= null)
+                {
+                    Debug.Log("Damage Bird Boy!");
+                    impactBird.TakeDamage(gameObject, "Light");
                     continue;
                 }
             }           
