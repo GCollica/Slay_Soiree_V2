@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
     private PlayerStats playerStats;
     private PlayerInput playerInput;
     private PlayerSpawner playerSpawner;
+    private SoundManager soundManager;
 
     public GameObject arrowPrefab;
 
@@ -59,6 +60,7 @@ public class PlayerCombat : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
         playerSpawner = FindObjectOfType<PlayerSpawner>();
+        soundManager = FindObjectOfType<SoundManager>();
 
         playerInput = GetComponentInChildren<PlayerInput>();
 
@@ -142,11 +144,17 @@ public class PlayerCombat : MonoBehaviour
                 {
                     if (canKnockback)
                     {
+                        
                         enemy.GetComponent<Enemy_AI>().Knockback();
+                        soundManager.Play("Enemy Knockback");
+                        impactEnemy.TakeDamage(gameObject, "Light");
                     }
-
-                    impactEnemy.TakeDamage(gameObject, "Light");
-
+                    else
+                    {
+                        soundManager.Play("Enemy Impact");
+                        impactEnemy.TakeDamage(gameObject, "Light");
+                    }
+                    
                     continue;
                 }
 
@@ -164,7 +172,7 @@ public class PlayerCombat : MonoBehaviour
                     impactBird.TakeDamage(gameObject, "Light");
                     continue;
                 }
-            }           
+            }
         }
         else
         {

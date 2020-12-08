@@ -14,11 +14,14 @@ public class ComboSystem : MonoBehaviour
     private PlayerMovement playerMovement;
     private Animator animator;
 
+    private SoundManager soundManager;
+
     private void Awake()
     {
         playerCombat = GetComponentInParent<PlayerCombat>();
         playerMovement = GetComponentInParent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     void Update()
@@ -152,6 +155,24 @@ public class ComboSystem : MonoBehaviour
     {
         stateMelee = MeleeState.Attack2_Transition;
     }
+
+    #region Audio
+    public void AttackWiff1()
+    {
+        soundManager.Play("Sword Swing 1");
+    }
+
+    public void AttackWiff2()
+    {
+        soundManager.Play("Sword Swing 2");
+    }
+
+    public void AttackWiff3()
+    {
+        soundManager.Play("Sword Swing 3");
+    }
+
+    #endregion
     #endregion
 
     #region Ranged Events

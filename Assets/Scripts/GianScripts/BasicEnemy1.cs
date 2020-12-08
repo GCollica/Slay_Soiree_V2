@@ -11,6 +11,7 @@ public class BasicEnemy1 : MonoBehaviour
     private WaveManager waveManager;
     private Enemy_Animation animationComponent;
     private EnemyAIPathfinding pathfindingComponent;
+    private SoundManager soundManager;
 
     public SpriteRenderer spriteRenderer;
 
@@ -21,13 +22,14 @@ public class BasicEnemy1 : MonoBehaviour
     public int goldDrop = 2;
 
     private GameObject rewardPlayer;
-    
+
     void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         basicEnemyAI = this.gameObject.GetComponent<Enemy_AI>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
         pathfindingComponent = this.gameObject.transform.GetComponentInChildren<EnemyAIPathfinding>();
-        if(this.gameObject.transform.GetChild(1) != null)
+        if (this.gameObject.transform.GetChild(1) != null)
         {
             spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
@@ -44,15 +46,15 @@ public class BasicEnemy1 : MonoBehaviour
         waveManager = FindObjectOfType<WaveManager>();
         waveManager.AddActiveEnemy(this.gameObject);
         quirkManager = FindObjectOfType<QuirkManager>();
-        
-        if(quirkManager.CurrentQuirk.quirkID == 2)
+
+        if (quirkManager.CurrentQuirk.quirkID == 2)
         {
             int chosenModifier = quirkManager.RandomiseMSModifier();
-            if(chosenModifier == 0)
+            if (chosenModifier == 0)
             {
                 basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed / 2);
             }
-            if(chosenModifier == 1)
+            if (chosenModifier == 1)
             {
                 basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed * 2);
             }
@@ -94,12 +96,12 @@ public class BasicEnemy1 : MonoBehaviour
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
             //basicEnemyAI.Knockback();
-            
         }
         else if (attackType == "Light")
         {
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
+            soundManager.Play("Enemy Impact");
             //basicEnemyAI.Knockback();
         }
 

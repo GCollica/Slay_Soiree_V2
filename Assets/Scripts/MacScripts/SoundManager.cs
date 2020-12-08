@@ -17,6 +17,8 @@ public class SoundManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        Play("Main Menu");
     }
 
     public void Play(string name)
@@ -28,6 +30,7 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found");
         }
 
+        Debug.Log("Sound: " + name + " played" );
         s.source.Play();
     }
 

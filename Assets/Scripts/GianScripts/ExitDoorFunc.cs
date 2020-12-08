@@ -10,6 +10,7 @@ public class ExitDoorFunc : MonoBehaviour
 
     private void Awake()
     {
+        FindObjectOfType<SoundManager>().Play("Door Open");
         runHandler = FindObjectOfType<RunHandler>();
     }
 

@@ -8,9 +8,11 @@ public class Enemy_Animation : MonoBehaviour
     public BasicEnemy1 baseEnemyClass;
     public CrowEnemy baseCrowEnemyClass;
     private EnemyAIAttacking skeletonAttackComponent;
+    private SoundManager soundManager;
 
     private void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         animator = this.GetComponent<Animator>();
 
         if (this.gameObject.transform.GetComponentInParent<BasicEnemy1>() != null)
@@ -58,6 +60,11 @@ public class Enemy_Animation : MonoBehaviour
             baseCrowEnemyClass.EnemyDead();
         }
 
+    }
+
+    public void DeathAudio()
+    {
+        soundManager.Play("Skeleton Death");
     }
 
     public void ExitFlinch()

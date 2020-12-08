@@ -29,6 +29,7 @@ public class Enemy_AI : MonoBehaviour
     private Enemy_Animation animationComponent;
     public BasicEnemy1 basicEnemy1Script;
     public QuirkManager quirkManager;
+    private SoundManager soundManager;
 
     void Awake()
     {
@@ -37,6 +38,7 @@ public class Enemy_AI : MonoBehaviour
         basicEnemy1Script = this.gameObject.GetComponent<BasicEnemy1>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
         quirkManager = FindObjectOfType<QuirkManager>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
   
     void Update()
@@ -186,8 +188,6 @@ public class Enemy_AI : MonoBehaviour
 
     public void Knockback()
     {
-        Debug.Log("Knockback");
-
         Vector2 directionVector = (currentTargetTransform.position - this.gameObject.transform.position).normalized;
         Vector2 force = -directionVector * knockbackForce;
         pathfindingComponent.rigidBody.AddForce(force);

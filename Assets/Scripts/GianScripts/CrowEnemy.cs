@@ -9,6 +9,7 @@ public class CrowEnemy : MonoBehaviour
     private WaveManager waveManager;
     private Enemy_Animation animationComponent;
     private CrowEnemyAIPathfinding pathfindingComponent;
+    private SoundManager soundManager;
 
     public SpriteRenderer spriteRenderer;
 
@@ -22,6 +23,7 @@ public class CrowEnemy : MonoBehaviour
 
     void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         crowEnemyAI = this.gameObject.GetComponent<CrowEnemy_AI>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
         pathfindingComponent = this.gameObject.transform.GetComponentInChildren<CrowEnemyAIPathfinding>();
@@ -99,6 +101,7 @@ public class CrowEnemy : MonoBehaviour
     public void BeginEnemyDeath(GameObject rewardPlayerInput)
     {
         rewardPlayer = rewardPlayerInput;
+        soundManager.Play("Bird Death");
         EnemyDead();
     }
 
