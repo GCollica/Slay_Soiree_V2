@@ -34,7 +34,7 @@ public class CrowEnemyAIPathfinding : MonoBehaviour
     //Generates path towards the target postition
     public void GeneratePath()
     {
-        if(aiComponent.currentTarget == null)
+        if (aiComponent.currentTarget == null || aiComponent.currentTargetTransform == null)
         {
             ClearPath();
             aiComponent.currentAIState = CrowEnemy_AI.AIState.FindingTarget;
@@ -48,6 +48,12 @@ public class CrowEnemyAIPathfinding : MonoBehaviour
 
     public void GeneratePathAttached()
     {
+        if (aiComponent.currentTarget == null || aiComponent.currentTargetTransform == null)
+        {
+            ClearPath();
+            aiComponent.currentAIState = CrowEnemy_AI.AIState.FindingTarget;
+        }
+
         creatingPath = true;
         if (currentFlyPointState == FlyPointState.left)
         {
