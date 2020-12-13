@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMelee: 0
   stateRanged: 0
+  playerStats: {fileID: 7587406753956667520}
 --- !u!1 &2764937658772764333
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMelee: 0
   stateRanged: 0
+  playerStats: {fileID: 0}
 --- !u!1 &3804840506641614505
 GameObject:
   m_ObjectHideFlags: 0

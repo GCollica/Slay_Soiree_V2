@@ -13,6 +13,7 @@ public class ComboSystem : MonoBehaviour
     private PlayerCombat playerCombat;
     private PlayerMovement playerMovement;
     private Animator animator;
+    public PlayerStats playerStats;
 
     private SoundManager soundManager;
 
@@ -186,4 +187,9 @@ public class ComboSystem : MonoBehaviour
         stateRanged = RangedState.RestrictMovement;
     }
     #endregion
+
+    void KillPlayer()
+    {
+        playerStats.KillPlayer();
+    }
 }

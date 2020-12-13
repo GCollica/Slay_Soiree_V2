@@ -143,8 +143,7 @@ public class PlayerCombat : MonoBehaviour
                 if (impactEnemy != null)
                 {
                     if (canKnockback)
-                    {
-                        
+                    {                       
                         enemy.GetComponent<Enemy_AI>().Knockback();
                         soundManager.Play("Enemy Knockback");
                         impactEnemy.TakeDamage(gameObject, "Light");

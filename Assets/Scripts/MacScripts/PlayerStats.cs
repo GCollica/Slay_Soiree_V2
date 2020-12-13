@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public PlayerClass playerClass;
     private PlayerCount playerCount;
     private PlayerCombat playerCombat;
+    private Animator animator;
 
     public float potency = 25f;
 
@@ -24,6 +25,7 @@ public class PlayerStats : MonoBehaviour
     {
         playerCount = FindObjectOfType<PlayerCount>();
         playerCombat = FindObjectOfType<PlayerCombat>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -61,10 +63,15 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player " + playerCombat.playerIndex + " has died!");
 
             // Kill player
-            playerCount.RemovePlayerInputManager(playerCount.playerInputManagers[playerCombat.playerIndex]);
-            playerCombat.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            animator.SetTrigger("Dead");
         }
+    }
+
+    public void KillPlayer()
+    {
+        playerCount.RemovePlayerInputManager(playerCount.playerInputManagers[playerCombat.playerIndex]);
+        playerCombat.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void AddHealth()
