@@ -32,5 +32,6 @@ public class PlayerCount : MonoBehaviour
     public void RemovePlayerInputManager(GameObject player)
     {
         playerInputManagers.Remove(player);
+        uIHandler.InitialisePlayers();
     }
 }
