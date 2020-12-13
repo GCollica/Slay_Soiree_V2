@@ -58,8 +58,6 @@ public class CrowEnemy_AI : MonoBehaviour
 
                 idleDelayTimer = 0f;
                 InitialiseTargets();
-                FindNearestTarget();
-                currentAIState = AIState.PursuingTarget;
                 break;
 
             case AIState.PursuingTarget:
@@ -67,8 +65,10 @@ public class CrowEnemy_AI : MonoBehaviour
                 {
                     currentAIState = AIState.FindingTarget;
                 }
+
                 SetFacingDirection();
                 pathfindingComponent.PursureTarget();
+
                 if (Vector2.Distance(this.transform.position, currentTargetTransform.position) <= attachDistance)
                 {
                     currentAIState = AIState.AttachedToTarget;
@@ -80,6 +80,7 @@ public class CrowEnemy_AI : MonoBehaviour
                 {
                     currentAIState = AIState.FindingTarget;
                 }
+
                 flypointLeft.position = new Vector3(currentTargetTransform.position.x - 0.5f, currentTargetTransform.position.y, currentTargetTransform.position.z);
                 flypointRight.position = new Vector3(currentTargetTransform.position.x + 0.5f, currentTargetTransform.position.y, currentTargetTransform.position.z);
                 SetFacingDirection();
@@ -97,12 +98,24 @@ public class CrowEnemy_AI : MonoBehaviour
     {
 
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
         totalNonCrowEnemies.Clear();
+
         foreach (var enemy in totalEnemies)
         {
             if(enemy.GetComponent<CrowEnemy>() == null)
             {
                 totalNonCrowEnemies.Add(enemy);
+            }
+
+            if(totalNonCrowEnemies.Count <= 0)
+            {
+                currentAIState = AIState.Idle;
+            }
+
+            else
+            {
+                FindNearestTarget();
             }
         }
     }
@@ -110,10 +123,6 @@ public class CrowEnemy_AI : MonoBehaviour
     //Finds current closest target to this enemy.
     private void FindNearestTarget()
     {
-        if (totalNonCrowEnemies.Count <= 0)
-        {
-            return;
-        }
 
         float closestDistance = (totalNonCrowEnemies[0].transform.position - this.gameObject.transform.position).magnitude;
         GameObject closestEnemy = totalNonCrowEnemies[0];
@@ -129,6 +138,8 @@ public class CrowEnemy_AI : MonoBehaviour
 
         currentTarget = closestEnemy;
         currentTargetTransform = closestEnemy.transform;
+
+        currentAIState = AIState.PursuingTarget;
     }
 
     //Sets characters Facing Direction by flipping the sprite.
