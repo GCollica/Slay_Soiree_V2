@@ -8,6 +8,7 @@ public class Enemy_Animation : MonoBehaviour
     public BasicEnemy1 baseEnemyClass;
     public CrowEnemy baseCrowEnemyClass;
     private EnemyAIAttacking skeletonAttackComponent;
+    private EnemyAIPathfinding skeletonPathfindingComponent;
     private SoundManager soundManager;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class Enemy_Animation : MonoBehaviour
         {
             baseEnemyClass = this.gameObject.transform.GetComponentInParent<BasicEnemy1>();
             skeletonAttackComponent = this.gameObject.transform.parent.GetComponentInChildren<EnemyAIAttacking>();
+            skeletonPathfindingComponent = this.gameObject.transform.GetComponentInParent<EnemyAIPathfinding>();
         }
         if (this.gameObject.transform.GetComponentInParent<CrowEnemy>() != null)
         {
@@ -74,6 +76,7 @@ public class Enemy_Animation : MonoBehaviour
 
     public void ExitSkeleAttack()
     {
+        skeletonPathfindingComponent.UnlockMovement();
         animator.SetBool("Attacking", false);
     }
 

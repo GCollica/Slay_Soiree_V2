@@ -121,6 +121,17 @@ public class EnemyAIPathfinding : MonoBehaviour
         }
     }
 
+    public void LockMovement()
+    {
+        rigidBody.constraints = RigidbodyConstraints2D.FreezePosition;
+    }
+
+    public void UnlockMovement()
+    {
+        rigidBody.constraints = RigidbodyConstraints2D.None;
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
     
 
 }

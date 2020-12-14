@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAIAttacking : MonoBehaviour
 {
     private Enemy_AI aiComponent;
+    private EnemyAIPathfinding pathfindingComponent;
 
     public GameObject attackParent;
     
@@ -30,6 +31,7 @@ public class EnemyAIAttacking : MonoBehaviour
     private void Awake()
     {
         aiComponent = this.gameObject.GetComponentInParent<Enemy_AI>();
+        pathfindingComponent = this.gameObject.GetComponentInParent<EnemyAIPathfinding>();
         attackPos2 = FindChildGameObject(attackParent, "Attack_Pos2").transform;
         //attackPos3 = FindChildGameObject(attackParent, "Attack_Pos3").transform;
     }
@@ -202,6 +204,7 @@ public class EnemyAIAttacking : MonoBehaviour
 
     public void CombinedAttackFunction()
     {
+        pathfindingComponent.LockMovement();
         SetAttackDirection();
         AttackRaycast(2);
         aiComponent.currentAIState = Enemy_AI.AIState.ExecutingAttacks;
