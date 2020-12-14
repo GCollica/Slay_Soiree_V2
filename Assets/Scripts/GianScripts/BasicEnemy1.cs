@@ -14,6 +14,7 @@ public class BasicEnemy1 : MonoBehaviour
     private SoundManager soundManager;
 
     public SpriteRenderer spriteRenderer;
+    public GameObject ParticleSystem;
 
     public float startingDamage = 5f;
     public float startingResistance = 10f;
@@ -95,12 +96,14 @@ public class BasicEnemy1 : MonoBehaviour
         {
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
+            SpawnParticles(player);
             //basicEnemyAI.Knockback();
         }
         else if (attackType == "Light")
         {
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
+            SpawnParticles(player);
             soundManager.Play("Enemy Impact");
             //basicEnemyAI.Knockback();
         }
@@ -112,6 +115,7 @@ public class BasicEnemy1 : MonoBehaviour
 
             // Invoke death for animation duration or call it when animation finishes
             pathfindingComponent.rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
             BeginEnemyDeath(player);
         }
     }
@@ -134,5 +138,12 @@ public class BasicEnemy1 : MonoBehaviour
     {
         animationComponent.SetAnimBool("Walking", false);
         animationComponent.SetAnimBool("Flinching", true);
+    }
+
+    public void SpawnParticles(GameObject player)
+    {
+        GameObject particleGO = Instantiate(ParticleSystem, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, this.gameObject.transform.transform.position.z), Quaternion.identity, this.gameObject.transform);
+        Vector3 facingVector = (this.gameObject.transform.position - player.transform.position).normalized;
+        particleGO.transform.forward = facingVector;
     }
 }

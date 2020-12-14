@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09017490cf1c4b249b55578c7f9029b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseEnemyClass: {fileID: 0}
+  baseCrowEnemyClass: {fileID: 0}
 --- !u!1 &7334487098895791756
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +453,8 @@ MonoBehaviour:
     currentMovementSpeed: 0
     currentGoldDrop: 0
   spriteRenderer: {fileID: 0}
+  ParticleSystem: {fileID: 9140500042379180997, guid: 0f95d352e3b414e4195a73a85a83b2e6,
+    type: 3}
   startingDamage: 5
   startingResistance: 10
   startingHealth: 25
@@ -546,7 +550,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.10859275, y: 1.1330037}

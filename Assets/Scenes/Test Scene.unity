@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1328,18 +1328,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465295455}
   m_CullTransparentMesh: 0
---- !u!114 &622028520 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 588468919943191148, guid: 7b8af88659ae3b345a12eae6ffa065e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 5551572717479664233}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &722320626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1445,7 +1433,7 @@ Transform:
   m_Children:
   - {fileID: 1458819801}
   m_Father: {fileID: 722320627}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &754584311
 MonoBehaviour:
@@ -2847,9 +2835,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb25bdbfd83c17498694e271d1e661e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCountComponent: {fileID: 0}
   player1Stats: {fileID: 0}
-  P1Image: {fileID: 622028520}
+  P1HealthBar: {fileID: 0}
+  P2HealthBar: {fileID: 0}
+  P3HealthBar: {fileID: 0}
+  P4HealthBar: {fileID: 0}
   P1GoldValueText: {fileID: 5551572717479664234}
+  P2GoldValueText: {fileID: 0}
+  P3GoldValueText: {fileID: 0}
+  P4GoldValueText: {fileID: 0}
 --- !u!1 &1590187933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5615289588182272012, guid: b249767077019904896afeb01d71bcf3,
@@ -2872,6 +2867,7 @@ MonoBehaviour:
   quirk1UI: {fileID: 32574287}
   quirk2UI: {fileID: 2046959898}
   quirk3UI: {fileID: 1437964036}
+  cardSelectColliders: {fileID: 0}
 --- !u!1 &1678050336
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,7 +3002,7 @@ Transform:
   m_Children:
   - {fileID: 144687696}
   m_Father: {fileID: 722320627}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1883080746
 GameObject:
