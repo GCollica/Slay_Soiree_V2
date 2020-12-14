@@ -12,11 +12,11 @@ public class QuirkPickerUI : MonoBehaviour
     public GameObject quirk2UI;
     public GameObject quirk3UI;
 
-    private Collider2D collider1;
-    private Collider2D collider2;
-    private Collider2D collider3;
+    public Collider2D collider1;
+    public Collider2D collider2;
+    public Collider2D collider3;
 
-    public GameObject cardSelectColliders;
+    //public GameObject cardSelectColliders;
 
     private float yPosTarget = 600f;
     private float yPosOffScreen = 1500f;
@@ -24,9 +24,6 @@ public class QuirkPickerUI : MonoBehaviour
     private RoomProgress currentRoomProgress;
     private void Awake()
     {
-        collider1 = quirk1UI.GetComponent<BoxCollider2D>();
-        collider2 = quirk2UI.GetComponent<BoxCollider2D>();
-        collider3 = quirk3UI.GetComponent<BoxCollider2D>();
         quirkManager = this.gameObject.GetComponent<QuirkManager>();
         AssignCurrentRoomReference();
 
@@ -34,14 +31,15 @@ public class QuirkPickerUI : MonoBehaviour
         SetChildrenAlpha(0, quirk2UI);
         SetChildrenAlpha(0, quirk3UI);
 
-        cardSelectColliders.SetActive(false);
+        //cardSelectColliders.SetActive(false);
+        ColliderOff();
 
         MoveUIOffScreen();
     }
 
     private void Start()
     {
-        ColliderOff();
+        
     }
 
     public void PickQuirk1Button()
@@ -72,6 +70,12 @@ public class QuirkPickerUI : MonoBehaviour
     public void BeginFadeInUI()
     {
         TurnOnUI();
+
+        if (collider1.enabled == true || collider2.enabled == true || collider3.enabled == true)
+        {
+            ColliderOff();
+        }
+
         StartCoroutine(nameof(FadeInIEnumerator));
     }
 
@@ -86,7 +90,7 @@ public class QuirkPickerUI : MonoBehaviour
 
         for (float targetAlpha = quirk1UI.GetComponent<CanvasRenderer>().GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
         {
-            cardSelectColliders.SetActive(true);
+            //cardSelectColliders.SetActive(true);
 
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
@@ -94,16 +98,17 @@ public class QuirkPickerUI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        StopCoroutine(nameof(FadeInIEnumerator));
         ColliderOn();
+        StopCoroutine(nameof(FadeInIEnumerator));
     }
 
     IEnumerator FadeOutIEnumerator()
     {
+        ColliderOff();
 
         for (float targetAlpha = quirk1UI.GetComponent<CanvasRenderer>().GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
         {
-            cardSelectColliders.SetActive(false);
+            //cardSelectColliders.SetActive(false);
 
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
@@ -114,7 +119,7 @@ public class QuirkPickerUI : MonoBehaviour
         currentRoomProgress.ChangeRoomState(RoomProgress.RoomState.Active);
         Invoke(nameof(TurnOffUI), 0.25f);
         StopCoroutine(nameof(FadeInIEnumerator));
-        ColliderOff();
+
     }
 
     void ColliderOn()
