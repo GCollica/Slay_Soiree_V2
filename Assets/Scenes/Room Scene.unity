@@ -2661,6 +2661,9 @@ MonoBehaviour:
   quirk1UI: {fileID: 32574287}
   quirk2UI: {fileID: 2046959898}
   quirk3UI: {fileID: 1437964036}
+  collider1: {fileID: 1036580750}
+  collider2: {fileID: 181160558}
+  collider3: {fileID: 686254569}
 --- !u!1 &1650074878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 63606546491818502, guid: 15d0befe062f1454da3bfa01b1d778ed,

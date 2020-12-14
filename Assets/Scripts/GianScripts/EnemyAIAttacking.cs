@@ -26,7 +26,7 @@ public class EnemyAIAttacking : MonoBehaviour
     //private float attackSequenceDuration = 1f;
 
     public float attackCoolDownTimer = 0f;
-    public float attackCoolDownDuration = 3f;
+    public float attackCoolDownDuration = 0.75f;
 
     private void Awake()
     {

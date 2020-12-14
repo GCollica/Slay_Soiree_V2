@@ -17,7 +17,7 @@ public class Enemy_AI : MonoBehaviour
     private float idleDelayLength = 1f;
 
     private float attackPrepTimer = 0f;
-    private float attackPrepLength = 1.5f;
+    private float attackPrepLength = 0.75f;
 
     private float facingDirectionBuffer = 0.125f;
 
