@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -128,6 +128,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 389016349, guid: 057a92fd3373e7a4e9809cb058713861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 875497684, guid: 057a92fd3373e7a4e9809cb058713861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259459932, guid: 057a92fd3373e7a4e9809cb058713861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555479054, guid: 057a92fd3373e7a4e9809cb058713861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555491504, guid: 057a92fd3373e7a4e9809cb058713861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6672396130439358996, guid: 057a92fd3373e7a4e9809cb058713861,
         type: 3}
       propertyPath: m_IsActive
@@ -522,7 +542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &710976608
 Transform:
   m_ObjectHideFlags: 0
@@ -838,7 +858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447292419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 9.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1802315918}
@@ -853,6 +873,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533698593}
+  - component: {fileID: 1533698595}
+  - component: {fileID: 1533698594}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -876,6 +898,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533698594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533698592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2253b9523ce0e4db62e868527dc84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingDamage: 30
+  startingResistance: 50
+  startingHealth: 100
+  startingMovespeed: 50
+--- !u!114 &1533698595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533698592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870100b5050fc5a4fbd80e46493a6e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentPhase: 0
 --- !u!1 &1701585358
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1802315918}
+  - component: {fileID: 1802315919}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -939,6 +991,22 @@ Transform:
   m_Father: {fileID: 1533698593}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1802315919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802315917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cbb23c85cafc343be60ef254808330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHand: 0
+  VulnerableSprite: {fileID: 21300000, guid: 49d67f919e0562e4bb01341a6cd5e592, type: 3}
+  FistSprite: {fileID: 21300000, guid: eb48eb196e73bf841bc13f5fac420c7a, type: 3}
+  GunSprite: {fileID: 21300000, guid: 954195f963d86fa4f961a0d8a09e9e55, type: 3}
 --- !u!1 &1813224498
 GameObject:
   m_ObjectHideFlags: 0
