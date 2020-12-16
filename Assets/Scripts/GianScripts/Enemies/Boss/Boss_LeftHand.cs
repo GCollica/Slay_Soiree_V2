@@ -12,6 +12,9 @@ public class Boss_LeftHand : MonoBehaviour
     public BossHands currentHand = BossHands.vulnerable;
 
     private GameObject spriteGameObject;
+    public GameObject BulletLeft_Prefab;
+    public GameObject bulletParent;
+    private ShootPositions shootPositions;
 
     private int actionsThreshold = 2;
 
@@ -38,7 +41,8 @@ public class Boss_LeftHand : MonoBehaviour
     {
         bossEnemy = this.gameObject.GetComponentInParent<BossEnemy>();
         boss_AI = this.gameObject.GetComponentInParent<Boss_AI>();
-        spriteGameObject = this.gameObject.transform.GetChild(2).gameObject;
+        shootPositions = this.gameObject.transform.GetChild(2).gameObject.GetComponent<ShootPositions>();
+        spriteGameObject = this.gameObject.transform.GetChild(3).gameObject;
         spriteRenderer = spriteGameObject.GetComponent<SpriteRenderer>();
 
         topPosition = this.gameObject.transform.GetChild(0);
@@ -47,13 +51,43 @@ public class Boss_LeftHand : MonoBehaviour
         if (changedHand == null)
         {
             changedHand = new UnityEvent();
-            changedHand.AddListener(HandFuntcionality);
+            changedHand.AddListener(HandFunctionality);
         }
-
-        changedHand.Invoke();
     }
 
     #region Multi-Use Functions
+
+    public void BeginEncounter()
+    {
+        StartCoroutine(nameof(OpeningCoroutine));
+    }
+
+    IEnumerator OpeningCoroutine()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if(spriteRenderer.sprite == FistSprite)
+            {
+                spriteRenderer.sprite = VulnerableSprite;
+            }
+            else if(spriteRenderer.sprite == VulnerableSprite)
+            {
+                spriteRenderer.sprite = GunSprite;
+            }
+            else if(spriteRenderer.sprite == GunSprite)
+            {
+                spriteRenderer.sprite = FistSprite;
+            }
+
+            yield return new WaitForSeconds(.25f);
+            
+        }
+
+        StartCoroutine(nameof(ChooseNewHandCoroutine));
+        StopCoroutine(nameof(OpeningCoroutine));
+
+    }
+
     IEnumerator ChooseNewHandCoroutine()
     {
         float travelled = 0f;
@@ -80,7 +114,7 @@ public class Boss_LeftHand : MonoBehaviour
         }
         else if (boss_AI.CurrentPhase == Boss_AI.BossPhases.phase2)
         {
-            chosenIndex = Mathf.RoundToInt(Random.Range(1, 2));
+            chosenIndex = Mathf.RoundToInt(Random.Range(1, 3));
         }
 
         if (chosenIndex == 1)
@@ -91,7 +125,7 @@ public class Boss_LeftHand : MonoBehaviour
         else if (chosenIndex == 2)
         {
             currentHand = BossHands.gun;
-            //changedHand.Invoke();
+            changedHand.Invoke();
         }
         else
         {
@@ -99,7 +133,7 @@ public class Boss_LeftHand : MonoBehaviour
         }
     }
 
-    private void HandFuntcionality()
+    private void HandFunctionality()
     {
         switch (currentHand)
         {
@@ -114,6 +148,7 @@ public class Boss_LeftHand : MonoBehaviour
 
             case BossHands.gun:
                 spriteRenderer.sprite = GunSprite;
+                StartCoroutine(nameof(GunCoroutine));
                 break;
 
             default:
@@ -207,12 +242,28 @@ public class Boss_LeftHand : MonoBehaviour
             }
         }
 
+        float travelledFinal = 0f;
+
+        for (float currentDistance = CalcDistanceToBottomPos(); currentDistance > 0; currentDistance = CalcDistanceToBottomPos())
+        {
+            Vector3 currentPosition = spriteGameObject.transform.position;
+            spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelledFinal + 0.01f));
+            travelledFinal += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        PerformImpact();
+
+        yield return new WaitForSeconds(0.75f);
+
         BecomeVulnerable();
         StopCoroutine(nameof(FistCoroutine));
     }
 
     private void PerformImpact()
     {
+        Debug.Log("Performed Attack");
+
         RaycastHit2D[] raycastHits = Physics2D.CircleCastAll(spriteGameObject.transform.position, fistImpactRadius, Vector2.up);
 
         if (raycastHits.Length > 0)
@@ -228,6 +279,63 @@ public class Boss_LeftHand : MonoBehaviour
     }
 
     #endregion
+
+    #region Gun Functions;
+    IEnumerator GunCoroutine()
+    {
+        float travelled = 0f;
+
+        for (float currentDistance = CalcDistanceToBottomPos(); currentDistance > 0; currentDistance = CalcDistanceToBottomPos())
+        {
+            Vector3 currentPosition = spriteGameObject.transform.position;
+            spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelled + 0.01f));
+            travelled += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        yield return new WaitForSeconds(.25f);
+
+        for (int actionsPerformed = 0; actionsPerformed < actionsThreshold; actionsPerformed++)
+        {
+            int chosenPos = ChooseShootPos();
+            travelled = 0f;
+
+            for (float currentDistance = CalcDistanceToShootPos(chosenPos); currentDistance > 0; currentDistance = CalcDistanceToShootPos(chosenPos))
+            {
+                Vector3 currentPosition = spriteGameObject.transform.position;
+                spriteGameObject.transform.position = Vector3.Lerp(currentPosition, shootPositions.shootPositions[chosenPos].position, (travelled + 0.02f));
+                travelled += 0.02f;
+                yield return new WaitForSeconds(0.01f);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            ShootBullet();
+            yield return new WaitForSeconds(1f);
+        }
+
+        yield return new WaitForSeconds(0.75f);
+
+        StartCoroutine(nameof(ChooseNewHandCoroutine));
+        StopCoroutine(nameof(GunCoroutine));
+    }
+
+    private int ChooseShootPos()
+    {
+        int chosenPos = Random.Range(0, shootPositions.shootPositions.Length - 1);
+        return chosenPos;
+    }
+
+    private float CalcDistanceToShootPos(int chosenShootPos)
+    {
+        float distance = Vector3.Distance(spriteGameObject.transform.position, shootPositions.shootPositions[chosenShootPos].position);
+        return distance;
+    }
+
+    private void ShootBullet()
+    {
+        GameObject bullet = Instantiate(BulletLeft_Prefab, bulletParent.transform);
+    }
+    #endregion;
 
 
 }

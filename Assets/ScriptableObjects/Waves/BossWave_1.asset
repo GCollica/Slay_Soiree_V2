@@ -15,5 +15,5 @@ MonoBehaviour:
   waveName: BossWave
   waveCount: 1
   enemies:
-  - {fileID: 1723950248977201071, guid: fdc1536b00f999a4aadabf35a972922c, type: 3}
+  - {fileID: 3913352124016525003, guid: a82c6e98e9205fe4cb1f65c42cba7155, type: 3}
   spawnInterval: 5
