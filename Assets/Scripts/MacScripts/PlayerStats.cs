@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     private PlayerCombat playerCombat;
     private Animator animator;
 
+    public int potCount;
+
     public float potency = 25f;
 
     void Awake()
@@ -26,6 +28,7 @@ public class PlayerStats : MonoBehaviour
         playerCount = FindObjectOfType<PlayerCount>();
         playerCombat = FindObjectOfType<PlayerCombat>();
         animator = GetComponentInChildren<Animator>();
+        potCount = 2;
     }
 
     void Start()
@@ -76,7 +79,20 @@ public class PlayerStats : MonoBehaviour
 
     public void AddHealth()
     {
-        playerClass.AddHealth(potency);
+        if (potCount >= 1)
+        {
+            playerClass.AddHealth(potency);
+            potCount--;
+        }
+        else
+        {
+            Debug.Log("No more pots");
+        }        
+    }
+
+    public void AddPot(int amount)
+    {
+        potCount += amount;
     }
 
     //Call this when interact is pressed to purchase weapon.
