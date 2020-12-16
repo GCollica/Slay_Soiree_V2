@@ -3,7 +3,7 @@
 public class CrowEnemy : MonoBehaviour
 {
     /*Script that will be attached to each crow enemy gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the CrowEnemyClass. */
-    public BasicEnemyClass basicEnemyClass;
+    public BasicEnemy_Class basicEnemyClass;
     private CrowEnemy_AI crowEnemyAI;
     private QuirkManager quirkManager;
     private WaveManager waveManager;
@@ -56,7 +56,7 @@ public class CrowEnemy : MonoBehaviour
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
     private void InitialiseClassInstance()
     {
-        basicEnemyClass = new BasicEnemyClass(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+        basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
     }
 
     /*private void SetSortingLayers()

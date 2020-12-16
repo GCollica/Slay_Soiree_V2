@@ -5,12 +5,13 @@ using UnityEngine;
 public class SkeletonEnemy : MonoBehaviour
 {
     /*Script that will be attached to each basic enemy 1 gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the BasicEnemyClass. */
-    public BasicEnemyClass basicEnemyClass;
-    private SkeletonEnemy_AI basicEnemyAI;
-    private QuirkManager quirkManager;
-    private WaveManager waveManager;
+    public BasicEnemy_Class basicEnemyClass;
+    private SkeletonEnemy_AI skeletonEnemyAI;
     private SkeletonEnemy_Animation animationComponent;
     private SkeletonEnemy_Pathfinding pathfindingComponent;
+
+    private QuirkManager quirkManager;
+    private WaveManager waveManager;
     private SoundManager soundManager;
 
     public SpriteRenderer spriteRenderer;
@@ -27,7 +28,7 @@ public class SkeletonEnemy : MonoBehaviour
     void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();
-        basicEnemyAI = this.gameObject.GetComponent<SkeletonEnemy_AI>();
+        skeletonEnemyAI = this.gameObject.GetComponent<SkeletonEnemy_AI>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Animation>();
         pathfindingComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Pathfinding>();
         if (this.gameObject.transform.GetChild(1) != null)
@@ -69,7 +70,7 @@ public class SkeletonEnemy : MonoBehaviour
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
     private void InitialiseClassInstance()
     {
-        basicEnemyClass = new BasicEnemyClass(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+        basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
     }
 
     /*private void SetSortingLayers()
@@ -85,7 +86,7 @@ public class SkeletonEnemy : MonoBehaviour
         startingHealth = 125f;
         startingMovespeed = 10f;
 
-        basicEnemyClass = new BasicEnemyClass(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+        basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
     }
 
     public void TakeDamage(GameObject player, string attackType)
@@ -94,16 +95,16 @@ public class SkeletonEnemy : MonoBehaviour
 
         if (attackType == "Heavy")
         {
+            SpawnParticles(player);
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
-            SpawnParticles(player);
             //basicEnemyAI.Knockback();
         }
         else if (attackType == "Light")
         {
+            SpawnParticles(player);
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
-            SpawnParticles(player);
             soundManager.Play("Enemy Impact");
             //basicEnemyAI.Knockback();
         }
