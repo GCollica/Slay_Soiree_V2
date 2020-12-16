@@ -23,6 +23,11 @@ public class BossEnemy : MonoBehaviour
         StartCoroutine(nameof(FadeInUICoroutine));
     }
 
+    private void Update()
+    {
+        HealthBarFill_Image.fillAmount = BossEnemyClass.currentHealth / 100;
+    }
+
     private void InitialiseClassInstance()
     {
         BossEnemyClass = new BossEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed);
