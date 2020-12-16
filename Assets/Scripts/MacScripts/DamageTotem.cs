@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageTotem : MonoBehaviour
 {
     public float damageMultiplyer;
-    private BasicEnemy1 enemy;
+    private SkeletonEnemy enemy;
 
     private PlayerStats playerStats;
 

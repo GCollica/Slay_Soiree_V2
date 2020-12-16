@@ -3,9 +3,9 @@ using System;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyAIPathfinding : MonoBehaviour
+public class SkeletonEnemy_Pathfinding : MonoBehaviour
 {
-    private Enemy_AI aiComponent;
+    private SkeletonEnemy_AI aiComponent;
     //Data references for pathfinding components of the code.
     private Seeker seeker;
     private Path currentPath;
@@ -23,7 +23,7 @@ public class EnemyAIPathfinding : MonoBehaviour
 
     private void Awake()
     {
-        aiComponent = this.gameObject.GetComponent<Enemy_AI>();
+        aiComponent = this.gameObject.GetComponent<SkeletonEnemy_AI>();
         seeker = this.gameObject.GetComponent<Seeker>();
         rigidBody = this.gameObject.GetComponent<Rigidbody2D>();
         //graphUpdater = FindObjectOfType<GraphUpdateObject>();

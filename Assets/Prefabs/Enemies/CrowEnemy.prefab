@@ -126,13 +126,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8207437842710329247}
-  - component: {fileID: 8207437842710329246}
   - component: {fileID: 8207437842710329245}
   - component: {fileID: 8207437842710329244}
-  - component: {fileID: 8207437842710329219}
+  - component: {fileID: 8207437842710329216}
   - component: {fileID: 8207437842710329218}
   - component: {fileID: 8207437842710329217}
-  - component: {fileID: 8207437842710329216}
+  - component: {fileID: 8207437842710329246}
   m_Layer: 10
   m_Name: CrowEnemy
   m_TagString: Enemy
@@ -158,22 +157,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &8207437842710329246
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8207437842710329223}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.65}
-  serializedVersion: 2
-  m_Radius: 0.66
 --- !u!114 &8207437842710329245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,9 +199,10 @@ MonoBehaviour:
   currentTargetTransform: {fileID: 0}
   flypointLeft: {fileID: 778981166415409521}
   flypointRight: {fileID: 1603794092745650283}
+  idleDelayTimer: 0
   crowEnemyScript: {fileID: 0}
   quirkManager: {fileID: 0}
---- !u!114 &8207437842710329219
+--- !u!114 &8207437842710329216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,9 +211,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8207437842710329223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429960b68a235d74fac8567c369393da, type: 3}
+  m_Script: {fileID: 11500000, guid: b8afd547ce744f34e821ce2d50498083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentFlyPointState: 0
   rigidBody: {fileID: 0}
 --- !u!114 &8207437842710329218
 MonoBehaviour:
@@ -280,20 +265,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8207437842710329216
-MonoBehaviour:
+--- !u!58 &8207437842710329246
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8207437842710329223}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8afd547ce744f34e821ce2d50498083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentFlyPointState: 0
-  rigidBody: {fileID: 0}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.65}
+  serializedVersion: 2
+  m_Radius: 0.66
 --- !u!1 &8207437843667300291
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,8 +292,8 @@ GameObject:
   - component: {fileID: 8207437843667300316}
   - component: {fileID: 8207437843667300312}
   - component: {fileID: 8207437843667300319}
+  - component: {fileID: 1276403154406111372}
   - component: {fileID: 8207437843667300318}
-  - component: {fileID: 8207437843667300317}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -390,6 +377,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a09cdd3ea4fa804b9d9f03b77a18b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1276403154406111372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207437843667300291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd3f819d032fef48b5bd50a791a65c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8207437843667300318
 Animator:
   serializedVersion: 3
@@ -409,17 +408,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8207437843667300317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8207437843667300291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09017490cf1c4b249b55578c7f9029b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseEnemyClass: {fileID: 0}
-  baseCrowEnemyClass: {fileID: 0}

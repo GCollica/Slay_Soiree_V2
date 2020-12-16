@@ -135,7 +135,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 //Debug.Log("We hit " + enemy.name + " with a light attack!");
 
-                var impactEnemy = enemy.GetComponent<BasicEnemy1>();
+                var impactEnemy = enemy.GetComponent<SkeletonEnemy>();
                 var impactBird = enemy.GetComponent<CrowEnemy>();
                 var impactTotem = enemy.GetComponent<DamageTotem>();
 
@@ -144,7 +144,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     if (canKnockback)
                     {                       
-                        enemy.GetComponent<Enemy_AI>().Knockback();
+                        enemy.GetComponent<SkeletonEnemy_AI>().Knockback();
                         soundManager.Play("Enemy Knockback");
                         impactEnemy.TakeDamage(gameObject, "Light");
                     }

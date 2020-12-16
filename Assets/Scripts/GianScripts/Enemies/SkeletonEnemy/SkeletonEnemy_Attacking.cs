@@ -2,10 +2,10 @@
 using System;
 using UnityEngine;
 
-public class EnemyAIAttacking : MonoBehaviour
+public class SkeletonEnemy_Attacking : MonoBehaviour
 {
-    private Enemy_AI aiComponent;
-    private EnemyAIPathfinding pathfindingComponent;
+    private SkeletonEnemy_AI aiComponent;
+    private SkeletonEnemy_Pathfinding pathfindingComponent;
 
     public GameObject attackParent;
     
@@ -30,8 +30,8 @@ public class EnemyAIAttacking : MonoBehaviour
 
     private void Awake()
     {
-        aiComponent = this.gameObject.GetComponentInParent<Enemy_AI>();
-        pathfindingComponent = this.gameObject.GetComponentInParent<EnemyAIPathfinding>();
+        aiComponent = this.gameObject.GetComponentInParent<SkeletonEnemy_AI>();
+        pathfindingComponent = this.gameObject.GetComponentInParent<SkeletonEnemy_Pathfinding>();
         attackPos2 = FindChildGameObject(attackParent, "Attack_Pos2").transform;
         //attackPos3 = FindChildGameObject(attackParent, "Attack_Pos3").transform;
     }
@@ -207,7 +207,7 @@ public class EnemyAIAttacking : MonoBehaviour
         pathfindingComponent.LockMovement();
         SetAttackDirection();
         AttackRaycast(2);
-        aiComponent.currentAIState = Enemy_AI.AIState.ExecutingAttacks;
+        aiComponent.currentAIState = SkeletonEnemy_AI.AIState.ExecutingAttacks;
     }
 
 }

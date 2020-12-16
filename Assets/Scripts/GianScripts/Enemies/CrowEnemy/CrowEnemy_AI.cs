@@ -24,7 +24,7 @@ public class CrowEnemy_AI : MonoBehaviour
     private float attachDistance = 0.5f;
 
     private CrowEnemyAIPathfinding pathfindingComponent;
-    private Enemy_Animation animationComponent;
+    private SkeletonEnemy_Animation animationComponent;
     public CrowEnemy crowEnemyScript;
     public QuirkManager quirkManager;
 
@@ -32,7 +32,7 @@ public class CrowEnemy_AI : MonoBehaviour
     {
         pathfindingComponent = this.gameObject.GetComponent<CrowEnemyAIPathfinding>();
         crowEnemyScript = this.gameObject.GetComponent<CrowEnemy>();
-        animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
+        animationComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Animation>();
         quirkManager = FindObjectOfType<QuirkManager>();
     }
 

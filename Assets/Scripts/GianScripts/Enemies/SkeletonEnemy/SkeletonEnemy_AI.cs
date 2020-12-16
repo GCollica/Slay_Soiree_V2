@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class Enemy_AI : MonoBehaviour
+public class SkeletonEnemy_AI : MonoBehaviour
 {
     //Data references for state machine components of the code.
     public enum AIState {Idle, FindingTarget, PursuingTarget, AttackPrep, AttackSequence, ExecutingAttacks};
@@ -24,19 +24,19 @@ public class Enemy_AI : MonoBehaviour
     //Make private later @gian.
     public float knockbackForce = 5000;
 
-    private EnemyAIAttacking attackComponent;
-    private EnemyAIPathfinding pathfindingComponent;
-    private Enemy_Animation animationComponent;
-    public BasicEnemy1 basicEnemy1Script;
+    private SkeletonEnemy_Attacking attackComponent;
+    private SkeletonEnemy_Pathfinding pathfindingComponent;
+    private SkeletonEnemy_Animation animationComponent;
+    public SkeletonEnemy basicEnemy1Script;
     public QuirkManager quirkManager;
     private SoundManager soundManager;
 
     void Awake()
     {
-        attackComponent = this.gameObject.GetComponentInChildren<EnemyAIAttacking>();
-        pathfindingComponent = this.gameObject.GetComponent<EnemyAIPathfinding>();
-        basicEnemy1Script = this.gameObject.GetComponent<BasicEnemy1>();
-        animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
+        attackComponent = this.gameObject.GetComponentInChildren<SkeletonEnemy_Attacking>();
+        pathfindingComponent = this.gameObject.GetComponent<SkeletonEnemy_Pathfinding>();
+        basicEnemy1Script = this.gameObject.GetComponent<SkeletonEnemy>();
+        animationComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Animation>();
         quirkManager = FindObjectOfType<QuirkManager>();
         soundManager = FindObjectOfType<SoundManager>();
     }

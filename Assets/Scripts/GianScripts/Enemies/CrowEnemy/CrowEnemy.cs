@@ -1,20 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BasicEnemy1 : MonoBehaviour
+public class CrowEnemy : MonoBehaviour
 {
-    /*Script that will be attached to each basic enemy 1 gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the BasicEnemyClass. */
+    /*Script that will be attached to each crow enemy gameobject throughout the game. Holds individual values for damage, resistance, health & movement speed and feeds that into it's own instance of the CrowEnemyClass. */
     public BasicEnemyClass basicEnemyClass;
-    private Enemy_AI basicEnemyAI;
+    private CrowEnemy_AI crowEnemyAI;
     private QuirkManager quirkManager;
     private WaveManager waveManager;
-    private Enemy_Animation animationComponent;
-    private EnemyAIPathfinding pathfindingComponent;
+    private SkeletonEnemy_Animation animationComponent;
+    private CrowEnemyAIPathfinding pathfindingComponent;
     private SoundManager soundManager;
 
     public SpriteRenderer spriteRenderer;
-    public GameObject ParticleSystem;
 
     public float startingDamage = 5f;
     public float startingResistance = 10f;
@@ -27,22 +24,16 @@ public class BasicEnemy1 : MonoBehaviour
     void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();
-        basicEnemyAI = this.gameObject.GetComponent<Enemy_AI>();
-        animationComponent = this.gameObject.transform.GetComponentInChildren<Enemy_Animation>();
-        pathfindingComponent = this.gameObject.transform.GetComponentInChildren<EnemyAIPathfinding>();
-        if (this.gameObject.transform.GetChild(1) != null)
+        crowEnemyAI = this.gameObject.GetComponent<CrowEnemy_AI>();
+        animationComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Animation>();
+        pathfindingComponent = this.gameObject.transform.GetComponentInChildren<CrowEnemyAIPathfinding>();
+        
+        if (this.gameObject.transform.GetChild(0) != null)
         {
-            spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+            spriteRenderer = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
 
-        if (gameObject.CompareTag("Boss"))
-        {
-            InitaliseBossClassInstance();
-        }
-        else
-        {
-            InitialiseClassInstance();
-        }
+        InitialiseClassInstance();
 
         waveManager = FindObjectOfType<WaveManager>();
         waveManager.AddActiveEnemy(this.gameObject);
@@ -60,10 +51,6 @@ public class BasicEnemy1 : MonoBehaviour
                 basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed * 2);
             }
         }
-
-        //SetSortingLayers();
-
-        //InvokeRepeating("SetSortingLayers", 0.5f, 0.5f);
     }
 
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
@@ -78,33 +65,18 @@ public class BasicEnemy1 : MonoBehaviour
         spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
     }*/
 
-    private void InitaliseBossClassInstance()
-    {
-        startingDamage = 25f;
-        startingResistance = 12f;
-        startingHealth = 125f;
-        startingMovespeed = 10f;
-
-        basicEnemyClass = new BasicEnemyClass(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
-    }
-
     public void TakeDamage(GameObject player, string attackType)
     {
-        //Debug.Log("Calculating damage");
 
         if (attackType == "Heavy")
         {
-            PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentHeavyDamage);
-            SpawnParticles(player);
             //basicEnemyAI.Knockback();
+
         }
         else if (attackType == "Light")
         {
-            PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
-            SpawnParticles(player);
-            soundManager.Play("Enemy Impact");
             //basicEnemyAI.Knockback();
         }
 
@@ -115,7 +87,6 @@ public class BasicEnemy1 : MonoBehaviour
 
             // Invoke death for animation duration or call it when animation finishes
             pathfindingComponent.rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
-            this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
             BeginEnemyDeath(player);
         }
     }
@@ -130,20 +101,8 @@ public class BasicEnemy1 : MonoBehaviour
     public void BeginEnemyDeath(GameObject rewardPlayerInput)
     {
         rewardPlayer = rewardPlayerInput;
-        animationComponent.SetAnimBool("Walking", false);
-        animationComponent.SetAnimBool("Dying", true);
+        soundManager.Play("Bird Death");
+        EnemyDead();
     }
 
-    public void PlayFlinchAnim()
-    {
-        animationComponent.SetAnimBool("Walking", false);
-        animationComponent.SetAnimBool("Flinching", true);
-    }
-
-    public void SpawnParticles(GameObject player)
-    {
-        GameObject particleGO = Instantiate(ParticleSystem, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, this.gameObject.transform.transform.position.z), Quaternion.identity, this.gameObject.transform);
-        Vector3 facingVector = (this.gameObject.transform.position - player.transform.position).normalized;
-        particleGO.transform.forward = facingVector;
-    }
 }
