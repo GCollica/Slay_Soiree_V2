@@ -368,10 +368,10 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Footstep
+    clip: {fileID: 8300000, guid: ad0d79031a6ad474d9d04dc01d287f10, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Door Open
@@ -381,9 +381,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Main Menu
-    clip: {fileID: 8300000, guid: ca103a2fb2ba8e742b21f69ba0608398, type: 3}
+    clip: {fileID: 8300000, guid: cb9d963d97d34954fb68d2f7be3059e5, type: 3}
     volume: 0.3
-    pitch: 0.5
+    pitch: 1
     loop: 1
     source: {fileID: 0}
 --- !u!1 &112788869

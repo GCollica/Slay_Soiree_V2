@@ -188,6 +188,11 @@ public class ComboSystem : MonoBehaviour
     }
     #endregion
 
+    public void Footstep()
+    {
+        soundManager.Play("Footstep");
+    }
+
     void KillPlayer()
     {
         playerStats.KillPlayer();
