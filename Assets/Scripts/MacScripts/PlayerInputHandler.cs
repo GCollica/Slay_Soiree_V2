@@ -145,9 +145,16 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed && playerMovement != null)
         {
-            Debug.Log("Dodge Started");
             animator.SetTrigger("Dodge");
             playerMovement.Dodge();
+        }
+    }
+
+    public void SwapWeapon(CallbackContext context)
+    {
+        if (context.performed && playerMovement != null)
+        {
+            playerCombat.WeaponSwap();
         }
     }
 }

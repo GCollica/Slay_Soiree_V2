@@ -6,10 +6,11 @@ public class Projectile : MonoBehaviour
 {
     private PlayerCombat playerCombat;
     public GameObject bulletMaster;
+    private SoundManager soundManager;
 
-    void Start()
+    void Awake()
     {
-
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,6 +18,7 @@ public class Projectile : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             Debug.Log("Arrow Hit");
+            soundManager.Play("Arrow Hit");
             collision.GetComponent<SkeletonEnemy>().TakeDamage(bulletMaster, "Light");
             Destroy(gameObject);
         }

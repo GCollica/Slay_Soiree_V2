@@ -566,6 +566,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Swap Weapon",
+                    "type": "Button",
+                    "id": "72680bc2-29e6-46d4-9517-f1cba3cb6d35",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -786,6 +794,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": " Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5ebb99d-efe1-4ce9-854e-3160c2dec2fb",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Swap Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

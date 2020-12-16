@@ -579,6 +579,14 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""72680bc2-29e6-46d4-9517-f1cba3cb6d35"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -801,6 +809,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": "" Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5ebb99d-efe1-4ce9-854e-3160c2dec2fb"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Swap Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -889,6 +908,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Player_ActiveItem = m_Player.FindAction("Active Item", throwIfNotFound: true);
         m_Player_NextRoom = m_Player.FindAction("Next Room", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction(" Dodge", throwIfNotFound: true);
+        m_Player_SwapWeapon = m_Player.FindAction("Swap Weapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1050,6 +1070,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_ActiveItem;
     private readonly InputAction m_Player_NextRoom;
     private readonly InputAction m_Player_Dodge;
+    private readonly InputAction m_Player_SwapWeapon;
     public struct PlayerActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -1061,6 +1082,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @ActiveItem => m_Wrapper.m_Player_ActiveItem;
         public InputAction @NextRoom => m_Wrapper.m_Player_NextRoom;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+        public InputAction @SwapWeapon => m_Wrapper.m_Player_SwapWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1091,6 +1113,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @SwapWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapWeapon;
+                @SwapWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapWeapon;
+                @SwapWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1116,6 +1141,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @SwapWeapon.started += instance.OnSwapWeapon;
+                @SwapWeapon.performed += instance.OnSwapWeapon;
+                @SwapWeapon.canceled += instance.OnSwapWeapon;
             }
         }
     }
@@ -1187,5 +1215,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnActiveItem(InputAction.CallbackContext context);
         void OnNextRoom(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnSwapWeapon(InputAction.CallbackContext context);
     }
 }

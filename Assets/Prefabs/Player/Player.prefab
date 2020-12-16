@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05cae83b5a7869418c8d265a5a81f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateWeaponSwap: 0
+  swordSprites: {fileID: 2517518717425845453}
+  bowAndArrowSprites: {fileID: 2764937658772764333}
   arrowPrefab: {fileID: 4659579024776540990, guid: 16bc6384be052f14a9da2dbdf3f8b3cc,
     type: 3}
   playerIndex: 0
@@ -268,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5475218467321371138
 Transform:
   m_ObjectHideFlags: 0
@@ -398,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1451271190590589061
 Transform:
   m_ObjectHideFlags: 0
@@ -914,6 +917,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a4fe6141-bff5-4286-942d-654501962a3b
     m_ActionName: Player/ Dodge[/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6425369728290691609}
+        m_MethodName: SwapWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 72680bc2-29e6-46d4-9517-f1cba3cb6d35
+    m_ActionName: Player/Swap Weapon[/DualShock4GamepadHID/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
