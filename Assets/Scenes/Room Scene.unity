@@ -282,6 +282,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &79656805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6892903443595738686, guid: 9f38dc34beed4794b864e104aeb9ace6,
+    type: 3}
+  m_PrefabInstance: {fileID: 722320626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &105529455
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +397,24 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: Bow Nock
+    clip: {fileID: 8300000, guid: f0bbadb78f1f1ff488c91fce9819a3a4, type: 3}
+    volume: 0.25
+    pitch: 2.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Arrow Loose
+    clip: {fileID: 8300000, guid: b24528978d79cf748b56683e5ca047ab, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Arrow Hit
+    clip: {fileID: 8300000, guid: b617496e1b50cab438c9bed12afa489b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!1 &112788869
 GameObject:
@@ -925,6 +955,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389209127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2534270149633367778, guid: 9f38dc34beed4794b864e104aeb9ace6,
+    type: 3}
+  m_PrefabInstance: {fileID: 722320626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &409690666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,10 +1420,45 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2169379473102192219, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_Name
+      value: Gold
+      objectReference: {fileID: 0}
     - target: {fileID: 3073223662152260788, guid: 9f38dc34beed4794b864e104aeb9ace6,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500301114240439203, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_text
+      value: XX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500301114240439203, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500301114240439203, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500301114240439203, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063605173548743707, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 177
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063605173548743707, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 358
       objectReference: {fileID: 0}
     - target: {fileID: 4519786507609502654, guid: 9f38dc34beed4794b864e104aeb9ace6,
         type: 3}
@@ -1433,6 +1510,26 @@ PrefabInstance:
       propertyPath: P4GoldValueText
       value: 
       objectReference: {fileID: 1244983761}
+    - target: {fileID: 5299235578175655067, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: P1HealthPotValueText
+      value: 
+      objectReference: {fileID: 1119333312}
+    - target: {fileID: 5299235578175655067, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: P2HealthPotValueText
+      value: 
+      objectReference: {fileID: 389209127}
+    - target: {fileID: 5299235578175655067, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: P3HealthPotValueText
+      value: 
+      objectReference: {fileID: 79656805}
+    - target: {fileID: 5299235578175655067, guid: 9f38dc34beed4794b864e104aeb9ace6,
+        type: 3}
+      propertyPath: P4HealthPotValueText
+      value: 
+      objectReference: {fileID: 79656805}
     - target: {fileID: 6200935529389052650, guid: 9f38dc34beed4794b864e104aeb9ace6,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2164,6 +2261,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062459852}
   m_CullTransparentMesh: 0
+--- !u!114 &1119333312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3500301114240439203, guid: 9f38dc34beed4794b864e104aeb9ace6,
+    type: 3}
+  m_PrefabInstance: {fileID: 722320626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130179224
 GameObject:
   m_ObjectHideFlags: 0

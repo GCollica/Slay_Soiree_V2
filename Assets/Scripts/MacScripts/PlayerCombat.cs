@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
+    public enum WeaponState { Sword, BowAndArrow };
+    public WeaponState stateWeaponSwap;
+
+    public GameObject swordSprites;
+    public GameObject bowAndArrowSprites;
+
     private PlayerMovement playerMovement;
     private PlayerStats playerStats;
     private PlayerInput playerInput;
@@ -88,7 +94,21 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-		if (isAiming && ranged)
+        switch (stateWeaponSwap)
+        {
+            case WeaponState.Sword:
+                ranged = false;
+                swordSprites.SetActive(true);
+                bowAndArrowSprites.SetActive(false);
+                break;
+            case WeaponState.BowAndArrow:
+                ranged = true;
+                swordSprites.SetActive(false);
+                bowAndArrowSprites.SetActive(true);
+                break;
+        }
+
+        if (isAiming && ranged)
 		{
 			Debug.Log("RefreshCheck");
             //playerMovement.restrictMovement = true;
@@ -96,6 +116,17 @@ public class PlayerCombat : MonoBehaviour
             crosshair.SetActive(true);
             Aim();
         }
+    }
+
+    public void WeaponSwap()
+    {
+        if (ranged)
+        {
+            stateWeaponSwap = WeaponState.Sword;
+            return;
+        }
+
+        stateWeaponSwap = WeaponState.BowAndArrow;
     }
 
     public void SetInputAimVector(Vector2 direction)

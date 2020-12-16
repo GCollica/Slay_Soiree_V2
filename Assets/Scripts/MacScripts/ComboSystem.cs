@@ -188,10 +188,22 @@ public class ComboSystem : MonoBehaviour
     }
     #endregion
 
+    #region Audio Events
+    public void BowNock()
+    {
+        soundManager.Play("Bow Nock");
+    }
+
+    public void ArrowLoose()
+    {
+        soundManager.Play("Arrow Loose");
+    }
+
     public void Footstep()
     {
         soundManager.Play("Footstep");
     }
+    #endregion
 
     void KillPlayer()
     {
