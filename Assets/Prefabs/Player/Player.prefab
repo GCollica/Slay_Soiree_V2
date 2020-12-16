@@ -166,6 +166,8 @@ MonoBehaviour:
     currentWeapon: {fileID: 0}
     currentArmour: {fileID: 0}
     maxHealth: 0
+  startingPotCount: 2
+  potCount: 0
   potency: 25
 --- !u!212 &1123161839
 SpriteRenderer:

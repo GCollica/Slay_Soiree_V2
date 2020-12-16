@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     private PlayerCombat playerCombat;
     private Animator animator;
 
+    public int startingPotCount;
+    [HideInInspector]
     public int potCount;
 
     public float potency = 25f;
@@ -28,7 +30,7 @@ public class PlayerStats : MonoBehaviour
         playerCount = FindObjectOfType<PlayerCount>();
         playerCombat = FindObjectOfType<PlayerCombat>();
         animator = GetComponentInChildren<Animator>();
-        potCount = 2;
+        potCount = startingPotCount;
     }
 
     void Start()

@@ -35,6 +35,11 @@ public class UIHandler : MonoBehaviour
     public TMPro.TextMeshProUGUI P3GoldValueText;
     public TMPro.TextMeshProUGUI P4GoldValueText;
 
+    public TMPro.TextMeshProUGUI P1HealthPotValueText;
+    public TMPro.TextMeshProUGUI P2HealthPotValueText;
+    public TMPro.TextMeshProUGUI P3HealthPotValueText;
+    public TMPro.TextMeshProUGUI P4HealthPotValueText;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -103,6 +108,7 @@ public class UIHandler : MonoBehaviour
                 P1HealthBar.fillAmount = p1HealthBarValue;
 
                 P1GoldValueText.text = "Gold: " + player1Stats.playerClass.currentGold.ToString();
+                P1HealthPotValueText.text = player1Stats.potCount.ToString();
 
                 break;
             case 2:
@@ -115,6 +121,7 @@ public class UIHandler : MonoBehaviour
                 P2HealthBar.fillAmount = p2HealthBarValue;
 
                 P2GoldValueText.text = "Gold: " + player2Stats.playerClass.currentGold.ToString();
+                P2HealthPotValueText.text = player2Stats.potCount.ToString();
 
                 break;
             case 3:
@@ -127,6 +134,7 @@ public class UIHandler : MonoBehaviour
                 P3HealthBar.fillAmount = p3HealthBarValue;
 
                 P3GoldValueText.text = "Gold: " + player3Stats.playerClass.currentGold.ToString();
+                P3HealthPotValueText.text = player3Stats.potCount.ToString();
                 break;
             case 4:
                 if (player4Stats == null)
@@ -138,6 +146,7 @@ public class UIHandler : MonoBehaviour
                 P4HealthBar.fillAmount = p4HealthBarValue;
 
                 P4GoldValueText.text = "Gold: " + player4Stats.playerClass.currentGold.ToString();
+                P4HealthPotValueText.text = player4Stats.potCount.ToString();
                 break;
 
             default:
