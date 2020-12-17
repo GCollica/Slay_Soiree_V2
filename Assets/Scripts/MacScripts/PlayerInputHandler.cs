@@ -117,7 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
 
             //Debug.Log(playerCombat.isAiming);
 
-            if (context.canceled && playerMovement != null)
+            if (context.canceled && playerCombat.shotReady == true && playerMovement != null)
             {
                 playerCombat.Fire();
                 timeStamp = Time.time + cooldownSeconds;

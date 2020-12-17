@@ -126,6 +126,7 @@ public class ComboSystem : MonoBehaviour
         #endregion
     }
 
+    // Events called by weapon animations
     #region Melee Events
     public void SetIdle()
     {
@@ -177,6 +178,7 @@ public class ComboSystem : MonoBehaviour
     #endregion
     #endregion
 
+    // Events called by ranged animations
     #region Ranged Events
     public void SetNormal()
     {
@@ -187,8 +189,14 @@ public class ComboSystem : MonoBehaviour
     {
         stateRanged = RangedState.RestrictMovement;
     }
+
+    public void ReadyShot()
+    {
+        playerCombat.ReadyShot();
+    }
     #endregion
 
+    // Animation events for audio manager
     #region Audio Events
     public void BowNockClip()
     {

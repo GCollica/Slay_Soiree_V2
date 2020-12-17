@@ -39,6 +39,8 @@ public class PlayerCombat : MonoBehaviour
     public float crosshairOffset;
     public GameObject crosshair;
     public bool isAiming;
+    [HideInInspector]
+    public bool shotReady;
     public float arrowSpeed;
 
     [Space]
@@ -142,6 +144,11 @@ public class PlayerCombat : MonoBehaviour
 		Debug.Log("Aiming");       
         crosshair.transform.localPosition = lookDirection;
         rangedAnimator.SetTrigger("Nock");
+    }
+
+    public void ReadyShot()
+    {
+        shotReady = true;
     }
 
     public void MeleeAttack()
@@ -253,7 +260,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Fire()
 	{
-		if (lookDirection != Vector2.zero && playerMovement.isMoving == false && ranged)
+		if (lookDirection != Vector2.zero && playerMovement.isMoving == false && ranged && shotReady == true)
         {			
 			Debug.Log("Loose!");
             // Play attack animation
@@ -273,6 +280,7 @@ public class PlayerCombat : MonoBehaviour
 			isAiming = false;
             playerMovement.isAiming = false;
             rangedAnimator.ResetTrigger("Nock");
+            shotReady = false;
         }
 		else
 		{
@@ -283,6 +291,7 @@ public class PlayerCombat : MonoBehaviour
             playerMovement.isAiming = false;
             crosshair.SetActive(false);
 			isAiming = false;
+            shotReady = false;
 			return;
 		}
 
