@@ -383,18 +383,21 @@ public class Boss_RightHand : MonoBehaviour
         spriteRenderer.sprite = DeadSprite1;
         crackedRenderer.color = new Color(crackedRenderer.color.r, crackedRenderer.color.g, crackedRenderer.color.b, 1);
 
-        for (int timesChanged = 0; timesChanged < 19; timesChanged++)
+        for (int timesChanged = 0; timesChanged < 9; timesChanged++)
         {
-            if(spriteRenderer.sprite == DeadSprite1)
+            if (spriteRenderer.sprite == DeadSprite1)
             {
                 spriteRenderer.sprite = DeadSprite2;
             }
-            else if(spriteRenderer.sprite == DeadSprite2)
+
+            yield return new WaitForSeconds(0.1f);
+
+            if (spriteRenderer.sprite == DeadSprite2)
             {
                 spriteRenderer.sprite = DeadSprite1;
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(1.5f);
         }
 
         StopCoroutine(nameof(DeadCoroutine));
