@@ -44,6 +44,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log(collision.gameObject.name + " got stuck by the glock");
             collision.GetComponent<PlayerStats>().TakeDamage(1000f);
+            Destroy(this.gameObject);
         }
     }
 }

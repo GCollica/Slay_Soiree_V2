@@ -627,9 +627,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3913352123649439976}
   - component: {fileID: 3913352123649439983}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -867,9 +867,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3913352123839906008}
   - component: {fileID: 3913352123839906015}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -169,6 +169,7 @@ public class PlayerCombat : MonoBehaviour
                 var impactEnemy = enemy.GetComponent<SkeletonEnemy>();
                 var impactBird = enemy.GetComponent<CrowEnemy>();
                 var impactTotem = enemy.GetComponent<DamageTotem>();
+                var impactBoss = enemy.transform.parent.transform.parent.GetComponentInParent<BossEnemy>();
 
                 //Checks if player hit any enemies
                 if (impactEnemy != null)
@@ -201,6 +202,12 @@ public class PlayerCombat : MonoBehaviour
                     Debug.Log("Damage Bird Boy!");
                     impactBird.TakeDamage(gameObject, "Light");
                     continue;
+                }
+
+                if(impactBoss != null)
+                {
+                    Debug.Log("Damaged boss boy!");
+                    impactBoss.TakeDamage(gameObject, "Light");
                 }
             }
         }

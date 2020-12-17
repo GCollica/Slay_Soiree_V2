@@ -19,7 +19,26 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Arrow Hit");
             soundManager.Play("Arrow Hit");
-            collision.GetComponent<SkeletonEnemy>().TakeDamage(bulletMaster, "Light");
+            var impactSkeleton = collision.GetComponent<SkeletonEnemy>();
+            var impactBird = collision.GetComponent<CrowEnemy>();
+
+            if(impactSkeleton != null)
+            {
+                impactSkeleton.TakeDamage(bulletMaster, "Light");
+                Destroy(gameObject);
+            }
+            else if(impactBird != null)
+            {
+                impactBird.TakeDamage(bulletMaster, "Light");
+            }
+
+            Destroy(gameObject);
+        }
+        else if(collision.tag == "Boss")
+        {
+            Debug.Log("Arrow Hit");
+            soundManager.Play("Arrow Hit");
+            collision.transform.parent.transform.parent.transform.GetComponentInParent<BossEnemy>().TakeDamage(bulletMaster, "Light");
             Destroy(gameObject);
         }
     }
