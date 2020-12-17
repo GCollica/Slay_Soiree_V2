@@ -54,7 +54,7 @@ public class BossEnemy : MonoBehaviour
         // If enemy health drops below zero
         if (BossEnemyClass.currentHealth <= 0)
         {
-            // Death animation here.
+            bossEnemy_AI.CurrentPhase = Boss_AI.BossPhases.dead;
             BeginEnemyDeath();
         }
     }

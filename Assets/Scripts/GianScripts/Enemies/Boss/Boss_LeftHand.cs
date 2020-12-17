@@ -8,7 +8,7 @@ public class Boss_LeftHand : MonoBehaviour
     private BossEnemy bossEnemy;
     private Boss_AI boss_AI;
 
-    public enum BossHands { vulnerable, fist, gun };
+    public enum BossHands { vulnerable, fist, gun, dead };
     public BossHands currentHand = BossHands.vulnerable;
 
     private GameObject spriteGameObject;
@@ -28,6 +28,8 @@ public class Boss_LeftHand : MonoBehaviour
     public Sprite VulnerableSprite;
     public Sprite FistSprite;
     public Sprite GunSprite;
+    public Sprite DeadSprite1;
+    public Sprite DeadSprite2;
 
     /// <summary>
     /// Tranform Variables
@@ -117,6 +119,10 @@ public class Boss_LeftHand : MonoBehaviour
         {
             chosenIndex = Mathf.RoundToInt(Random.Range(1, 3));
         }
+        else if (boss_AI.CurrentPhase == Boss_AI.BossPhases.dead)
+        {
+            chosenIndex = 3;
+        }
 
         if (chosenIndex == 1)
         {
@@ -126,6 +132,11 @@ public class Boss_LeftHand : MonoBehaviour
         else if (chosenIndex == 2)
         {
             currentHand = BossHands.gun;
+            changedHand.Invoke();
+        }
+        else if(chosenIndex == 3)
+        {
+            currentHand = BossHands.dead;
             changedHand.Invoke();
         }
         else
@@ -151,6 +162,12 @@ public class Boss_LeftHand : MonoBehaviour
                 spriteRenderer.sprite = GunSprite;
                 StartCoroutine(nameof(GunCoroutine));
                 break;
+
+            case BossHands.dead:
+                spriteRenderer.sprite = VulnerableSprite;
+                StartCoroutine(nameof(DeadCoroutine));
+                break;
+
 
             default:
                 break;
@@ -347,6 +364,40 @@ public class Boss_LeftHand : MonoBehaviour
     private void ShootBullet()
     {
         GameObject bullet = Instantiate(BulletLeft_Prefab, bulletParent.transform);
+    }
+    #endregion;
+
+    #region Dead Functions;
+    IEnumerator DeadCoroutine()
+    {
+        float travelled = 0f;
+
+        for (float currentDistance = CalcDistanceToBottomPos(); currentDistance > 0; currentDistance = CalcDistanceToBottomPos())
+        {
+            Vector3 currentPosition = spriteGameObject.transform.position;
+            spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelled + 0.03f));
+            travelled += 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        spriteRenderer.sprite = DeadSprite1;
+        crackedRenderer.color = new Color(crackedRenderer.color.r, crackedRenderer.color.g, crackedRenderer.color.b, 1);
+
+        for (int timesChanged = 0; timesChanged < 19; timesChanged++)
+        {
+            if (spriteRenderer.sprite == DeadSprite1)
+            {
+                spriteRenderer.sprite = DeadSprite2;
+            }
+            else if (spriteRenderer.sprite == DeadSprite2)
+            {
+                spriteRenderer.sprite = DeadSprite1;
+            }
+
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        StopCoroutine(nameof(DeadCoroutine));
     }
     #endregion;
 

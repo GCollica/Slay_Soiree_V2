@@ -1020,6 +1020,8 @@ MonoBehaviour:
   VulnerableSprite: {fileID: 21300000, guid: 49d67f919e0562e4bb01341a6cd5e592, type: 3}
   FistSprite: {fileID: 21300000, guid: eb48eb196e73bf841bc13f5fac420c7a, type: 3}
   GunSprite: {fileID: 21300000, guid: 954195f963d86fa4f961a0d8a09e9e55, type: 3}
+  DeadSprite1: {fileID: 21300000, guid: 03995ca587e24e84f96b9a74b523a89c, type: 3}
+  DeadSprite2: {fileID: 21300000, guid: 208e38bad2bb1cb4abdc0c5df3cb586a, type: 3}
 --- !u!1 &3913352123839906009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1462,8 @@ MonoBehaviour:
   VulnerableSprite: {fileID: 21300000, guid: 49d67f919e0562e4bb01341a6cd5e592, type: 3}
   FistSprite: {fileID: 21300000, guid: eb48eb196e73bf841bc13f5fac420c7a, type: 3}
   GunSprite: {fileID: 21300000, guid: 954195f963d86fa4f961a0d8a09e9e55, type: 3}
+  DeadSprite1: {fileID: 21300000, guid: 03995ca587e24e84f96b9a74b523a89c, type: 3}
+  DeadSprite2: {fileID: 21300000, guid: 208e38bad2bb1cb4abdc0c5df3cb586a, type: 3}
 --- !u!1 &3913352124523498663
 GameObject:
   m_ObjectHideFlags: 0
