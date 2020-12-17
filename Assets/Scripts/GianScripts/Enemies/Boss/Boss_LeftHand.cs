@@ -402,8 +402,6 @@ public class Boss_LeftHand : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
 
-        bossEnemy.LeftHandDead = true;
-
         StopCoroutine(nameof(DeadCoroutine));
     }
     #endregion;
