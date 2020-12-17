@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0655bbec11e4a043997f2a51e02c5aa, type: 3}
-  m_Name: FeatherOfSpeed
+  m_Name: New Consumable
   m_EditorClassIdentifier: 
-  consumableName: Feather of Speed
-  consumableSprite: {fileID: 21300000, guid: 25971c9c26b6b774283a941c729df1b8, type: 3}
+  consumableName: Potion
+  consumableSprite: {fileID: 21300000, guid: 3248ca60644805c4cbd0f5d3bb84d97c, type: 3}
   cost: 5
+  effectModifier: 1

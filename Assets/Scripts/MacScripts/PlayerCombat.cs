@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerSpawner playerSpawner;
     private SoundManager soundManager;
+    private ItemManager itemManager;
 
     public GameObject arrowPrefab;
 
@@ -69,6 +70,7 @@ public class PlayerCombat : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerSpawner = FindObjectOfType<PlayerSpawner>();
         soundManager = FindObjectOfType<SoundManager>();
+        itemManager = FindObjectOfType<ItemManager>();
 
         playerInput = GetComponentInChildren<PlayerInput>();
 
@@ -341,9 +343,33 @@ public class PlayerCombat : MonoBehaviour
 
             if (interactable.CompareTag("ItemPedistool"))
             {
-                playerStats.UpdateCurrentItem(interactable);
+                //playerStats.UpdateCurrentItem(interactable);
+
+                //This is speed up item.
+                if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[0])
+                {
+                    playerStats.playerClass.currentMovementSpeed += itemManager.allConsumablesArray[0].effectModifier;
+                }
+                //This is damage up item.
+                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[1])
+                {
+                    playerStats.playerClass.currentLightDamage += itemManager.allConsumablesArray[1].effectModifier;
+                }
+                //This is resistance up item
+                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[2])
+                {
+                    playerStats.playerClass.currentResistance += itemManager.allConsumablesArray[2].effectModifier;
+                }
+                //This is the potion item.
+                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[3])
+                {
+                    playerStats.potCount += Mathf.RoundToInt(itemManager.allConsumablesArray[3].effectModifier);
+                }
+
                 interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
-                Debug.Log("Item Changed");
+
+                //Debug.Log("Item Changed");
+
                 continue;
             }
             if (interactable.CompareTag("ExitDoor"))

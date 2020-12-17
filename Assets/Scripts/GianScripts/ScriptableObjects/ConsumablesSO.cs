@@ -8,4 +8,5 @@ public class ConsumablesSO : ScriptableObject
     public string consumableName;
     public Sprite consumableSprite;
     public int cost;
+    public float effectModifier;
 }

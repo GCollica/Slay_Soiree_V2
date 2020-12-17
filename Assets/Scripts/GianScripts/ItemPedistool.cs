@@ -30,9 +30,12 @@ public class ItemPedistool : MonoBehaviour
         displayedText.canvasRenderer.SetAlpha(0);
     }
 
+    /// <summary>
+    /// Changing this for showcase so players are only presented with consumable items.
+    /// </summary>
     private void ChooseItemType()
     {
-        int chosenType = Random.Range(0, 4);
+        int chosenType = Random.Range(2, 4);
 
         if(chosenType == 0)
         {
