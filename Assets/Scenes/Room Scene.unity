@@ -340,31 +340,31 @@ MonoBehaviour:
   sounds:
   - name: Sword Swing 1
     clip: {fileID: 8300000, guid: 958b077766c020e48b1f799c45153936, type: 3}
-    volume: 0.25
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Sword Swing 2
     clip: {fileID: 8300000, guid: c87eb35b9ab81ca4eabb09bd7240374b, type: 3}
-    volume: 0.25
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Sword Swing 3
     clip: {fileID: 8300000, guid: 47817e474d430f14d9bbeecf7b5d0ea1, type: 3}
-    volume: 0.25
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Enemy Impact
     clip: {fileID: 8300000, guid: 2f83decc9b432384ca96efc61afe5899, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
   - name: Enemy Knockback
     clip: {fileID: 8300000, guid: 2f83decc9b432384ca96efc61afe5899, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -376,61 +376,61 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Bird Death
     clip: {fileID: 8300000, guid: 9d508da7d405db249bde9a89bbc88bad, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Footstep
     clip: {fileID: 8300000, guid: ad0d79031a6ad474d9d04dc01d287f10, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Door Open
     clip: {fileID: 8300000, guid: 35f8e9036d8103343a2dbbf034e0c40a, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Main Menu
     clip: {fileID: 8300000, guid: cb9d963d97d34954fb68d2f7be3059e5, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Bow Nock
     clip: {fileID: 8300000, guid: f0bbadb78f1f1ff488c91fce9819a3a4, type: 3}
-    volume: 0.25
+    volume: 0.75
     pitch: 2.5
     loop: 0
     source: {fileID: 0}
   - name: Arrow Loose
     clip: {fileID: 8300000, guid: b24528978d79cf748b56683e5ca047ab, type: 3}
-    volume: 0.3
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Arrow Hit
     clip: {fileID: 8300000, guid: b617496e1b50cab438c9bed12afa489b, type: 3}
-    volume: 0.3
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Health Pot
     clip: {fileID: 8300000, guid: 9cd5bfad17b22c94298115c0161a22a4, type: 3}
-    volume: 0.3
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Player Death
     clip: {fileID: 8300000, guid: ad0dc34232bce8b46ba7f7dcc60e56e6, type: 3}
-    volume: 0.3
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Skeleton Attack
-    clip: {fileID: 8300000, guid: ad0dc34232bce8b46ba7f7dcc60e56e6, type: 3}
-    volume: 0.3
+    clip: {fileID: 8300000, guid: 5eed2349e2e73584f8fdcc5369c03af0, type: 3}
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
