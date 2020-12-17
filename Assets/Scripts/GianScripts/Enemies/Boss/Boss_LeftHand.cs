@@ -24,6 +24,7 @@ public class Boss_LeftHand : MonoBehaviour
     /// Sprite Related Variables
     /// </summary>
     private SpriteRenderer spriteRenderer;
+    public SpriteRenderer crackedRenderer;
     public Sprite VulnerableSprite;
     public Sprite FistSprite;
     public Sprite GunSprite;
@@ -263,7 +264,8 @@ public class Boss_LeftHand : MonoBehaviour
     private void PerformImpact()
     {
         Debug.Log("Performed Attack");
-
+        StartCoroutine(nameof(CracksCoroutine));
+        
         RaycastHit2D[] raycastHits = Physics2D.CircleCastAll(spriteGameObject.transform.position, fistImpactRadius, Vector2.up);
 
         if (raycastHits.Length > 0)
@@ -276,6 +278,17 @@ public class Boss_LeftHand : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator CracksCoroutine()
+    {
+        crackedRenderer.color = new Color(crackedRenderer.color.r, crackedRenderer.color.g, crackedRenderer.color.b, 1);
+
+        yield return new WaitForSeconds(0.5f);
+
+        crackedRenderer.color = new Color(crackedRenderer.color.r, crackedRenderer.color.g, crackedRenderer.color.b, 0);
+
+        StopCoroutine(nameof(CracksCoroutine));
     }
 
     #endregion
