@@ -97,6 +97,14 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Quaternion"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""aee3698e-23ef-40ca-bab5-9b2c102dfa03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -517,6 +525,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afe4749a-ca14-4d16-bcd8-60813146aaaf"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -584,6 +603,14 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""name"": ""Swap Weapon"",
                     ""type"": ""Button"",
                     ""id"": ""72680bc2-29e6-46d4-9517-f1cba3cb6d35"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""01358123-5a28-41eb-a87f-c9e87b5e610c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -820,6 +847,17 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""action"": ""Swap Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14787fd7-facc-494f-b238-ab134ad9a963"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -899,6 +937,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_Start = m_UI.FindAction("Start", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_LightAttack = m_Player.FindAction("Light Attack", throwIfNotFound: true);
@@ -909,6 +948,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         m_Player_NextRoom = m_Player.FindAction("Next Room", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction(" Dodge", throwIfNotFound: true);
         m_Player_SwapWeapon = m_Player.FindAction("Swap Weapon", throwIfNotFound: true);
+        m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -968,6 +1008,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_Start;
     public struct UIActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -982,6 +1023,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @Start => m_Wrapper.m_UI_Start;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1021,6 +1063,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @Start.started -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1055,6 +1100,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -1071,6 +1119,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_NextRoom;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_SwapWeapon;
+    private readonly InputAction m_Player_Start;
     public struct PlayerActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -1083,6 +1132,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         public InputAction @NextRoom => m_Wrapper.m_Player_NextRoom;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @SwapWeapon => m_Wrapper.m_Player_SwapWeapon;
+        public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1116,6 +1166,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @SwapWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapWeapon;
                 @SwapWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapWeapon;
                 @SwapWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwapWeapon;
+                @Start.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1144,6 +1197,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                 @SwapWeapon.started += instance.OnSwapWeapon;
                 @SwapWeapon.performed += instance.OnSwapWeapon;
                 @SwapWeapon.canceled += instance.OnSwapWeapon;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -1205,6 +1261,7 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {
@@ -1216,5 +1273,6 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
         void OnNextRoom(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnSwapWeapon(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
 }
