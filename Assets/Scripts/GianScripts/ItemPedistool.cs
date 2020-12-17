@@ -56,12 +56,12 @@ public class ItemPedistool : MonoBehaviour
         switch (currentItemType)
         {
             case ItemType.Weapon:
-                int chosenWeaponIndex = Random.Range(0, itemManager.allWeaponsArray.Length);
+                int chosenWeaponIndex = Random.Range(0, (itemManager.allWeaponsArray.Length +1));
                 currentWeaponItem = itemManager.allWeaponsArray[chosenWeaponIndex];
                 break;
 
             case ItemType.Armour:
-                int chosenArmourIndex = Random.Range(0, itemManager.allArmourArray.Length);
+                int chosenArmourIndex = Random.Range(0, (itemManager.allArmourArray.Length +1));
                 currentArmourItem = itemManager.allArmourArray[chosenArmourIndex];
                 break;
 
