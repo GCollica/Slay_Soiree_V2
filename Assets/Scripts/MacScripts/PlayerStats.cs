@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     private PlayerCount playerCount;
     private PlayerCombat playerCombat;
     private Animator animator;
+    private SoundManager soundManager;
 
     public int startingPotCount;
     [HideInInspector]
@@ -31,6 +32,7 @@ public class PlayerStats : MonoBehaviour
         playerCombat = FindObjectOfType<PlayerCombat>();
         animator = GetComponentInChildren<Animator>();
         potCount = startingPotCount;
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     void Start()
@@ -68,6 +70,7 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player " + playerCombat.playerIndex + " has died!");
 
             // Kill player
+            animator = GetComponentInChildren<Animator>();
             animator.SetTrigger("Dead");
         }
     }
@@ -83,6 +86,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (potCount >= 1)
         {
+            soundManager.Play("Health Pot");
             playerClass.AddHealth(potency);
             potCount--;
         }

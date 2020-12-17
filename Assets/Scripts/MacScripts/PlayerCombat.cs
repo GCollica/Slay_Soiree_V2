@@ -192,22 +192,53 @@ public class PlayerCombat : MonoBehaviour
                 //Checks if player hit any totems
                 if (impactTotem != null)
                 {
-                    Debug.Log("Damage totem!");
-                    impactTotem.TotemTakeDamage(playerStats.playerClass.currentLightDamage);
+                    if (canKnockback)
+                    {
+                        Debug.Log("Damage totem!");
+                        soundManager.Play("Enemy Knockback");
+                        impactTotem.TotemTakeDamage(playerStats.playerClass.currentLightDamage);
+                    }
+                    else
+                    {
+                        soundManager.Play("Enemy Impact");
+                        impactTotem.TotemTakeDamage(playerStats.playerClass.currentLightDamage);
+                    }
+
                     continue;
                 }
 
                 if (impactBird!= null)
                 {
-                    Debug.Log("Damage Bird Boy!");
-                    impactBird.TakeDamage(gameObject, "Light");
+                    if (canKnockback)
+                    {
+                        Debug.Log("Damage Bird Boy!");
+                        soundManager.Play("Enemy Knockback");
+                        impactBird.TakeDamage(gameObject, "Light");
+                    }
+                    else
+                    {
+                        soundManager.Play("Enemy Impact");
+                        impactBird.TakeDamage(gameObject, "Light");
+                    }
+                    
                     continue;
                 }
 
                 if(impactBoss != null)
                 {
-                    Debug.Log("Damaged boss boy!");
-                    impactBoss.TakeDamage(gameObject, "Light");
+                    if (canKnockback)
+                    {
+                        Debug.Log("Damaged boss boy!");
+                        soundManager.Play("Enemy Knockback");
+                        impactBoss.TakeDamage(gameObject, "Light");
+                    }
+                    else
+                    {
+                        soundManager.Play("Enemy Impact");
+                        impactBoss.TakeDamage(gameObject, "Light");
+                    }
+
+                    continue;
                 }
             }
         }

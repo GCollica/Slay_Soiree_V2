@@ -416,6 +416,24 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Health Pot
+    clip: {fileID: 8300000, guid: 9cd5bfad17b22c94298115c0161a22a4, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player Death
+    clip: {fileID: 8300000, guid: ad0dc34232bce8b46ba7f7dcc60e56e6, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skeleton Attack
+    clip: {fileID: 8300000, guid: ad0dc34232bce8b46ba7f7dcc60e56e6, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &112788869
 GameObject:
   m_ObjectHideFlags: 0
