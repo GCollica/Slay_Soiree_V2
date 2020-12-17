@@ -99,7 +99,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Main Menu
-    clip: {fileID: 8300000, guid: cb9d963d97d34954fb68d2f7be3059e5, type: 3}
+    clip: {fileID: 8300000, guid: bec5da89e10b51d4d98dcff0292a7167, type: 3}
     volume: 1
     pitch: 1
     loop: 1
@@ -141,8 +141,16 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Evil Laugh
-    clip: {fileID: 8300000, guid: 5eed2349e2e73584f8fdcc5369c03af0, type: 3}
-    volume: 0.75
+    clip: {fileID: 8300000, guid: de64acc5d130e3045ab83a92b22a08ae, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Dungeon Loop
+    clip: {fileID: 8300000, guid: ca103a2fb2ba8e742b21f69ba0608398, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 1
+    source: {fileID: 0}
+  currentScene:
+    m_Handle: 0

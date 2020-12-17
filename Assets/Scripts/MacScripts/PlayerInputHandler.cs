@@ -43,7 +43,10 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         controls = new PlayerInputMap();
 
-        playerCount.AddPlayerInputManager(gameObject);
+        if (playerCount != null)
+        {
+            playerCount.AddPlayerInputManager(gameObject);
+        }
     }
 
     void Start()
