@@ -348,25 +348,53 @@ public class PlayerCombat : MonoBehaviour
                 //This is speed up item.
                 if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[0])
                 {
-                    playerStats.playerClass.currentMovementSpeed += itemManager.allConsumablesArray[0].effectModifier;
+                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[0].cost)
+                    {
+                        playerStats.playerClass.currentMovementSpeed += itemManager.allConsumablesArray[0].effectModifier;
+                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[0].cost;
+
+                        interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                    }
+                    
                 }
                 //This is damage up item.
                 else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[1])
                 {
-                    playerStats.playerClass.currentLightDamage += itemManager.allConsumablesArray[1].effectModifier;
+                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[1].cost)
+                    {
+                        playerStats.playerClass.currentLightDamage += itemManager.allConsumablesArray[1].effectModifier;
+                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[1].cost;
+
+                        interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                    }
+                    
                 }
                 //This is resistance up item
                 else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[2])
                 {
-                    playerStats.playerClass.currentResistance += itemManager.allConsumablesArray[2].effectModifier;
+                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[2].cost)
+                    {
+                        playerStats.playerClass.currentResistance += itemManager.allConsumablesArray[2].effectModifier;
+                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[2].cost;
+
+                        interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                    }
+                    
                 }
                 //This is the potion item.
                 else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[3])
                 {
-                    playerStats.potCount += Mathf.RoundToInt(itemManager.allConsumablesArray[3].effectModifier);
+                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[3].cost)
+                    {
+                        playerStats.potCount += Mathf.RoundToInt(itemManager.allConsumablesArray[3].effectModifier);
+                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[3].cost;
+
+                        interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                    }
+                    
                 }
 
-                interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                
 
                 //Debug.Log("Item Changed");
 
