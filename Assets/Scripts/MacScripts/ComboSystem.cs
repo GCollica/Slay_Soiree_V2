@@ -23,6 +23,7 @@ public class ComboSystem : MonoBehaviour
         playerMovement = GetComponentInParent<PlayerMovement>();
         animator = GetComponent<Animator>();
         soundManager = FindObjectOfType<SoundManager>();
+        playerStats = GetComponentInParent<PlayerStats>();
     }
 
     void Update()
@@ -189,19 +190,24 @@ public class ComboSystem : MonoBehaviour
     #endregion
 
     #region Audio Events
-    public void BowNock()
+    public void BowNockClip()
     {
         soundManager.Play("Bow Nock");
     }
 
-    public void ArrowLoose()
+    public void ArrowLooseClip()
     {
         soundManager.Play("Arrow Loose");
     }
 
-    public void Footstep()
+    public void FootstepClip()
     {
         soundManager.Play("Footstep");
+    }
+
+    void PlayerDeathClip()
+    {
+        soundManager.Play("Player Death");
     }
     #endregion
 
@@ -209,4 +215,6 @@ public class ComboSystem : MonoBehaviour
     {
         playerStats.KillPlayer();
     }
+
+
 }
