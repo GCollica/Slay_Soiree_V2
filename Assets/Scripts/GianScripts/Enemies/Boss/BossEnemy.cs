@@ -10,7 +10,7 @@ public class BossEnemy : MonoBehaviour
 
     public float startingDamage = 30f;
     public float startingResistance = 50f;
-    public float startingHealth = 100f;
+    public float startingHealth = 300f;
     public float startingMovespeed = 50f;
 
     public Transform HealthbarPosition;
@@ -33,7 +33,7 @@ public class BossEnemy : MonoBehaviour
 
     private void Update()
     {
-        HealthBarFill_Image.fillAmount = BossEnemyClass.currentHealth / 100;
+        HealthBarFill_Image.fillAmount = BossEnemyClass.currentHealth / startingHealth;
 
         if(LeftHandDead == true && RightHandDead == true)
         {
@@ -59,7 +59,7 @@ public class BossEnemy : MonoBehaviour
             BossEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
         }
 
-        if(BossEnemyClass.currentHealth / 100 <= 0.4f)
+        if(BossEnemyClass.currentHealth / startingHealth <= 0.4f)
         {
             bossEnemy_AI.CurrentPhase = Boss_AI.BossPhases.phase2;
         }
