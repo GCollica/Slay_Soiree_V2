@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1458,7 +1458,7 @@ PrefabInstance:
         type: 3}
       propertyPath: P3HealthPotValueText
       value: 
-      objectReference: {fileID: 79656805}
+      objectReference: {fileID: 832850104}
     - target: {fileID: 5299235578175655067, guid: 9f38dc34beed4794b864e104aeb9ace6,
         type: 3}
       propertyPath: P4HealthPotValueText
@@ -1720,6 +1720,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1062459855}
+--- !u!114 &832850104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 106408620410065999, guid: 9f38dc34beed4794b864e104aeb9ace6,
+    type: 3}
+  m_PrefabInstance: {fileID: 722320626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &926198775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 356394901146729964, guid: 9f38dc34beed4794b864e104aeb9ace6,
