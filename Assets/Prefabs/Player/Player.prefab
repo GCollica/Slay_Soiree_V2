@@ -86,7 +86,7 @@ MonoBehaviour:
   swordAttackMoveSpeed: 0.75
   bowAttackMoveSpeed: 0
   forceMult: 10
-  dodgeTime: 2
+  dodgeCooldown: 2
 --- !u!114 &8493846973349387341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   crosshairOffset: 1.5
   crosshair: {fileID: 3804840506641614505}
   isAiming: 0
+  shotReady: 0
   arrowSpeed: 25
   canRecieveInput: 0
   inputRecieved: 0

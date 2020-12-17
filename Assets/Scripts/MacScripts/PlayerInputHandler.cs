@@ -18,9 +18,9 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerStats playerStats;
     private ScreenFadeHandler sceneHandler;
 
-    private float cooldownTime = 0.4f;
-    private float nextAttackTime = 0f;
-    private bool canAttack = true;
+    //private float cooldownTime = 0.4f;
+    //private float nextAttackTime = 0f;
+    //private bool canAttack = true;
 
     private float timeStamp;
     public float cooldownSeconds;
@@ -145,7 +145,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed && playerMovement != null)
         {
-            animator.SetTrigger("Dodge");
             playerMovement.Dodge();
         }
     }
