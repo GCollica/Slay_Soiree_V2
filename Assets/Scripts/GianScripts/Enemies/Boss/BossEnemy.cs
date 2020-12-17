@@ -14,20 +14,33 @@ public class BossEnemy : MonoBehaviour
     public float startingMovespeed = 50f;
 
     public Transform HealthbarPosition;
+    public Transform WinBannerPosition;
     public GameObject HealthbarGameObject;
+    public GameObject WinBannerGameObject;
     public Image HealthBarBorder_Image;
     public Image HealthBarFill_Image;
+    public Image WinBanner_Image;
+
+    public bool LeftHandDead = false;
+    public bool RightHandDead = false;
 
     private void Awake()
     {
         InitialiseClassInstance();
         bossEnemy_AI = GetComponent<Boss_AI>();
-        StartCoroutine(nameof(FadeInUICoroutine));
+        StartCoroutine(nameof(FadeInHealthbarUICoroutine));
     }
 
     private void Update()
     {
         HealthBarFill_Image.fillAmount = BossEnemyClass.currentHealth / 100;
+
+        if(LeftHandDead == true && RightHandDead == true)
+        {
+            BossDead();
+            LeftHandDead = false;
+            RightHandDead = false;
+        }
     }
 
     private void InitialiseClassInstance()
@@ -55,16 +68,15 @@ public class BossEnemy : MonoBehaviour
         if (BossEnemyClass.currentHealth <= 0)
         {
             bossEnemy_AI.CurrentPhase = Boss_AI.BossPhases.dead;
-            BeginEnemyDeath();
         }
     }
 
-    private void BeginEnemyDeath()
+    private void BossDead()
     {
-        //WinState
+        StartCoroutine(nameof(FadeInWinBannerUICoroutine));
     }
 
-    IEnumerator FadeInUICoroutine()
+    IEnumerator FadeInHealthbarUICoroutine()
     {
         HealthBarBorder_Image.canvasRenderer.SetAlpha(0);
         HealthBarFill_Image.canvasRenderer.SetAlpha(0);
@@ -83,6 +95,21 @@ public class BossEnemy : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        StopCoroutine(nameof(FadeInUICoroutine));
+        StopCoroutine(nameof(FadeInHealthbarUICoroutine));
+    }
+
+    IEnumerator FadeInWinBannerUICoroutine()
+    {
+        WinBanner_Image.canvasRenderer.SetAlpha(0);
+
+        WinBannerGameObject.transform.position = WinBannerPosition.position;
+
+        for (float targetAlpha = WinBanner_Image.canvasRenderer.GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
+        {
+            WinBanner_Image.canvasRenderer.SetAlpha(targetAlpha);
+            yield return new WaitForSeconds(0.125f);
+        }
+
+        StopCoroutine(nameof(FadeInWinBannerUICoroutine));
     }
 }

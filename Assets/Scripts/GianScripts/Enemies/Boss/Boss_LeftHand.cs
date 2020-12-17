@@ -383,6 +383,8 @@ public class Boss_LeftHand : MonoBehaviour
         spriteRenderer.sprite = DeadSprite1;
         crackedRenderer.color = new Color(crackedRenderer.color.r, crackedRenderer.color.g, crackedRenderer.color.b, 1);
 
+        bossEnemy.LeftHandDead = true;
+
         for (int timesChanged = 0; timesChanged < 9; timesChanged++)
         {
             if (spriteRenderer.sprite == DeadSprite1)
@@ -399,6 +401,8 @@ public class Boss_LeftHand : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
         }
+
+        bossEnemy.LeftHandDead = true;
 
         StopCoroutine(nameof(DeadCoroutine));
     }
