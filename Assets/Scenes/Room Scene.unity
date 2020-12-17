@@ -2158,6 +2158,11 @@ MonoBehaviour:
   - {fileID: 1438117199}
   - {fileID: 538603980}
   - {fileID: 1650074878}
+  playerBanners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnIndex: 0
 --- !u!1 &1057690468
 GameObject:

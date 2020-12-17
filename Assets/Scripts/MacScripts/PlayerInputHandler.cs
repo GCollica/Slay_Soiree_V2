@@ -18,6 +18,10 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerStats playerStats;
     private ScreenFadeHandler sceneHandler;
 
+    private PlayerSpawner playerSpawner;
+
+    public GameObject playerBanner;
+
     //private float cooldownTime = 0.4f;
     //private float nextAttackTime = 0f;
     //private bool canAttack = true;
@@ -34,6 +38,7 @@ public class PlayerInputHandler : MonoBehaviour
         sceneHandler = FindObjectOfType<ScreenFadeHandler>();
         playerStats = FindObjectOfType<PlayerStats>();
         playerCount = FindObjectOfType<PlayerCount>();
+        playerSpawner = FindObjectOfType<PlayerSpawner>();
         //playerCombat = FindObjectOfType<PlayerCombat>();
         playerInput = GetComponent<PlayerInput>();
         controls = new PlayerInputMap();
@@ -56,7 +61,9 @@ public class PlayerInputHandler : MonoBehaviour
         //playerMovement = playerControllers[i].FirstOrDefault(m => m.GetPlayerIndex() == index);
         //playerCombat = playerCombats.FirstOrDefault(m => m.GetPlayerIndex() == index);
 
-
+        SpriteRenderer playerBannerSpriteR = playerBanner.GetComponent<SpriteRenderer>();
+        playerBannerSpriteR.sprite = playerSpawner.playerBanners[index];
+        Debug.Log(playerBannerSpriteR);
         Debug.Log("Player " + (index + 1) + " has joined.");
     }
 

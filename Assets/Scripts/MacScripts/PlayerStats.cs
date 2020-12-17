@@ -43,11 +43,6 @@ public class PlayerStats : MonoBehaviour
         playerClass.UpdateWeaponStats();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void InitialiseClassInstance()
     {
         playerClass = new PlayerClass(startingHealth, startingArmour.resistance, startingWeapon.lightDamage, startingWeapon.heavyDamage,  startingWeapon.attackRange,startingArmour.movementSpeed, startingGold, startingWeapon, startingArmour);
