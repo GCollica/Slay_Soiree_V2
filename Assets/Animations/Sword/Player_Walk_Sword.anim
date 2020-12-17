@@ -86,7 +86,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: Footstep
+    functionName: FootstepClip
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
