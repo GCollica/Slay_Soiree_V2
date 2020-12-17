@@ -26,7 +26,7 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
     //private float attackSequenceDuration = 1f;
 
     public float attackCoolDownTimer = 0f;
-    public float attackCoolDownDuration = 0.75f;
+    public float attackCoolDownDuration = 1.5f;
 
     private void Awake()
     {

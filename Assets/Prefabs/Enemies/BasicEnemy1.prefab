@@ -170,7 +170,7 @@ MonoBehaviour:
   isAttacking: 0
   attackCoolingDown: 0
   attackCoolDownTimer: 0
-  attackCoolDownDuration: 3
+  attackCoolDownDuration: 1.25
 --- !u!1 &7334487098724167515
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,8 +331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09017490cf1c4b249b55578c7f9029b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseEnemyClass: {fileID: 0}
-  baseCrowEnemyClass: {fileID: 0}
 --- !u!1 &7334487098895791756
 GameObject:
   m_ObjectHideFlags: 0
