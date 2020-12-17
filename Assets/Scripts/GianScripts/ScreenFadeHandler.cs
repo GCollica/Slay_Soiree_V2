@@ -42,7 +42,7 @@ public class ScreenFadeHandler : MonoBehaviour
         for (float targetAlpha = fadeImage.canvasRenderer.GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
         {
             fadeImage.canvasRenderer.SetAlpha(targetAlpha);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.075f);
         }
         StopCoroutine(nameof(FadeInIEnumerator));
     }
@@ -52,7 +52,7 @@ public class ScreenFadeHandler : MonoBehaviour
         for (float targetAlpha = fadeImage.canvasRenderer.GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
         {
             fadeImage.canvasRenderer.SetAlpha(targetAlpha);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.075f);
         }
 
         if(roomProgress.roomType == RoomProgress.RoomType.Shop || roomProgress.roomType == RoomProgress.RoomType.Staging)
