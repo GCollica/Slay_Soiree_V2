@@ -37,11 +37,6 @@ public class QuirkPickerUI : MonoBehaviour
         MoveUIOffScreen();
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void PickQuirk1Button()
     {
         quirkManager.SetCurrentQuirk(quirkManager.QuirkChoices[0].quirkID);
@@ -70,12 +65,6 @@ public class QuirkPickerUI : MonoBehaviour
     public void BeginFadeInUI()
     {
         TurnOnUI();
-
-        if (collider1.enabled == true || collider2.enabled == true || collider3.enabled == true)
-        {
-            ColliderOff();
-        }
-
         StartCoroutine(nameof(FadeInIEnumerator));
     }
 
@@ -153,6 +142,10 @@ public class QuirkPickerUI : MonoBehaviour
     private void TurnOnUI()
     {
         quirkUIParent.SetActive(true);
+        SetChildrenAlpha(0f, quirk1UI);
+        SetChildrenAlpha(0f, quirk2UI);
+        SetChildrenAlpha(0f, quirk3UI);
+        ColliderOff();
         MoveUIOnScreen();
         
     }

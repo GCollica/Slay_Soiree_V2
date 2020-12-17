@@ -18,7 +18,7 @@ public class Boss_RightHand : MonoBehaviour
 
     private int actionsThreshold = 2;
 
-    private float fistImpactRadius = 3f;
+    private float fistImpactRadius = 5f;
 
     /// <summary>
     /// Sprite Related Variables
@@ -225,8 +225,8 @@ public class Boss_RightHand : MonoBehaviour
             for (float currentDistance = CalcDistanceToBottomPos(); currentDistance > 0; currentDistance = CalcDistanceToBottomPos())
             {
                 Vector3 currentPosition = spriteGameObject.transform.position;
-                spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelled + 0.01f));
-                travelled += 0.01f;
+                spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelled + 0.03f));
+                travelled += 0.03f;
                 yield return new WaitForSeconds(0.01f);
             }
 
@@ -247,14 +247,14 @@ public class Boss_RightHand : MonoBehaviour
         for (float currentDistance = CalcDistanceToBottomPos(); currentDistance > 0; currentDistance = CalcDistanceToBottomPos())
         {
             Vector3 currentPosition = spriteGameObject.transform.position;
-            spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelledFinal + 0.01f));
-            travelledFinal += 0.01f;
+            spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelledFinal + 0.03f));
+            travelledFinal += 0.03f;
             yield return new WaitForSeconds(0.01f);
         }
 
         PerformImpact();
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
         BecomeVulnerable();
         StopCoroutine(nameof(FistCoroutine));
@@ -262,7 +262,7 @@ public class Boss_RightHand : MonoBehaviour
 
     private void PerformImpact()
     {
-        Debug.Log("Performed Attack");
+        //Debug.Log("Performed Attack");
 
         RaycastHit2D[] raycastHits = Physics2D.CircleCastAll(spriteGameObject.transform.position, fistImpactRadius, Vector2.up);
 

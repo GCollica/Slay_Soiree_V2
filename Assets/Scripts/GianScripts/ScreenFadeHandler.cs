@@ -59,6 +59,10 @@ public class ScreenFadeHandler : MonoBehaviour
         {
             roomProgress.ChangeRoomState(RoomProgress.RoomState.Completed);
         }
+        else if(roomProgress.roomType == RoomProgress.RoomType.Boss)
+        {
+            roomProgress.ChangeRoomState(RoomProgress.RoomState.Active);
+        }
         else
         {
             roomProgress.ChangeRoomState(RoomProgress.RoomState.QuirkChoice);
