@@ -84,7 +84,7 @@ public class QuirkPickerUI : MonoBehaviour
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
             SetChildrenAlpha(targetAlpha, quirk3UI);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.075f);
         }
 
         ColliderOn();
@@ -102,11 +102,11 @@ public class QuirkPickerUI : MonoBehaviour
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
             SetChildrenAlpha(targetAlpha, quirk3UI);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.075f);
         }
 
         currentRoomProgress.ChangeRoomState(RoomProgress.RoomState.Active);
-        Invoke(nameof(TurnOffUI), 0.25f);
+        Invoke(nameof(TurnOffUI), 0.1f);
         StopCoroutine(nameof(FadeInIEnumerator));
 
     }

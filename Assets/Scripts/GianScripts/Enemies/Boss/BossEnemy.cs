@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
     public BossEnemy_Class BossEnemyClass;
+    private Boss_AI bossEnemy_AI;
 
     public float startingDamage = 30f;
     public float startingResistance = 50f;
@@ -20,6 +21,7 @@ public class BossEnemy : MonoBehaviour
     private void Awake()
     {
         InitialiseClassInstance();
+        bossEnemy_AI = GetComponent<Boss_AI>();
         StartCoroutine(nameof(FadeInUICoroutine));
     }
 
@@ -42,6 +44,11 @@ public class BossEnemy : MonoBehaviour
         else if (attackType == "Light")
         {
             BossEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
+        }
+
+        if(BossEnemyClass.currentHealth / 100 <= 0.4f)
+        {
+            bossEnemy_AI.CurrentPhase = Boss_AI.BossPhases.phase2;
         }
 
         // If enemy health drops below zero
