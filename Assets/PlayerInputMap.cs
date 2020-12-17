@@ -530,9 +530,9 @@ public class @PlayerInputMap : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""afe4749a-ca14-4d16-bcd8-60813146aaaf"",
                     ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

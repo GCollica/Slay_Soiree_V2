@@ -22,14 +22,16 @@ public class SoundManager : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        Play("Main Menu");
+        PlayMusic();
+        
+
     }
 
     private void PlayMusic()
     {
         if(currentScene.name == "Title Scene")
         {
-            Play("Dungeon Loop");
+            Play("Main Menu");
         }
 
         if (currentScene.name == "Room Scene")
@@ -49,6 +51,32 @@ public class SoundManager : MonoBehaviour
 
         Debug.Log("Sound: " + name + " played" );
         s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found");
+        }
+
+        Debug.Log("Sound: " + name + " played");
+        s.source.Stop();
+    }
+
+    public void SetVolume(string name, float volume)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found");
+        }
+
+        Debug.Log("Sound: " + name + " played");
+        s.source.volume = volume;
     }
 
     // Use | FindObjectOfType<AudioManager>().Play("AUDIOCLIPNAME"); | to play an audio clip
