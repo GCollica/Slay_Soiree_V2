@@ -1,10 +1,12 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public Scene currentScene;
 
     void Awake()
     {
@@ -18,7 +20,22 @@ public class SoundManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
+        currentScene = SceneManager.GetActiveScene();
+
         Play("Main Menu");
+    }
+
+    private void PlayMusic()
+    {
+        if(currentScene.name == "Title Scene")
+        {
+            Play("Dungeon Loop");
+        }
+
+        if (currentScene.name == "Room Scene")
+        {
+            Play("Dungeon Loop");
+        }
     }
 
     public void Play(string name)
