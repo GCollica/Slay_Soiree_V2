@@ -293,6 +293,7 @@ public class Boss_RightHand : MonoBehaviour
 
         StartCoroutine(nameof(CracksCoroutine));
         bossEnemy.ShakeCamera();
+        bossEnemy.PlayAudio("Boss Slam");
 
         RaycastHit2D[] raycastHits = Physics2D.CircleCastAll(spriteGameObject.transform.position, fistImpactRadius, Vector2.up);
 
@@ -374,6 +375,7 @@ public class Boss_RightHand : MonoBehaviour
 
     private void ShootBullet()
     {
+        bossEnemy.PlayAudio("Boss Gunshot");
         GameObject bullet = Instantiate(BulletRight_Prefab, bulletParent.transform);
     }
     #endregion;

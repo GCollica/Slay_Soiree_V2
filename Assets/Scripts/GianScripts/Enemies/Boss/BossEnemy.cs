@@ -8,6 +8,7 @@ public class BossEnemy : MonoBehaviour
     public BossEnemy_Class BossEnemyClass;
     private Boss_AI bossEnemy_AI;
     private CameraShake cameraShake;
+    private SoundManager soundManager;
 
     public float startingDamage = 30f;
     public float startingResistance = 50f;
@@ -30,6 +31,7 @@ public class BossEnemy : MonoBehaviour
         InitialiseClassInstance();
         bossEnemy_AI = GetComponent<Boss_AI>();
         cameraShake = FindObjectOfType<CameraShake>();
+        soundManager = FindObjectOfType<SoundManager>();
         StartCoroutine(nameof(FadeInHealthbarUICoroutine));
     }
 
@@ -81,6 +83,11 @@ public class BossEnemy : MonoBehaviour
     public void ShakeCamera()
     {
         cameraShake.BeginScreenShake();
+    }
+
+    public void PlayAudio(string clipName)
+    {
+        soundManager.Play(clipName);
     }
 
     IEnumerator FadeInHealthbarUICoroutine()
