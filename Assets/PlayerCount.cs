@@ -34,4 +34,6 @@ public class PlayerCount : MonoBehaviour
         playerInputManagers.Remove(player);
         uIHandler.InitialisePlayers();
     }
+
+    // TODO: Move this script to multiplayer manager
 }
