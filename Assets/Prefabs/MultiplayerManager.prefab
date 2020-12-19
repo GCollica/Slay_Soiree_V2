@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -264,6 +264,8 @@ GameObject:
   - component: {fileID: 6919541167784964899}
   - component: {fileID: 1066170405911893617}
   - component: {fileID: 218323587866691021}
+  - component: {fileID: 5877008146671279966}
+  - component: {fileID: 2871661160039322323}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -312,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -328,6 +330,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5877008146671279966
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664751287357451728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc02c6fd247bc3a4f9ec79381abda07e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2871661160039322323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664751287357451728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54182e42081644f408e7698f2f4f16f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerAnimator: {fileID: 8564416907757012541}
 --- !u!1 &4922184979963315270
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4922184979963315268}
   - component: {fileID: 4922184979963315271}
+  - component: {fileID: 5458645308740421963}
   m_Layer: 0
   m_Name: MultiplayerManager
   m_TagString: Untagged
@@ -424,6 +459,31 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &5458645308740421963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922184979963315270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4df7102d6d1c8f54184e1d2217a5b4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 8142562449278452887}
+  - {fileID: 494532748940266198}
+  - {fileID: 8999613462051590328}
+  - {fileID: 63606546491818502}
+  playerBanners:
+  - {fileID: 21300000, guid: 5babeae4ffffde242874e3b47bb925f3, type: 3}
+  - {fileID: 21300000, guid: b2a0202c7f86d3b42a75ebd88b36b3bd, type: 3}
+  - {fileID: 21300000, guid: e2770d8915e99cc4b9d0dea2412d0d0d, type: 3}
+  - {fileID: 21300000, guid: 88622441b672f5947830f4426ea8fda6, type: 3}
+  spawnIndex: 0
+  gameStarted: 0
+  blackImageAnimator: {fileID: 5877008146671279966}
 --- !u!1 &8142562449278452887
 GameObject:
   m_ObjectHideFlags: 0

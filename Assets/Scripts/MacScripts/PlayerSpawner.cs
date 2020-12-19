@@ -9,16 +9,22 @@ public class PlayerSpawner : MonoBehaviour
 
     public List<Sprite> playerBanners;
 
-    private PlayerCount playerCount;
-    public Animator animator; 
+    private PlayerCount playerCount;   
 
     public int spawnIndex = 0;
 
     public bool gameStarted;
 
+    public Animator blackImageAnimator;
+
     private void Awake()
     {
         playerCount = FindObjectOfType<PlayerCount>();
+    }
+
+    private void Update()
+    {
+        LoseState();
     }
 
     public void SetIndex()
@@ -33,14 +39,10 @@ public class PlayerSpawner : MonoBehaviour
 
     public void LoseState()
     {
-        if (gameStarted == true && playerCount.activePlayers.Count == 0)
+        if (gameStarted == true && playerCount.playerInputManagers.Count == 0)
         {
-            animator.SetTrigger("Lost");
+            Debug.Log("LostSequence");
+            blackImageAnimator.SetTrigger("Lost");
         }
-    }
-
-    public void ShowLostBanner()
-    {
-
     }
 }
