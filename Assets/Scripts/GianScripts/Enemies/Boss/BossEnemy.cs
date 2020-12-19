@@ -7,6 +7,7 @@ public class BossEnemy : MonoBehaviour
 {
     public BossEnemy_Class BossEnemyClass;
     private Boss_AI bossEnemy_AI;
+    private CameraShake cameraShake;
 
     public float startingDamage = 30f;
     public float startingResistance = 50f;
@@ -28,6 +29,7 @@ public class BossEnemy : MonoBehaviour
     {
         InitialiseClassInstance();
         bossEnemy_AI = GetComponent<Boss_AI>();
+        cameraShake = FindObjectOfType<CameraShake>();
         StartCoroutine(nameof(FadeInHealthbarUICoroutine));
     }
 
@@ -74,6 +76,11 @@ public class BossEnemy : MonoBehaviour
     private void BossDead()
     {
         StartCoroutine(nameof(FadeInWinBannerUICoroutine));
+    }
+
+    public void ShakeCamera()
+    {
+        cameraShake.BeginScreenShake();
     }
 
     IEnumerator FadeInHealthbarUICoroutine()

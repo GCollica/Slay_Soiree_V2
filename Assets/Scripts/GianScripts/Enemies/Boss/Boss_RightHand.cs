@@ -244,10 +244,15 @@ public class Boss_RightHand : MonoBehaviour
                 Vector3 currentPosition = spriteGameObject.transform.position;
                 spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelled + 0.03f));
                 travelled += 0.03f;
+
+                if(currentDistance <= 0.1f)
+                {
+                    PerformImpact();
+                }
+
                 yield return new WaitForSeconds(0.01f);
             }
 
-            PerformImpact();
             travelled = 0f;
 
             for (float currentDistance = CalcDistanceToTopPos(); currentDistance > 0; currentDistance = CalcDistanceToTopPos())
@@ -266,12 +271,17 @@ public class Boss_RightHand : MonoBehaviour
             Vector3 currentPosition = spriteGameObject.transform.position;
             spriteGameObject.transform.position = Vector3.Lerp(currentPosition, bottomPosition.position, (travelledFinal + 0.03f));
             travelledFinal += 0.03f;
+
+            if (currentDistance <= 0.1f)
+            {
+                PerformImpact();
+            }
+
             yield return new WaitForSeconds(0.01f);
         }
 
-        PerformImpact();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         BecomeVulnerable();
         StopCoroutine(nameof(FistCoroutine));
@@ -282,6 +292,7 @@ public class Boss_RightHand : MonoBehaviour
         //Debug.Log("Performed Attack");
 
         StartCoroutine(nameof(CracksCoroutine));
+        bossEnemy.ShakeCamera();
 
         RaycastHit2D[] raycastHits = Physics2D.CircleCastAll(spriteGameObject.transform.position, fistImpactRadius, Vector2.up);
 
