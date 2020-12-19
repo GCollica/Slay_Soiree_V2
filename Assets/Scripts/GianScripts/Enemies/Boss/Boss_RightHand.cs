@@ -399,12 +399,8 @@ public class Boss_RightHand : MonoBehaviour
                 spriteRenderer.sprite = DeadSprite1;
             }
 
-
-
             yield return new WaitForSeconds(1.5f);
         }
-
-        
 
         StopCoroutine(nameof(DeadCoroutine));
     }
