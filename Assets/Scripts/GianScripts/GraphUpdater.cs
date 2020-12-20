@@ -9,7 +9,7 @@ public class GraphUpdater : MonoBehaviour
 
     private void Awake()
     {        
-        InvokeRepeating("UpdateGraph", 1f, 0.125f);
+        Invoke("UpdateGraph", 0.5f);
     }
 
     public void UpdateGraph()

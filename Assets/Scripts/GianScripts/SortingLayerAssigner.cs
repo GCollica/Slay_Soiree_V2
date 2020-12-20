@@ -9,6 +9,7 @@ public class SortingLayerAssigner : MonoBehaviour
     public void Awake()
     {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+
         if (this.gameObject.CompareTag("Props"))
         {
             Invoke("SetSortingLayers", 0.01f);
@@ -21,7 +22,7 @@ public class SortingLayerAssigner : MonoBehaviour
     }
     public void SetSortingLayers()
     {
-        spriteRenderer.sortingLayerName = Mathf.RoundToInt(this.gameObject.transform.position.y).ToString();
+        spriteRenderer.sortingLayerName = (Mathf.RoundToInt(this.gameObject.transform.position.y * 2f) /2f).ToString();
         spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
     }
 }

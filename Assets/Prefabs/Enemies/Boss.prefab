@@ -1315,10 +1315,6 @@ MonoBehaviour:
     currentResistance: 0
     currentHealth: 0
     currentMovementSpeed: 0
-  startingDamage: 30
-  startingResistance: 50
-  startingHealth: 300
-  startingMovespeed: 50
   HealthbarPosition: {fileID: 3913352123908824928}
   WinBannerPosition: {fileID: 5822920604145102501}
   HealthbarGameObject: {fileID: 3913352123703970479}

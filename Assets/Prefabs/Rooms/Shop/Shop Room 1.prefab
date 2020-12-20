@@ -1740,6 +1740,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_ Parent
       objectReference: {fileID: 0}
+    - target: {fileID: 3872625423791190524, guid: f5136916917dc8949b3caac1eabfe648,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3872625423791190525, guid: f5136916917dc8949b3caac1eabfe648,
         type: 3}
       propertyPath: tagNames.Array.size
@@ -1910,7 +1915,8 @@ PrefabInstance:
       propertyPath: tagNames.Array.data[31]
       value: 31
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1463303261, guid: f5136916917dc8949b3caac1eabfe648, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f5136916917dc8949b3caac1eabfe648, type: 3}
 --- !u!4 &1576118071696999963 stripped
 Transform:
