@@ -17,6 +17,8 @@ public class PlayerCount : MonoBehaviour
 
     public void UpdateActivePlayers()
     {
+        activePlayers.Clear();
+
         foreach (PlayerStats playerStats in FindObjectsOfType<PlayerStats>())
         {
             activePlayers.Add(playerStats.gameObject);
