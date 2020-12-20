@@ -13,11 +13,12 @@ public class SkeletonEnemy : MonoBehaviour
     private QuirkManager quirkManager;
     private WaveManager waveManager;
     private SoundManager soundManager;
+    private PlayerCount playerCount;
 
     public SpriteRenderer spriteRenderer;
     public GameObject ParticleSystem;
 
-    private float startingDamage = 5f;
+    private float startingDamage = 10f;
     private float startingResistance = 10f;
     private float startingHealth = 25f;
     private float startingMovespeed = 400f;
@@ -37,11 +38,12 @@ public class SkeletonEnemy : MonoBehaviour
             spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
 
-        InitialiseClassInstance();
-
         waveManager = FindObjectOfType<WaveManager>();
         waveManager.AddActiveEnemy(this.gameObject);
         quirkManager = FindObjectOfType<QuirkManager>();
+        playerCount = FindObjectOfType<PlayerCount>();
+
+        InitialiseClassInstance();
 
         if (quirkManager.CurrentQuirk.quirkID == 2)
         {
@@ -60,7 +62,22 @@ public class SkeletonEnemy : MonoBehaviour
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
     private void InitialiseClassInstance()
     {
-        basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+        switch (playerCount.activePlayers.Count)
+        {
+            case 1:
+                basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+                break;
+            case 2:
+                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.25f), startingResistance, (startingHealth * 1.5f), startingMovespeed, goldDrop);
+                break;
+            case 3:
+                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.5f), startingResistance, (startingHealth * 2f), startingMovespeed, goldDrop);
+                break;
+            case 4:
+                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.75f), startingResistance, (startingHealth * 2.5f), startingMovespeed, goldDrop);
+                break;
+        }
+        
     }
 
     public void TakeDamage(GameObject player, string attackType)

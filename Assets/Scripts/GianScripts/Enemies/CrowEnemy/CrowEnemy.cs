@@ -10,6 +10,7 @@ public class CrowEnemy : MonoBehaviour
     private SkeletonEnemy_Animation animationComponent;
     private CrowEnemyAIPathfinding pathfindingComponent;
     private SoundManager soundManager;
+    private PlayerCount playerCount;
 
     public SpriteRenderer spriteRenderer;
 
@@ -33,11 +34,12 @@ public class CrowEnemy : MonoBehaviour
             spriteRenderer = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
 
-        InitialiseClassInstance();
-
         waveManager = FindObjectOfType<WaveManager>();
         waveManager.AddActiveEnemy(this.gameObject);
         quirkManager = FindObjectOfType<QuirkManager>();
+        playerCount = FindObjectOfType<PlayerCount>();
+
+        InitialiseClassInstance();
 
         if (quirkManager.CurrentQuirk.quirkID == 2)
         {
@@ -56,7 +58,23 @@ public class CrowEnemy : MonoBehaviour
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
     private void InitialiseClassInstance()
     {
-        basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+        switch (playerCount.activePlayers.Count)
+        {
+            case 1:
+                basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
+                break;
+            case 2:
+                basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, (startingHealth * 1.5f), startingMovespeed, goldDrop);
+                break;
+            case 3:
+                basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, (startingHealth * 2f), startingMovespeed, goldDrop);
+                break;
+            case 4:
+                basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, (startingHealth * 2.5f), startingMovespeed, goldDrop);
+                break;
+        }
+        
+        
     }
 
     /*private void SetSortingLayers()

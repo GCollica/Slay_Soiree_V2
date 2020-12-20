@@ -9,6 +9,7 @@ public class BossEnemy : MonoBehaviour
     private Boss_AI bossEnemy_AI;
     private CameraShake cameraShake;
     private SoundManager soundManager;
+    private PlayerCount playerCount;
 
     private float startingDamage = 30f;
     private float startingResistance = 50f;
@@ -28,10 +29,13 @@ public class BossEnemy : MonoBehaviour
 
     private void Awake()
     {
-        InitialiseClassInstance();
         bossEnemy_AI = GetComponent<Boss_AI>();
         cameraShake = FindObjectOfType<CameraShake>();
         soundManager = FindObjectOfType<SoundManager>();
+        playerCount = FindObjectOfType<PlayerCount>();
+
+        InitialiseClassInstance();
+
         StartCoroutine(nameof(FadeInHealthbarUICoroutine));
     }
 
@@ -49,7 +53,25 @@ public class BossEnemy : MonoBehaviour
 
     private void InitialiseClassInstance()
     {
-        BossEnemyClass = new BossEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed);
+        switch (playerCount.activePlayers.Count)
+        {
+            case 1:
+                BossEnemyClass = new BossEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed);
+                break;
+
+            case 2:
+                BossEnemyClass = new BossEnemy_Class(startingDamage, startingResistance, (startingHealth * 1.5f), startingMovespeed);
+                break;
+
+            case 3:
+                BossEnemyClass = new BossEnemy_Class(startingDamage, startingResistance, (startingHealth * 2f), startingMovespeed);
+                break;
+
+            case 4:
+                BossEnemyClass = new BossEnemy_Class(startingDamage, startingResistance, (startingHealth * 2.5f), startingMovespeed);
+                break;
+        }
+        
     }
 
     public void TakeDamage(GameObject player, string attackType)
