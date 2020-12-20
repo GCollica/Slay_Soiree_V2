@@ -12,12 +12,12 @@ public class SortingLayerAssigner : MonoBehaviour
 
         if (this.gameObject.CompareTag("Props"))
         {
-            Invoke("SetSortingLayers", 0.01f);
+            Invoke("SetSortingLayers", 0.25f);
             return;
         }
         else
         {
-            InvokeRepeating("SetSortingLayers", 0.01f, 0.5f);
+            InvokeRepeating("SetSortingLayers", 0.25f, 0.25f);
         }
     }
     public void SetSortingLayers()

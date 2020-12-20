@@ -16,6 +16,10 @@ public class SkeletonEnemy_AI : MonoBehaviour
     private float idleDelayTimer = 0f;
     private float idleDelayLength = 1f;
 
+    private float attackPrepTimer = 0f;
+    private float attackPrepLength = 0.75f;
+
+
     private float facingDirectionBuffer = 0.125f;
 
     //Make private later @gian.
@@ -47,7 +51,6 @@ public class SkeletonEnemy_AI : MonoBehaviour
                 pathfindingComponent.ClearPath();
                 attackComponent.RunAttackCooldownTimer();
                 animationComponent.SetAnimBool("Walking", false);
-                attackComponent.ToggleAttackCollider(false);
 
                 if(idleDelayTimer < idleDelayLength)
                 {
@@ -62,6 +65,7 @@ public class SkeletonEnemy_AI : MonoBehaviour
             case AIState.FindingTarget:
 
                 idleDelayTimer = 0f;
+                attackPrepTimer = 0f;
                 InitialiseTargets();
                 FindNearestTarget();
                 attackComponent.ToggleAttackCollider(true);
@@ -84,7 +88,14 @@ public class SkeletonEnemy_AI : MonoBehaviour
 
             case AIState.AttackPrep:
                 animationComponent.SetAnimBool("Walking", false);
-                currentAIState = AIState.AttackSequence;
+                if(attackPrepTimer < attackPrepLength)
+                {
+                    attackPrepTimer += Time.deltaTime;
+                }
+                else
+                {
+                    currentAIState = AIState.AttackSequence;
+                }
                 break;
                 
 

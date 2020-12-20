@@ -143,7 +143,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3257928475629385602}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -367,7 +367,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 27
+  m_SortingLayer: 51
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3512977166039d44c89ee22a3c6f9ff0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -516,11 +516,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   ParticleSystem: {fileID: 9140500042379180997, guid: 0f95d352e3b414e4195a73a85a83b2e6,
     type: 3}
-  startingDamage: 5
-  startingResistance: 10
-  startingHealth: 25
-  startingMovespeed: 400
-  goldDrop: 2
+  attachedCrows: []
 --- !u!114 &2686370354828970359
 MonoBehaviour:
   m_ObjectHideFlags: 0

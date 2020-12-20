@@ -5,8 +5,8 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public WaveSO[] roomWaves;
-    public int totalWaveIndex =  0;
-    public int spawnPointIndex = 0;
+    private int totalWaveIndex =  0;
+    private int spawnPointIndex = 0;
 
     private EnemySpawner enemySpawner;
     private RoomProgress roomProgress;
@@ -55,10 +55,14 @@ public class WaveManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
+        //Debug.Log(totalWaveIndex);
+        //Debug.Log(roomWaves[totalWaveIndex].waveName);
+
         for (int i = 0; i < roomWaves[totalWaveIndex].enemies.Length; i++)
         {
             enemySpawner.SpawnEnemy(roomWaves[totalWaveIndex].enemies[i], enemySpawner.SpawnPoints[spawnPointIndex]);
-            if(spawnPointIndex == enemySpawner.SpawnPoints.Count)
+
+            if(spawnPointIndex == enemySpawner.SpawnPoints.Count -1)
             {
                 spawnPointIndex = 0;
             }
@@ -70,6 +74,7 @@ public class WaveManager : MonoBehaviour
         }
 
         totalWaveIndex++;
+        spawnPointIndex = 0;
         spawningWave = false;
         StopCoroutine(nameof(SpawnWaveCoroutine));
     }

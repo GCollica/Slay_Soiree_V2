@@ -5,9 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<Transform> SpawnPoints;
-    public GameObject EnemyParent;
-
-    public GameObject skeletonBasicEnemy;
+    private GameObject EnemyParent;
 
     public RoomSpawnPoints roomSpawnPoints;
 
@@ -16,13 +14,6 @@ public class EnemySpawner : MonoBehaviour
     {
         InitialiseEnemyParent();
         InitialiseSpawnPoints();
-
-        /*
-        SpawnEnemy(skeletonBasicEnemy, SpawnPoints[0]);
-        SpawnEnemy(skeletonBasicEnemy, SpawnPoints[1]);
-        SpawnEnemy(skeletonBasicEnemy, SpawnPoints[2]);
-        SpawnEnemy(skeletonBasicEnemy, SpawnPoints[3]);
-        */
     }
 
     public void InitialiseEnemyParent()

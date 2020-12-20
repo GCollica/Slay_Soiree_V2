@@ -66,7 +66,10 @@ public class SkeletonEnemy_Animation : MonoBehaviour
 
     public void ExitSkeleAttack()
     {
-        pathfindingComponent.UnlockMovement();
+        if (animator.GetBool("Dying") != true)
+        {
+            pathfindingComponent.UnlockMovement();
+        }
         animator.SetBool("Attacking", false);
     }
 

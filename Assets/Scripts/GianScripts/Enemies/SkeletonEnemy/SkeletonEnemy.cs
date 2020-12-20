@@ -19,7 +19,7 @@ public class SkeletonEnemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public GameObject ParticleSystem;
 
-    private float startingDamage = 10f;
+    private float startingDamage = 7.5f;
     private float startingResistance = 10f;
     private float startingHealth = 25f;
     private float startingMovespeed = 400f;
@@ -71,13 +71,13 @@ public class SkeletonEnemy : MonoBehaviour
                 basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
                 break;
             case 2:
-                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.25f), startingResistance, (startingHealth * 1.5f), startingMovespeed, goldDrop);
+                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.1f), startingResistance, (startingHealth * 1.5f), startingMovespeed, goldDrop);
                 break;
             case 3:
-                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.5f), startingResistance, (startingHealth * 2f), startingMovespeed, goldDrop);
+                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.2f), startingResistance, (startingHealth * 2f), startingMovespeed, goldDrop);
                 break;
             case 4:
-                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.75f), startingResistance, (startingHealth * 2.5f), startingMovespeed, goldDrop);
+                basicEnemyClass = new BasicEnemy_Class((startingDamage * 1.3f), startingResistance, (startingHealth * 2.5f), startingMovespeed, goldDrop);
                 break;
         }
         
