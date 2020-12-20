@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found");
         }
 
-        Debug.Log("Sound: " + name + " played" );
+        //Debug.Log("Sound: " + name + " played" );
         s.source.Play();
     }
 
@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found");
         }
 
-        Debug.Log("Sound: " + name + " played");
+        //Debug.Log("Sound: " + name + " stopped");
         s.source.Stop();
     }
 
@@ -75,26 +75,8 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found");
         }
 
-        Debug.Log("Sound: " + name + " played");
+        //Debug.Log("Sound: " + name + " set volume to " + volume);
         s.source.volume = volume;
-    }
-
-    public void FadeVolume(string name, float fadeRate)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found");
-        }
-
-        Debug.Log("Sound: " + name + " played");
-        s.source.volume = s.source.volume - 1 * (Time.deltaTime * fadeRate);
-
-        if (s.source.volume <= 0)
-        {
-
-        }
     }
 
     // Use | FindObjectOfType<AudioManager>().Play("AUDIOCLIPNAME"); | to play an audio clip

@@ -66,7 +66,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         SpriteRenderer playerBannerSpriteR = playerBanner.GetComponent<SpriteRenderer>();
         playerBannerSpriteR.sprite = playerSpawner.playerBanners[index];
-        Debug.Log(playerBannerSpriteR);
+        //Debug.Log(playerBannerSpriteR);
         Debug.Log("Player " + (index + 1) + " has joined.");
     }
 

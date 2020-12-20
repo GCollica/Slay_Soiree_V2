@@ -203,7 +203,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     if (canKnockback)
                     {
-                        Debug.Log("Damage totem!");
+                        //Debug.Log("Damage totem!");
                         soundManager.Play("Enemy Knockback");
                         impactTotem.TotemTakeDamage(playerStats.playerClass.currentLightDamage);
                     }
@@ -220,7 +220,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     if (canKnockback)
                     {
-                        Debug.Log("Damage Bird Boy!");
+                        //Debug.Log("Damage Bird Boy!");
                         soundManager.Play("Enemy Knockback");
                         impactBird.TakeDamage(gameObject, "Light");
                     }
@@ -237,7 +237,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     if (canKnockback)
                     {
-                        Debug.Log("Damaged boss boy!");
+                        //Debug.Log("Damaged boss boy!");
                         soundManager.Play("Enemy Knockback");
                         impactBoss.TakeDamage(gameObject, "Light");
                     }

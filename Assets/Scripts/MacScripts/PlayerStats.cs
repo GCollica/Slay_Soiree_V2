@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public PlayerClass playerClass;
     private PlayerCount playerCount;
     private PlayerCombat playerCombat;
+    public ComboSystem comboSystem;
     private Animator animator;
     private SoundManager soundManager;
 
@@ -62,8 +63,9 @@ public class PlayerStats : MonoBehaviour
 
         if(playerClass.currentHealth <= 0)
         {
-            Debug.Log("Player " + playerCombat.playerIndex + " has died!");
+            Debug.Log("Player " + (playerCombat.playerIndex + 1) + " has died!");
 
+            comboSystem.stateRanged = ComboSystem.RangedState.RestrictMovement;
             // Kill player
             animator = GetComponentInChildren<Animator>();
             animator.SetTrigger("Dead");

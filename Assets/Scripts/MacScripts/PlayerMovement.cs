@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Melee movement restricted");
+                    //Debug.Log("Melee movement restricted");
                     //m = new Vector2(0, 0);
                     baseSpeed = swordAttackMoveSpeed;
                 }
@@ -211,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (dodgeTime <= Time.time)
         {
-            Debug.Log("Dodging");
+            //Debug.Log("Dodging");
             animator.SetTrigger("Dodge");
             rollDir = m;
             rollSpeed = 20f;

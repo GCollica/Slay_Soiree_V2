@@ -41,8 +41,8 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (gameStarted == true && playerCount.playerInputManagers.Count == 0)
         {
-            Debug.Log("LostSequence");
             blackImageAnimator.SetTrigger("Lost");
+            gameStarted = false;
         }
     }
 }

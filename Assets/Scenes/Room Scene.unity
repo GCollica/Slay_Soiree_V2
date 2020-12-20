@@ -276,6 +276,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 289241987}
     m_Modifications:
+    - target: {fileID: 112788871, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112788871, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112788871, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112788871, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 112788871, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 144687696, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -284,6 +304,14 @@ PrefabInstance:
       propertyPath: quirkPickerUI
       value: 
       objectReference: {fileID: 1590187934}
+    - target: {fileID: 276321681, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439460916, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 686254568, guid: 9f38dc34beed4794b864e104aeb9ace6, type: 3}
       propertyPath: quirkPickerUI
       value: 

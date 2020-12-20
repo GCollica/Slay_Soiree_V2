@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour
 {
-    public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition, Ranged };
+    public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition, Ranged, RostrictMovement };
     public MeleeState stateMelee;
 
     public enum RangedState { RestrictMovement, NormalMovement, Melee };
@@ -56,7 +56,7 @@ public class ComboSystem : MonoBehaviour
                 stateRanged = RangedState.Melee;
                 if (playerCombat.inputRecieved)
                 {
-                    Debug.Log("Attack Animation");
+                    //Debug.Log("Attack Animation");
                     animator.SetTrigger("AttackOne");
                     playerCombat.MeleeAttack();
                     playerCombat.InputManager();

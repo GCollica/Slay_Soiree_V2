@@ -87,7 +87,7 @@ MonoBehaviour:
   swordAttackMoveSpeed: 0.75
   bowAttackMoveSpeed: 0
   forceMult: 10
-  dodgeCooldown: 2
+  dodgeCooldown: 1
   animator: {fileID: 0}
 --- !u!114 &8493846973349387341
 MonoBehaviour:
