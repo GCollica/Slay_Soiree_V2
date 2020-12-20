@@ -9,6 +9,7 @@ public class SkeletonEnemy : MonoBehaviour
     private SkeletonEnemy_AI skeletonEnemyAI;
     private SkeletonEnemy_Animation animationComponent;
     private SkeletonEnemy_Pathfinding pathfindingComponent;
+    private SkeletonEnemy_Attacking attackingComponent;
 
     private QuirkManager quirkManager;
     private WaveManager waveManager;
@@ -33,6 +34,7 @@ public class SkeletonEnemy : MonoBehaviour
         skeletonEnemyAI = this.gameObject.GetComponent<SkeletonEnemy_AI>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Animation>();
         pathfindingComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Pathfinding>();
+        attackingComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Attacking>();
 
         if (this.gameObject.transform.GetChild(1) != null)
         {
@@ -121,6 +123,7 @@ public class SkeletonEnemy : MonoBehaviour
 
     public void BeginEnemyDeath(GameObject rewardPlayerInput)
     {
+        attackingComponent.ToggleAttackCollider(false);
         rewardPlayer = rewardPlayerInput;
         animationComponent.SetAnimBool("Walking", false);
         animationComponent.SetAnimBool("Attacking", false);
@@ -137,7 +140,7 @@ public class SkeletonEnemy : MonoBehaviour
     public void SpawnParticles(GameObject player)
     {
         GameObject particleGO = Instantiate(ParticleSystem, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, this.gameObject.transform.transform.position.z), Quaternion.identity, this.gameObject.transform);
-        Vector3 facingVector = (this.gameObject.transform.position - player.transform.position).normalized;
+        Vector3 facingVector = (new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, this.gameObject.transform.transform.position.z) - player.transform.position).normalized;
         particleGO.transform.forward = facingVector;
     }
 
