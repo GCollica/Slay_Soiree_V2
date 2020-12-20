@@ -31,19 +31,13 @@ public class SkeletonEnemy : MonoBehaviour
         skeletonEnemyAI = this.gameObject.GetComponent<SkeletonEnemy_AI>();
         animationComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Animation>();
         pathfindingComponent = this.gameObject.transform.GetComponentInChildren<SkeletonEnemy_Pathfinding>();
+
         if (this.gameObject.transform.GetChild(1) != null)
         {
             spriteRenderer = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
 
-        if (gameObject.CompareTag("Boss"))
-        {
-            InitaliseBossClassInstance();
-        }
-        else
-        {
-            InitialiseClassInstance();
-        }
+        InitialiseClassInstance();
 
         waveManager = FindObjectOfType<WaveManager>();
         waveManager.AddActiveEnemy(this.gameObject);
@@ -61,31 +55,11 @@ public class SkeletonEnemy : MonoBehaviour
                 basicEnemyClass.currentMovementSpeed = (basicEnemyClass.currentMovementSpeed * 2);
             }
         }
-
-        //SetSortingLayers();
-
-        //InvokeRepeating("SetSortingLayers", 0.5f, 0.5f);
     }
 
     //Initialises an instance of the Basic Enemy Class, feeding it values for damage, resistance, health, movespeed as the constructor requires.
     private void InitialiseClassInstance()
     {
-        basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
-    }
-
-    /*private void SetSortingLayers()
-    {
-        spriteRenderer.sortingLayerName = Mathf.RoundToInt(this.gameObject.transform.position.y).ToString();
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
-    }*/
-
-    private void InitaliseBossClassInstance()
-    {
-        startingDamage = 25f;
-        startingResistance = 12f;
-        startingHealth = 125f;
-        startingMovespeed = 10f;
-
         basicEnemyClass = new BasicEnemy_Class(startingDamage, startingResistance, startingHealth, startingMovespeed, goldDrop);
     }
 
@@ -106,7 +80,6 @@ public class SkeletonEnemy : MonoBehaviour
             PlayFlinchAnim();
             basicEnemyClass.TakeCalculatedDamage(player.GetComponent<PlayerStats>().playerClass.currentLightDamage);
             soundManager.Play("Enemy Impact");
-            //basicEnemyAI.Knockback();
         }
 
         // If enemy health drops below zero
@@ -115,7 +88,6 @@ public class SkeletonEnemy : MonoBehaviour
             // Death animation here.
 
             // Invoke death for animation duration or call it when animation finishes
-            pathfindingComponent.rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
             this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
             BeginEnemyDeath(player);
         }
@@ -132,6 +104,8 @@ public class SkeletonEnemy : MonoBehaviour
     {
         rewardPlayer = rewardPlayerInput;
         animationComponent.SetAnimBool("Walking", false);
+        animationComponent.SetAnimBool("Attacking", false);
+        pathfindingComponent.rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animationComponent.SetAnimBool("Dying", true);
     }
 
