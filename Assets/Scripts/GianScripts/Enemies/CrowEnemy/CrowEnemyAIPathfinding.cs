@@ -34,12 +34,6 @@ public class CrowEnemyAIPathfinding : MonoBehaviour
     //Generates path towards the target postition
     public void GeneratePath()
     {
-        if (aiComponent.currentTarget == null || aiComponent.currentTargetTransform == null)
-        {
-            ClearPath();
-            aiComponent.currentAIState = CrowEnemy_AI.AIState.FindingTarget;
-        }
-
         //AstarPath.active.UpdateGraphs(GameObject.FindObjectOfType<GraphUpdateScene>().);
         creatingPath = true;
         seeker.StartPath(rigidBody.position, aiComponent.currentTargetTransform.position, OnPathComplete);
@@ -48,13 +42,8 @@ public class CrowEnemyAIPathfinding : MonoBehaviour
 
     public void GeneratePathAttached()
     {
-        if (aiComponent.currentTarget == null || aiComponent.currentTargetTransform == null)
-        {
-            ClearPath();
-            aiComponent.currentAIState = CrowEnemy_AI.AIState.FindingTarget;
-        }
-
         creatingPath = true;
+
         if (currentFlyPointState == FlyPointState.left)
         {
             seeker.StartPath(rigidBody.position, aiComponent.flypointLeft.position, OnPathComplete);
@@ -80,11 +69,6 @@ public class CrowEnemyAIPathfinding : MonoBehaviour
         }
         else
         {
-            if(aiComponent.currentTargetTransform.position == null)
-            {
-                aiComponent.idleDelayTimer = 0f;
-                aiComponent.currentAIState = CrowEnemy_AI.AIState.Idle;
-            }
             seeker.StartPath(rigidBody.position, aiComponent.currentTargetTransform.position, OnPathComplete);
         }
     }

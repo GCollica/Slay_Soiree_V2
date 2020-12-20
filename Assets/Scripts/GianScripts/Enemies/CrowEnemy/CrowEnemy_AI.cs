@@ -43,6 +43,8 @@ public class CrowEnemy_AI : MonoBehaviour
             case AIState.Idle:
 
                 pathfindingComponent.ClearPath();
+                currentTarget = null;
+                currentTargetTransform = null;
 
                 if (idleDelayTimer < idleDelayLength)
                 {
@@ -138,6 +140,7 @@ public class CrowEnemy_AI : MonoBehaviour
 
         currentTarget = closestEnemy;
         currentTargetTransform = closestEnemy.transform;
+        closestEnemy.GetComponent<SkeletonEnemy>().AddAttachedCrow(this.gameObject);
 
         currentAIState = AIState.PursuingTarget;
     }

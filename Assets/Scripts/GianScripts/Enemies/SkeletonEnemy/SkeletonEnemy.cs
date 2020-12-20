@@ -25,6 +25,7 @@ public class SkeletonEnemy : MonoBehaviour
     private int goldDrop = 2;
 
     private GameObject rewardPlayer;
+    public List<GameObject> attachedCrows;
 
     void Awake()
     {
@@ -114,6 +115,7 @@ public class SkeletonEnemy : MonoBehaviour
     {
         rewardPlayer.GetComponent<PlayerStats>().playerClass.GainGold(basicEnemyClass.currentGoldDrop);
         waveManager.RemoveActiveEnemy(this.gameObject);
+        DetatchCrows();
         Destroy(gameObject);
     }
 
@@ -137,5 +139,25 @@ public class SkeletonEnemy : MonoBehaviour
         GameObject particleGO = Instantiate(ParticleSystem, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1, this.gameObject.transform.transform.position.z), Quaternion.identity, this.gameObject.transform);
         Vector3 facingVector = (this.gameObject.transform.position - player.transform.position).normalized;
         particleGO.transform.forward = facingVector;
+    }
+
+    public void AddAttachedCrow(GameObject crow)
+    {
+        attachedCrows.Add(crow);
+    }
+
+    public void DetatchCrows()
+    {
+        foreach (var crow in attachedCrows)
+        {
+            if(crow == null)
+            {
+                continue;
+            }
+
+            crow.GetComponent<CrowEnemy_AI>().currentAIState = CrowEnemy_AI.AIState.Idle;
+        }
+
+        attachedCrows.Clear();
     }
 }
