@@ -11,7 +11,7 @@ public class SortingLayerAssignerUI : MonoBehaviour
     }
     public void SetSortingLayers()
     {
-        canvas.sortingLayerName = Mathf.RoundToInt(this.gameObject.transform.position.y).ToString();
+        canvas.sortingLayerName = (Mathf.RoundToInt(this.gameObject.transform.position.y * 4f) / 4f).ToString();
         canvas.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
     }
 }

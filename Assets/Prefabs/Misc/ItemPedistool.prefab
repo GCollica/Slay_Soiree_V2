@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6469574755582497327}
   - component: {fileID: 6469574755582497326}
-  - component: {fileID: 1465445550}
+  - component: {fileID: 4719429577008141078}
   m_Layer: 12
   m_Name: Item Sprite
-  m_TagString: UI
+  m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1465445550
+--- !u!114 &4719429577008141078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.04}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -171,7 +171,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.25}
+  m_Size: {x: 0.5, y: 1.25}
   m_EdgeRadius: 0
 --- !u!50 &6469574755692889872
 Rigidbody2D:

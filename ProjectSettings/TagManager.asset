@@ -59,74 +59,146 @@ TagManager:
   - name: 7
     uniqueID: 2013467249
     locked: 0
+  - name: 6.75
+    uniqueID: 3612119765
+    locked: 0
   - name: 6.5
     uniqueID: 1702788201
+    locked: 0
+  - name: 6.25
+    uniqueID: 35666679
     locked: 0
   - name: 6
     uniqueID: 3670748795
     locked: 0
+  - name: 5.75
+    uniqueID: 1556133897
+    locked: 0
   - name: 5.5
     uniqueID: 3698082139
+    locked: 0
+  - name: 5.25
+    uniqueID: 1425558263
     locked: 0
   - name: 5
     uniqueID: 115720717
     locked: 0
+  - name: 4.75
+    uniqueID: 3285138419
+    locked: 0
   - name: 4.5
     uniqueID: 830064789
+    locked: 0
+  - name: 4.25
+    uniqueID: 863032895
     locked: 0
   - name: 4
     uniqueID: 3373478175
     locked: 0
+  - name: 3.75
+    uniqueID: 4125647075
+    locked: 0
   - name: 3.5
     uniqueID: 3698804379
+    locked: 0
+  - name: 3.25
+    uniqueID: 454354939
     locked: 0
   - name: 3
     uniqueID: 3089418153
     locked: 0
+  - name: 2.75
+    uniqueID: 2501810133
+    locked: 0
   - name: 2.5
     uniqueID: 1040723501
+    locked: 0
+  - name: 2.25
+    uniqueID: 3407179565
     locked: 0
   - name: 2
     uniqueID: 575010681
     locked: 0
+  - name: 1.75
+    uniqueID: 1440038997
+    locked: 0
   - name: 1.5
     uniqueID: 224449273
+    locked: 0
+  - name: 1.25
+    uniqueID: 462980099
     locked: 0
   - name: 1
     uniqueID: 3250570813
     locked: 0
+  - name: 0.75
+    uniqueID: 3127010571
+    locked: 0
   - name: 0.5
     uniqueID: 2170208745
+    locked: 0
+  - name: 0.25
+    uniqueID: 2917290151
     locked: 0
   - name: 0
     uniqueID: 3809290129
     locked: 0
+  - name: -0.25
+    uniqueID: 1646262867
+    locked: 0
   - name: -0.5
     uniqueID: 4003976817
+    locked: 0
+  - name: -0.75
+    uniqueID: 1906426641
     locked: 0
   - name: -1
     uniqueID: 477424325
     locked: 0
+  - name: -1.25
+    uniqueID: 3601707561
+    locked: 0
   - name: -1.5
     uniqueID: 4232339663
+    locked: 0
+  - name: -1.75
+    uniqueID: 2729088637
     locked: 0
   - name: -2
     uniqueID: 909745303
     locked: 0
+  - name: -2.25
+    uniqueID: 2240853193
+    locked: 0
   - name: -2.5
     uniqueID: 2638490063
+    locked: 0
+  - name: -2.75
+    uniqueID: 2725538203
     locked: 0
   - name: -3
     uniqueID: 3309393535
     locked: 0
+  - name: -3.25
+    uniqueID: 388528515
+    locked: 0
   - name: -3.5
     uniqueID: 1808064537
+    locked: 0
+  - name: -3.75
+    uniqueID: 2003020563
     locked: 0
   - name: -4
     uniqueID: 3403106247
     locked: 0
+  - name: -4.25
+    uniqueID: 2332767619
+    locked: 0
   - name: -4.5
     uniqueID: 2430917575
+    locked: 0
+  - name: -4.75
+    uniqueID: 4017759927
     locked: 0
   - name: -5
     uniqueID: 2732541625

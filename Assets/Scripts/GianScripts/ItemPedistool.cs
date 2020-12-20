@@ -17,8 +17,6 @@ public class ItemPedistool : MonoBehaviour
     public SpriteRenderer itemSpriteRenderer;
     public TMPro.TMP_Text displayedText;
     private ItemManager itemManager;
-    private bool isFadingIn = false;
-    private bool isFadingOut = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,6 +26,8 @@ public class ItemPedistool : MonoBehaviour
         ChooseRandomItem();
         SetUIElements();
         displayedText.canvasRenderer.SetAlpha(0);
+
+        StartCoroutine(nameof(FadeInIEnumerator));
     }
 
     /// <summary>
@@ -112,57 +112,12 @@ public class ItemPedistool : MonoBehaviour
 
     IEnumerator FadeInIEnumerator()
     {
-        isFadingIn = true;
-
         for (float targetAlpha = displayedText.canvasRenderer.GetAlpha(); targetAlpha < 1.1; targetAlpha += 0.1f)
         {
             displayedText.canvasRenderer.SetAlpha(targetAlpha);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
 
-        isFadingIn = false;
         StopCoroutine(nameof(FadeInIEnumerator));
-    }
-
-    IEnumerator FadeOutIEnumerator()
-    {
-        isFadingOut = true;
-
-        for (float targetAlpha = displayedText.canvasRenderer.GetAlpha(); targetAlpha > -0.1; targetAlpha -= 0.1f)
-        {
-            displayedText.canvasRenderer.SetAlpha(targetAlpha);
-            yield return new WaitForSeconds(0.05f);
-        }
-        
-        isFadingOut = false;
-        StopCoroutine(nameof(FadeInIEnumerator));
-    }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(isFadingOut == true)
-        {
-            StopCoroutine(nameof(FadeOutIEnumerator));
-            isFadingOut = false;
-        }
-        if(displayedText.canvasRenderer.GetAlpha() >= 0.4f)
-        {
-            return;
-        }
-        StartCoroutine(nameof(FadeInIEnumerator));
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if(isFadingIn == true)
-        {
-            StopCoroutine(nameof(FadeOutIEnumerator));
-            isFadingOut = true;
-        }
-        if(displayedText.canvasRenderer.GetAlpha() <= 0.4f)
-        {
-            return;
-        }
-        
-        StartCoroutine(nameof(FadeOutIEnumerator));
     }
 }

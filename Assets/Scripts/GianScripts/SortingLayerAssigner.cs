@@ -22,7 +22,7 @@ public class SortingLayerAssigner : MonoBehaviour
     }
     public void SetSortingLayers()
     {
-        spriteRenderer.sortingLayerName = (Mathf.RoundToInt(this.gameObject.transform.position.y * 2f) /2f).ToString();
+        spriteRenderer.sortingLayerName = (Mathf.RoundToInt(this.gameObject.transform.position.y * 4f) /4f).ToString();
         spriteRenderer.sortingOrder = Mathf.RoundToInt(this.gameObject.transform.position.x) * 10;
     }
 }
