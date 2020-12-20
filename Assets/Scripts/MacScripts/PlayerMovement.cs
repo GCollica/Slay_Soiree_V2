@@ -48,14 +48,13 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
-    private enum WeaponState { Melee, Ranged }
-    private WeaponState weaponState;
-
+    public enum WeaponState { Melee, Ranged}
+    public WeaponState weaponState;
 
     private enum State { Melee, RangedNormal, Rolling}
     private Vector2 rollDir;
     private State state;
-    private float rollSpeed;
+    private float rollSpeed; 
     public float dodgeCooldown;
     private float dodgeTime;
     public Animator animator;
@@ -203,6 +202,11 @@ public class PlayerMovement : MonoBehaviour
     {
         //Returns the index of the player Index 0-3 (Player 1-4) 
         return playerIndex;
+    }
+
+    public void RestrictMovement()
+    {
+        baseSpeed = bowAttackMoveSpeed;
     }
 
     public void Dodge()

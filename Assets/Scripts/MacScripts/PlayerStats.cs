@@ -17,7 +17,10 @@ public class PlayerStats : MonoBehaviour
     public PlayerClass playerClass;
     private PlayerCount playerCount;
     private PlayerCombat playerCombat;
-    public ComboSystem comboSystem;
+    private PlayerMovement playerMovement;
+
+    private ComboSystem comboSystem;
+
     private Animator animator;
     private SoundManager soundManager;
 
@@ -29,6 +32,7 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         playerCount = FindObjectOfType<PlayerCount>();
         playerCombat = FindObjectOfType<PlayerCombat>();
         animator = GetComponentInChildren<Animator>();
@@ -65,8 +69,10 @@ public class PlayerStats : MonoBehaviour
         {
             Debug.Log("Player " + (playerCombat.playerIndex + 1) + " has died!");
 
-            comboSystem.stateRanged = ComboSystem.RangedState.RestrictMovement;
+            comboSystem = GetComponentInChildren<ComboSystem>();
+
             // Kill player
+            comboSystem.PlayerDead();
             animator = GetComponentInChildren<Animator>();
             animator.SetTrigger("Dead");
         }
@@ -74,6 +80,7 @@ public class PlayerStats : MonoBehaviour
 
     public void KillPlayer()
     {
+        comboSystem.PlayerDead();
         playerCount.RemovePlayerInputManager(playerCount.playerInputManagers[playerCombat.playerIndex]);
         playerCombat.gameObject.SetActive(false);
         gameObject.SetActive(false);

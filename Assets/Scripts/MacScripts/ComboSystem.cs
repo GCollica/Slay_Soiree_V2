@@ -119,11 +119,18 @@ public class ComboSystem : MonoBehaviour
             case RangedState.RestrictMovement:
                 stateMelee = MeleeState.Ranged;
                 playerMovement.restrictMovement = true;
+                playerCombat.ranged = true;
                 break;
             case RangedState.Melee:
                 break;
         }
         #endregion
+    }
+
+    public void PlayerDead()
+    {
+        stateMelee = MeleeState.Ranged;
+        stateRanged = RangedState.RestrictMovement;
     }
 
     // Events called by weapon animations
