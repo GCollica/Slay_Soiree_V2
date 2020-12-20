@@ -9,12 +9,9 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
 
     public GameObject attackParent;
     
-    //private Transform attackPos1;
-    private Transform attackPos2;
-    //private Transform attackPos3;
+    private Transform attackPos;
 
     public List<GameObject> attackTargets;
-
 
     public RaycastHit2D[] raycastHits;
 
@@ -32,8 +29,7 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
     {
         aiComponent = this.gameObject.GetComponentInParent<SkeletonEnemy_AI>();
         pathfindingComponent = this.gameObject.GetComponentInParent<SkeletonEnemy_Pathfinding>();
-        attackPos2 = FindChildGameObject(attackParent, "Attack_Pos2").transform;
-        //attackPos3 = FindChildGameObject(attackParent, "Attack_Pos3").transform;
+        attackPos = attackParent.transform.GetChild(0);
     }
 
     //Sets characters attack direction.
@@ -55,14 +51,12 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
         {
             foreach (GameObject target in attackTargets)
             {
-                //Debug.Log("Executed attack on " + target.name);
                 target.GetComponent<PlayerStats>().TakeDamage(aiComponent.basicEnemy1Script.basicEnemyClass.currentDamage);
+
                 if(aiComponent.quirkManager.CurrentQuirk.quirkID == 3)
                 {
                     aiComponent.quirkManager.SpawnGoldPouch(target);
                 }
-                //Perform Attacks.
-                //attackTargets.Remove(target);
             }
         }
     }
@@ -83,83 +77,42 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
     }
 
     //Turns on and off circlecasts used for attack sequence, attackPos input is used for the sequential nature of the check.
-    public void AttackRaycast(int attackPos)
+    public void AttackRaycast()
     {
-        switch (attackPos)
+        raycastHits = Physics2D.CircleCastAll(attackPos.position, 0.25f, (this.transform.position - attackPos.position));
+
+        if (raycastHits.Length > 0)
         {
-            /*case 1:
-
-                raycastHits = Physics2D.CircleCastAll(attackPos1.position, 1f, (this.transform.position - attackPos1.position));
-
-                if (raycastHits.Length > 0)
+            foreach (RaycastHit2D hit in raycastHits)
+            {
+                if (hit.collider.CompareTag("Player"))
                 {
-                    foreach (RaycastHit2D hit in raycastHits)
+                    //Debug.Log("Player " + hit.collider.gameObject.name.ToString() + " Collider Hit");
+
+                    if (attackTargets.Contains(hit.collider.gameObject) != true)
                     {
-                        if (hit.collider.CompareTag("Player"))
-                        {
-                            //Debug.Log("Player " + hit.collider.gameObject.name.ToString() + " Collider Hit");
-
-                            if (attackTargets.Contains(hit.collider.gameObject) != true)
-                            {
-                                attackTargets.Add(hit.collider.gameObject);
-                            }
-                        }
+                        attackTargets.Add(hit.collider.gameObject);
                     }
-
-                    Array.Clear(raycastHits, 0, raycastHits.Length);
                 }
-                break;*/
+            }
 
-            case 2:
-
-                raycastHits = Physics2D.CircleCastAll(attackPos2.position, 0.25f, (this.transform.position - attackPos2.position));
-
-                if (raycastHits.Length > 0)
-                {
-                    foreach (RaycastHit2D hit in raycastHits)
-                    {
-                        if (hit.collider.CompareTag("Player"))
-                        {
-                            //Debug.Log("Player " + hit.collider.gameObject.name.ToString() + " Collider Hit");
-
-                            if (attackTargets.Contains(hit.collider.gameObject) != true)
-                            {
-                                attackTargets.Add(hit.collider.gameObject);
-                            }
-                        }
-                    }
-
-                    Array.Clear(raycastHits, 0, raycastHits.Length);
-                }
-                break;
-
-            /*case 3:
-
-                raycastHits = Physics2D.CircleCastAll(attackPos3.position, 1f, (this.transform.position - attackPos3.position));
-
-                if (raycastHits.Length > 0)
-                {
-                    foreach (RaycastHit2D hit in raycastHits)
-                    {
-                        if (hit.collider.CompareTag("Player"))
-                        {
-                            //Debug.Log("Player " + hit.collider.gameObject.name.ToString() + " Collider Hit");
-
-                            if (attackTargets.Contains(hit.collider.gameObject) != true)
-                            {
-                                attackTargets.Add(hit.collider.gameObject);
-                            }
-                        }
-                    }
-
-                    Array.Clear(raycastHits, 0, raycastHits.Length);
-                }
-                break;*/
-
-            default:
-                break;
-
+            Array.Clear(raycastHits, 0, raycastHits.Length);
         }
+
+    }
+
+    public void CombinedAttackFunction()
+    {
+        pathfindingComponent.LockMovement();
+        SetAttackDirection();
+        AttackRaycast();
+        aiComponent.currentAIState = SkeletonEnemy_AI.AIState.ExecutingAttacks;
+    }
+
+    public void ToggleAttackCollider(bool input)
+    {
+        Collider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+        collider.enabled = input;
     }
 
     //Basic check for whether the enemy is within attack range of the current target.
@@ -194,20 +147,6 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
         result = parent.transform.Find(childName).gameObject;
 
         return result;
-    }
-
-    public void ToggleAttackCollider(bool input)
-    {
-        Collider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
-        collider.enabled = input;
-    }
-
-    public void CombinedAttackFunction()
-    {
-        pathfindingComponent.LockMovement();
-        SetAttackDirection();
-        AttackRaycast(2);
-        aiComponent.currentAIState = SkeletonEnemy_AI.AIState.ExecutingAttacks;
     }
 
 }
