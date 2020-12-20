@@ -17,11 +17,11 @@ public class SkeletonEnemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public GameObject ParticleSystem;
 
-    public float startingDamage = 5f;
-    public float startingResistance = 10f;
-    public float startingHealth = 25f;
-    public float startingMovespeed = 10f;
-    public int goldDrop = 2;
+    private float startingDamage = 5f;
+    private float startingResistance = 10f;
+    private float startingHealth = 25f;
+    private float startingMovespeed = 400f;
+    private int goldDrop = 2;
 
     private GameObject rewardPlayer;
 

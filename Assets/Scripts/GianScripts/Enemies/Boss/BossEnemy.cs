@@ -10,10 +10,10 @@ public class BossEnemy : MonoBehaviour
     private CameraShake cameraShake;
     private SoundManager soundManager;
 
-    public float startingDamage = 30f;
-    public float startingResistance = 50f;
-    public float startingHealth = 300f;
-    public float startingMovespeed = 50f;
+    private float startingDamage = 30f;
+    private float startingResistance = 50f;
+    private float startingHealth = 300f;
+    private float startingMovespeed = 50f;
 
     public Transform HealthbarPosition;
     public Transform WinBannerPosition;
