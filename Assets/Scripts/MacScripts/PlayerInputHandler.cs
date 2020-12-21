@@ -123,6 +123,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (context.started && playerMovement != null)
             {
                 playerCombat.isAiming = true;
+                playerCombat.shotReady = true;
             }
 
             //Debug.Log(playerCombat.isAiming);

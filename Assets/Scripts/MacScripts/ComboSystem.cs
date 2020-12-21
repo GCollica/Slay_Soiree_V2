@@ -54,6 +54,7 @@ public class ComboSystem : MonoBehaviour
 
             case MeleeState.Moving:
                 stateRanged = RangedState.Melee;
+                playerCombat.ranged = false;
                 if (playerCombat.inputRecieved)
                 {
                     //Debug.Log("Attack Animation");
@@ -113,6 +114,7 @@ public class ComboSystem : MonoBehaviour
                     stateRanged = RangedState.Melee;
                 }
 
+                playerCombat.ranged = true;
                 stateMelee = MeleeState.Ranged;
                 playerMovement.restrictMovement = false;
                 break;
