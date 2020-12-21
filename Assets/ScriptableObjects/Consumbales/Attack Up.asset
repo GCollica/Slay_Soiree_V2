@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumableName: Attack Up
   consumableSprite: {fileID: 21300000, guid: 16927f00bd7c5864d8f3c6fef90d821a, type: 3}
-  cost: 5
-  effectModifier: 0.5
+  cost: 10
+  effectModifier: 1

@@ -11,6 +11,7 @@ public class QuirkPickerUI : MonoBehaviour
     public GameObject quirk1UI;
     public GameObject quirk2UI;
     public GameObject quirk3UI;
+    public GameObject pickQuirkText;
 
     public Collider2D collider1;
     public Collider2D collider2;
@@ -30,6 +31,7 @@ public class QuirkPickerUI : MonoBehaviour
         SetChildrenAlpha(0, quirk1UI);
         SetChildrenAlpha(0, quirk2UI);
         SetChildrenAlpha(0, quirk3UI);
+        SetChildrenAlpha(0, pickQuirkText);
 
         //cardSelectColliders.SetActive(false);
         ColliderOff();
@@ -84,7 +86,8 @@ public class QuirkPickerUI : MonoBehaviour
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
             SetChildrenAlpha(targetAlpha, quirk3UI);
-            yield return new WaitForSeconds(0.075f);
+            SetChildrenAlpha(targetAlpha, pickQuirkText);
+            yield return new WaitForSeconds(0.05f);
         }
 
         ColliderOn();
@@ -102,7 +105,8 @@ public class QuirkPickerUI : MonoBehaviour
             SetChildrenAlpha(targetAlpha, quirk1UI);
             SetChildrenAlpha(targetAlpha, quirk2UI);
             SetChildrenAlpha(targetAlpha, quirk3UI);
-            yield return new WaitForSeconds(0.075f);
+            SetChildrenAlpha(targetAlpha, pickQuirkText);
+            yield return new WaitForSeconds(0.05f);
         }
 
         currentRoomProgress.ChangeRoomState(RoomProgress.RoomState.Active);
@@ -155,6 +159,7 @@ public class QuirkPickerUI : MonoBehaviour
         quirk1UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk1UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk1UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
         quirk2UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk2UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk2UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
         quirk3UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk3UI.GetComponent<RectTransform>().position.x, yPosOffScreen, quirk3UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+        pickQuirkText.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(pickQuirkText.GetComponent<RectTransform>().position.x, yPosTarget + 350f, pickQuirkText.GetComponent<RectTransform>().position.z), Quaternion.identity);
     }
 
     void MoveUIOnScreen()
@@ -162,6 +167,7 @@ public class QuirkPickerUI : MonoBehaviour
         quirk1UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk1UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk1UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
         quirk2UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk2UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk2UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
         quirk3UI.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(quirk3UI.GetComponent<RectTransform>().position.x, yPosTarget, quirk3UI.GetComponent<RectTransform>().position.z), Quaternion.identity);
+        pickQuirkText.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(pickQuirkText.GetComponent<RectTransform>().position.x, yPosTarget + 350f, pickQuirkText.GetComponent<RectTransform>().position.z), Quaternion.identity);
     }
 
     public void AssignCurrentRoomReference()

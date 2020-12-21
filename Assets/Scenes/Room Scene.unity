@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -389,6 +389,12 @@ PrefabInstance:
 --- !u!4 &722320627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7975352514200567499, guid: 9f38dc34beed4794b864e104aeb9ace6,
+    type: 3}
+  m_PrefabInstance: {fileID: 722320626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &722320628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3713194228551740322, guid: 9f38dc34beed4794b864e104aeb9ace6,
     type: 3}
   m_PrefabInstance: {fileID: 722320626}
   m_PrefabAsset: {fileID: 0}
@@ -866,6 +872,7 @@ MonoBehaviour:
   quirk1UI: {fileID: 32574287}
   quirk2UI: {fileID: 2046959898}
   quirk3UI: {fileID: 1437964036}
+  pickQuirkText: {fileID: 722320628}
   collider1: {fileID: 1036580750}
   collider2: {fileID: 181160558}
   collider3: {fileID: 686254569}
