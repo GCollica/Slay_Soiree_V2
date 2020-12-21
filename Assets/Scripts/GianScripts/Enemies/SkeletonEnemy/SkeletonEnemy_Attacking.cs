@@ -53,7 +53,7 @@ public class SkeletonEnemy_Attacking : MonoBehaviour
             {
                 target.GetComponent<PlayerStats>().TakeDamage(aiComponent.basicEnemy1Script.basicEnemyClass.currentDamage);
 
-                if(aiComponent.quirkManager.CurrentQuirk.quirkID == 3)
+                if(aiComponent.quirkManager.CurrentQuirk.quirkID == 2)
                 {
                     aiComponent.quirkManager.SpawnGoldPouch(target);
                 }

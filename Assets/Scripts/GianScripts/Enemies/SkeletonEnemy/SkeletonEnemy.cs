@@ -48,7 +48,7 @@ public class SkeletonEnemy : MonoBehaviour
 
         InitialiseClassInstance();
 
-        if (quirkManager.CurrentQuirk.quirkID == 2)
+        if (quirkManager.CurrentQuirk.quirkID == 3)
         {
             int chosenModifier = quirkManager.RandomiseMSModifier();
             if (chosenModifier == 0)
