@@ -7,7 +7,7 @@ public class ComboSystem : MonoBehaviour
     public enum MeleeState { Idle, Moving, Dodging, Attack, Attack1_Transition, Attack2_Transition, Ranged, RostrictMovement };
     public MeleeState stateMelee;
 
-    public enum RangedState { RestrictMovement, NormalMovement, Melee };
+    public enum RangedState { RestrictMovement, NormalMovement, Melee, RangedDodging };
     public RangedState stateRanged;
 
     private PlayerCombat playerCombat;
@@ -125,6 +125,9 @@ public class ComboSystem : MonoBehaviour
                 break;
             case RangedState.Melee:
                 break;
+            case RangedState.RangedDodging:
+                stateMelee = MeleeState.Ranged;
+                break;
         }
         #endregion
     }
@@ -202,6 +205,11 @@ public class ComboSystem : MonoBehaviour
     public void ReadyShot()
     {
         playerCombat.ReadyShot();
+    }
+    
+    public void SetRangedDodging()
+    {
+        stateRanged = RangedState.RangedDodging;
     }
     #endregion
 
