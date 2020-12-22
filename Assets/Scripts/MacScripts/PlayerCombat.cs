@@ -185,7 +185,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     if (canKnockback)
                     {                       
-                        enemy.GetComponent<SkeletonEnemy_AI>().Knockback();
+                        enemy.GetComponent<SkeletonEnemy_AI>().Knockback(this.gameObject.transform);
                         soundManager.Play("Enemy Knockback");
                         impactEnemy.TakeDamage(gameObject, "Light");
                     }
@@ -345,51 +345,42 @@ public class PlayerCombat : MonoBehaviour
             {
                 //playerStats.UpdateCurrentItem(interactable);
 
-                //This is speed up item.
+                //This is damage up item.
                 if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[0])
                 {
                     if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[0].cost)
                     {
-                        playerStats.playerClass.currentMovementSpeed += itemManager.allConsumablesArray[0].effectModifier;
+                        playerStats.playerClass.currentLightDamage += itemManager.allConsumablesArray[0].effectModifier;
                         playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[0].cost;
 
                         interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
-                    }
-                    
-                }
-                //This is damage up item.
-                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[1])
-                {
-                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[1].cost)
-                    {
-                        playerStats.playerClass.currentLightDamage += itemManager.allConsumablesArray[1].effectModifier;
-                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[1].cost;
-
-                        interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                        //this.gameObject.GetComponent<InteractIndicator>().ToggleActive();
                     }
                     
                 }
                 //This is resistance up item
-                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[2])
+                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[1])
                 {
-                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[2].cost)
+                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[1].cost)
                     {
-                        playerStats.playerClass.currentResistance += itemManager.allConsumablesArray[2].effectModifier;
-                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[2].cost;
+                        playerStats.playerClass.currentResistance += itemManager.allConsumablesArray[1].effectModifier;
+                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[1].cost;
 
                         interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                        //this.gameObject.GetComponent<InteractIndicator>().ToggleActive();
                     }
                     
                 }
                 //This is the potion item.
-                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[3])
+                else if (interactable.gameObject.GetComponent<ItemPedistool>().currentConsumableItem == itemManager.allConsumablesArray[2])
                 {
-                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[3].cost)
+                    if(playerStats.playerClass.currentGold >= itemManager.allConsumablesArray[2].cost)
                     {
-                        playerStats.potCount += Mathf.RoundToInt(itemManager.allConsumablesArray[3].effectModifier);
-                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[3].cost;
+                        playerStats.potCount += Mathf.RoundToInt(itemManager.allConsumablesArray[2].effectModifier);
+                        playerStats.playerClass.currentGold -= itemManager.allConsumablesArray[2].cost;
 
                         interactable.gameObject.GetComponent<ItemPedistool>().ClearPedistool();
+                        //this.gameObject.GetComponent<InteractIndicator>().ToggleActive();
                     }
                     
                 }

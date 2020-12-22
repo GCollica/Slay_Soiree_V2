@@ -108,6 +108,7 @@ public class ItemPedistool : MonoBehaviour
         currentWeaponItem = null;
         currentConsumableItem = null;
         SetUIElements();
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     IEnumerator FadeInIEnumerator()

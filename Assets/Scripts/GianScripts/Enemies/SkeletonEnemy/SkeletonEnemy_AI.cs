@@ -17,13 +17,12 @@ public class SkeletonEnemy_AI : MonoBehaviour
     private float idleDelayLength = 1f;
 
     private float attackPrepTimer = 0f;
-    private float attackPrepLength = 0.75f;
+    private float attackPrepLength = 0.5f;
 
 
     private float facingDirectionBuffer = 0.125f;
 
-    //Make private later @gian.
-    public float knockbackForce = 5000;
+    private float knockbackForce = 350;
 
     private SkeletonEnemy_Attacking attackComponent;
     private SkeletonEnemy_Pathfinding pathfindingComponent;
@@ -185,9 +184,9 @@ public class SkeletonEnemy_AI : MonoBehaviour
         }
     }
 
-    public void Knockback()
+    public void Knockback(Transform inputTransport)
     {
-        Vector2 directionVector = (currentTargetTransform.position - this.gameObject.transform.position).normalized;
+        Vector2 directionVector = (inputTransport.position - this.gameObject.transform.position).normalized;
         Vector2 force = -directionVector * knockbackForce;
         pathfindingComponent.rigidBody.AddForce(force);
     }

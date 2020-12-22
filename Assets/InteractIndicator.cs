@@ -6,7 +6,7 @@ public class InteractIndicator : MonoBehaviour
 {
     public GameObject InteractIndicatorGO;
 
-    private void ToggleActive()
+    public void ToggleActive()
     {
         if(InteractIndicatorGO.activeInHierarchy == true)
         {
