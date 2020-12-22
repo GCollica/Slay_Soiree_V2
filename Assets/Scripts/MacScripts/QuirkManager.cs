@@ -109,7 +109,7 @@ public class QuirkManager : MonoBehaviour
     #region GoldGauntlet
     public void SpawnGoldPouch(GameObject sourcePlayer)
     {
-        quirkSpawner.SpawnQuirkObjectTargetPos(goldPouch, sourcePlayer.transform);
+        quirkSpawner.SpawnQuirkObjectTargetPos(goldPouch, sourcePlayer.transform.GetChild(3).transform);
     }
     #endregion
 }

@@ -87,6 +87,7 @@ MonoBehaviour:
   swordAttackMoveSpeed: 0.75
   bowAttackMoveSpeed: 0
   forceMult: 10
+  weaponState: 0
   dodgeCooldown: 1
   animator: {fileID: 0}
 --- !u!114 &8493846973349387341
@@ -346,7 +347,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 27
+  m_SortingLayer: 51
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 685d0802c7817c24da23868bf56a83bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -371,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a09cdd3ea4fa804b9d9f03b77a18b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectOrigin: {fileID: 3279164145400837805}
 --- !u!114 &97798389452265754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +478,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 27
+  m_SortingLayer: 51
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: efbd50fc81588c74da01916c14c1a1ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -501,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a09cdd3ea4fa804b9d9f03b77a18b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectOrigin: {fileID: 3279164145400837805}
 --- !u!114 &3828226445702439899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3279164145400837805}
   - component: {fileID: 8190701940851170866}
+  - component: {fileID: 844319955919859108}
   m_Layer: 0
   m_Name: drop_shadow
   m_TagString: Untagged
@@ -597,6 +601,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &844319955919859108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2835325728721587941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a09cdd3ea4fa804b9d9f03b77a18b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectOrigin: {fileID: 3279164145400837805}
 --- !u!1 &3804840506641614505
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +682,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 27
+  m_SortingLayer: 51
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 64bf2e2f72e46cf4799058a1cb5ec76f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -753,6 +770,7 @@ GameObject:
   - component: {fileID: 594272488538404655}
   - component: {fileID: 9015784281958383501}
   - component: {fileID: 7348500072057206008}
+  - component: {fileID: 8616697607676182148}
   m_Layer: 11
   m_Name: PlayerBanner
   m_TagString: Untagged
@@ -811,7 +829,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 921083675
-  m_SortingLayer: 27
+  m_SortingLayer: 51
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 5babeae4ffffde242874e3b47bb925f3, type: 3}
   m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -843,6 +861,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8616697607676182148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4308111945998152132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a09cdd3ea4fa804b9d9f03b77a18b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectOrigin: {fileID: 3279164145400837805}
 --- !u!1 &4465617879370205458
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +970,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1221503274140661998}
     m_Modifications:
+    - target: {fileID: 2925067970219832842, guid: c412dcec6428dc94db9504e7168927a1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925067970219832842, guid: c412dcec6428dc94db9504e7168927a1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
+      value: aee3698e-23ef-40ca-bab5-9b2c102dfa03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925067970219832842, guid: c412dcec6428dc94db9504e7168927a1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
+      value: UI/Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925067970219832842, guid: c412dcec6428dc94db9504e7168927a1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: 01358123-5a28-41eb-a87f-c9e87b5e610c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925067970219832842, guid: c412dcec6428dc94db9504e7168927a1,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: Player/Start
+      objectReference: {fileID: 0}
     - target: {fileID: 4876106703330386529, guid: c412dcec6428dc94db9504e7168927a1,
         type: 3}
       propertyPath: m_Name
